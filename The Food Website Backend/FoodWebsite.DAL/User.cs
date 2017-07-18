@@ -13,9 +13,15 @@ namespace FoodWebsite.DAL
         public String Name { set; get; }
         public String Email { set; get; }
 
-        public static void Add(Guid id,User user)
+        public static void Add(Guid id, User user)
         {
             Users.Add(id, user);
+        }
+        
+
+        public static User Get(Guid id)
+        {
+            return Users[id];
         }
     }
 }

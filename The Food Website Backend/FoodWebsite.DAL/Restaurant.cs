@@ -8,18 +8,23 @@ namespace FoodWebsite.DAL
 {
     public class Restaurant
     {
-        private static Dictionary<Guid,Restaurant> Restaurants { set; get; } = new Dictionary<Guid, Restaurant>();
+        private static Dictionary<Guid, Restaurant> Restaurants { set; get; } = new Dictionary<Guid, Restaurant>();
         public Guid RestaurantID { set; get; }
         public String Name { set; get; }
-        public List<Guid> Items { set; get; }
+        public List<Item> Items { set; get; }
 
-        public static void Add(Guid id,Restaurant res)
+        public static void Add(Guid id, Restaurant res)
         {
             Restaurants.Add(id, res);
         }
-        public static void AddItem(Guid id,Guid item)
+        public static void AddItem(Guid id, Item item)
         {
             Restaurants[id].Items.Add(item);
         }
-}
+
+        public static Restaurant Get (Guid id)
+        {
+            return Restaurants[id];
+        }
+    }
 }

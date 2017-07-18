@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace FoodWebsite.Controllers
@@ -13,11 +14,14 @@ namespace FoodWebsite.Controllers
         [HttpGet]
         public void Add(Guid userID, Guid restaurantID, DateTime deadline)
         {
+            DAL.User user = DAL.User.Get(userID);
+            Restaurant restaurant = DAL.Restaurant.Get(restaurantID);
+
             Broadcast broadcast = new Broadcast
             {
-
-                RestaurantID = restaurantID,
-                UserID = userID,
+                Restaurant = restaurant,
+                Active = true,
+                User = user,
                 Deadline = deadline,
                 BroadcastID = Guid.NewGuid()
 
@@ -33,14 +37,33 @@ namespace FoodWebsite.Controllers
         [HttpGet]
         public List<Broadcast> History()
         {
-            return Broadcast.GetAll().Where(e => e.Active == false).ToList();
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Methods", "GET");
+
+            var dummyBroadcast = new Broadcast
+            {
+                User = new DAL.User
+                {
+                    Name = "Zare3"
+                },
+                Restaurant = new Restaurant
+                {
+                    Name = "KFC"
+                },
+                Deadline = DateTime.Now
+            };
+
+            return new List<Broadcast> { dummyBroadcast };
+
+            // return Broadcast.GetAll().Where(e => e.Active == false).ToList();
         }
+
         [HttpGet]
         public List<Order> Reciept(Guid id)
         {
-            List<Guid> orderGuids = Broadcast.Get(id).Orders;
-            List<Order> orders = Order.GetOrders(orderGuids);
-            return orders;
+            return Broadcast.Get(id).Orders;
         }
     }
 }
+

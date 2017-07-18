@@ -13,10 +13,10 @@ namespace FoodWebsite.DAL
         public double Reciept { set; get; } = 0.0;
         public bool Active { set; get; } = true;
         public Guid BroadcastID { set; get; }
-        public List<Guid> Orders { set; get; } = new List<Guid>();
-        public Guid RestaurantID { set; get; }
+        public List<Order> Orders { set; get; } = new List<Order>();
+        public Restaurant Restaurant { set; get; }
         public DateTime Deadline { set; get; }
-        public Guid UserID { set; get; }
+        public User User { set; get; }
 
         public static void Add(Broadcast broadcast)
         {

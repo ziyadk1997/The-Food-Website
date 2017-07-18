@@ -24,7 +24,8 @@ namespace FoodWebsite.Controllers
         [HttpGet]
         public void AddItem(Guid itemID,Guid restaurantID)
         {
-            Restaurant.AddItem(restaurantID, itemID);
+            Item item = Item.Get(itemID);
+            Restaurant.AddItem(restaurantID, item);
         }
     }
 }
