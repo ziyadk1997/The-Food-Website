@@ -7,15 +7,17 @@
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="myscript.js"></script>
+  <script src="broadcast.js"></script>
 <link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
 <script>
 			$.ajax({
-			  url:"http://localhost:18151/api/Broadcast/History",
+			  url:"http://localhost:18151/api/Broadcast/Active",
 			  type:"GET",
 			  success: function(response){
 				displayBroadcasts(response);
 			  }})
+			
 </script>
   <title>The food website</title>
 </head>

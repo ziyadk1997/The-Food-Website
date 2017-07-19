@@ -27,5 +27,9 @@ namespace FoodWebsite.Controllers
             Item item = Item.Get(itemID);
             Restaurant.AddItem(restaurantID, item);
         }
+        public List<Restaurant> GetAll()
+        {
+            return Restaurant.GetAll();
+        }
     }
 }

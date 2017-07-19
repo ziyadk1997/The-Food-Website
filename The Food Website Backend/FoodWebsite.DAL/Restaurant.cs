@@ -26,5 +26,10 @@ namespace FoodWebsite.DAL
         {
             return Restaurants[id];
         }
+
+        public static List<Restaurant> GetAll()
+        {
+            return Restaurants.ToList().Select(Restaurants => Restaurants.Value).ToList();
+        }
     }
 }
