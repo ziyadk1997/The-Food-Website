@@ -9,14 +9,7 @@
   <script src="myscript.js"></script>
 <link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
-<script>
-			$.ajax({
-			  url:"http://localhost:18151/api/Broadcast/History",
-			  type:"GET",
-			  success: function(response){
-				displayBroadcasts(response);
-			  }})
-</script>
+
   <title>The food website</title>
 </head>
 <body>
@@ -56,6 +49,8 @@
 		<div class="col-md-12">
 			<div style="text-align:center;" id="home">	
 			<table class="orders table_g" id="home_table";align="center">
+			<tr>
+			</tr>
 			</table>
 			</div>
 		</div>
@@ -78,12 +73,12 @@
 <div class="container" name="container_4" id="home_select">
 	
 		<div class="row">
-			<div class="col-md-5">
+			<div class="col-md-4">
 				<div >
 					<button type="button" class="btn btn-default btn-circle btn-x2"  id="check_btn"><i class="glyphicon glyphicon-check"></i></button>
 				</div>
 			</div>
-			<div class="col-md-7">
+			<div class="col-md-8">
 				<div >
 					<button type="button" class="btn btn-default btn-circle btn-x2"  id="details"><i class="glyphicon glyphicon-edit"></i></button>
 				</div>
@@ -94,27 +89,36 @@
 		
 	<div class="row">
 	
-		<div class="col-md-6">
+		<div class="col-md-5">
 		<div style="text-align:center;" >
 		
 			<div>
-				<input type="text" style="width:100%;max-width:100%;" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
-					<ul id="myUL">
+				<input type="text" style="width:100%;max-width:100%;" id="ItemSetupFilterList" class="filterListInputItem" onkeyup="initializeItemList()" placeholder="Search for an item..">
+					<ul id="ItemSetupItems" class="filterList">
+						  <li><a href="#" class="header">B</a></li>
+						  <li><a href="#">Burger</a></li>
 						  <li><a href="#" class="header">C</a></li>
-						  <li><a href="#">Crave</a></li>
+						  <li><a href="#">Cocacola</a></li>
 						  <li><a href="#" class="header">P</a></li>
-						  <li><a href="#">Pizza hut</a></li>
-						  <li><a href="#" class="header">Z</a></li>
-						  <li><a href="#">Zooba</a></li>
+						  <li><a href="#">Pizza</a></li>
+						  
 					</ul>
 			</div>
 		</div>
 		</div>
+		<div class="col-md-1">
+			<form action="/action_page.php">
+			Quantity
+			<input type="number" name="quantity" id="counter" min="1" max="10">
+			</form>
+			</div>
 		
 		
-			<div class="col-md-6 scrollable">
-			<div style="text-align:center; max-height:30em" >
-			<table class=" table_history_select">
+			<div class="col-md-6">
+			<div class="row">
+			
+			<div class="scrollable" style="text-align:center;max-height:25em !important;" >
+			<table class=" table_history_select ">
 				<tr>
 				<th >Name</th><th>Order</th>
 				</tr>
@@ -180,66 +184,77 @@
 				</tr>
 			</table>
 			</div>
-		</div>
+			
+			</div>
+			
+			<br>
+			<div style="text-align:center;">
+					<button type="button" class="close_btn bnt bnt-primary"  id="close_order">Close order</button>
+			</div>
+			
+			
+			
+			</div>
+			
+		
 	</div>
-	
 </div>
 <!///////////////////////////////////////////////////////////////////////////////////////////////>
 <div class="container" name="container_5" id="history_select">
 <div class="row" style="text-align:center">
-<div class="col-md-2 scrollable" style="text-align:center">
+<div class="col-md-4 scrollable" style="text-align:center">
 </div>
-<div class="col-md-8 scrollable" style="text-align:center">
+<div class="col-md-4 scrollable" style="text-align:center">
 	<table class="table_history_select">
 		<tr>
-			<th >Name</th><th>Order</th><th>Details</th>
+			<th>Order Details</th>
 		</tr>
 		<tr>
-			<td><p>zarea</p></td>
-			<td><p>kfc</p></td>
-			<td><button class=" btn-circle btn-x2 order_details"><i class="glyphicon glyphicon-share-alt"></i></button></td>
+			<td><button class="details order_details">zarea</button></td>
 		</tr>
 		<tr>
-			<td><p>zarea</p></td>
-			<td><p>kfc</p></td>
-			<td><button class=" btn-circle btn-x2 order_details"><i class="glyphicon glyphicon-share-alt"></i></button></td>
-		</tr><tr>
-			<td><p>zarea</p></td>
-			<td><p>kfc</p></td>
-			<td><button class=" btn-circle btn-x2 order_details"><i class="glyphicon glyphicon-share-alt"></i></button></td>
-		</tr><tr>
-			<td><p>zarea</p></td>
-			<td><p>kfc</p></td>
-			<td><button class=" btn-circle btn-x2 order_details"><i class="glyphicon glyphicon-share-alt"></i></button></td>
-		</tr><tr>
-			<td><p>zarea</p></td>
-			<td><p>kfc</p></td>
-			<td><button class=" btn-circle btn-x2 order_details"><i class="glyphicon glyphicon-share-alt"></i></button></td>
-		</tr><tr>
-			<td><p>zarea</p></td>
-			<td><p>kfc</p></td>
-			<td><button class=" btn-circle btn-x2 order_details"><i class="glyphicon glyphicon-share-alt"></i></button></td>
-		</tr><tr>
-			<td><p>zarea</p></td>
-			<td><p>kfc</p></td>
-			<td><button class=" btn-circle btn-x2 order_details"><i class="glyphicon glyphicon-share-alt"></i></button></td>
-		</tr><tr>
-			<td><p>zarea</p></td>
-			<td><p>kfc</p></td>
-			<td><button class=" btn-circle btn-x2 order_details"><i class="glyphicon glyphicon-share-alt"></i></button></td>
-		</tr><tr>
-			<td><p>zarea</p></td>
-			<td><p>kfc</p></td>
-			<td><button class=" btn-circle btn-x2 order_details"><i class="glyphicon glyphicon-share-alt"></i></button></td>
-		</tr><tr>
-			<td><p>zarea</p></td>
-			<td><p>kfc</p></td>
-			<td><button class=" btn-circle btn-x2 order_details"><i class="glyphicon glyphicon-share-alt"></i></button></td>
-		</tr><tr>
-			<td><p>zarea</p></td>
-			<td><p>kfc</p></td>
-			<td><button class=" btn-circle btn-x2 order_details"><i class="glyphicon glyphicon-share-alt"></i></button></td>
+			<td><button class="details order_details">zarea</button></td>
 		</tr>
+		<tr>
+			<td><button class="details order_details">zarea</button></td>
+		</tr>
+		<tr>
+			<td><button class="details order_details">zarea</button></td>
+		</tr>
+		<tr>
+			<td><button class="details order_details">zarea</button></td>
+		</tr>
+		<tr>
+			<td><button class="details order_details">zarea</button></td>
+		</tr>
+		<tr>
+			<td><button class="details order_details">zarea</button></td>
+		</tr>
+		<tr>
+			<td><button class="details order_details">zarea</button></td>
+		</tr>
+		<tr>
+			<td><button class="details order_details">zarea</button></td>
+		</tr>
+		<tr>
+			<td><button class="details order_details">zarea</button></td>
+		</tr>
+		<tr>
+			<td><button class="details order_details">zarea</button></td>
+		</tr>
+		<tr>
+			<td><button class="details order_details">zarea</button></td>
+		</tr>
+		<tr>
+			<td><button class="details order_details">zarea</button></td>
+		</tr>
+		<tr>
+			<td><button class="details order_details">zarea</button></td>
+		</tr>
+		
+		
+		
+		
 	</table>
 </div>
 </div>
@@ -301,6 +316,90 @@
 			<td>20</td>
 			<td>40</td>
 		</tr>
+		<tr>
+			<td><p>zarea</p></td>
+			<td><p>2</p></td>
+			<td>20</td>
+			<td>40</td>
+		</tr>
+		<tr>
+			<td><p>zarea</p></td>
+			<td><p>2</p></td>
+			<td>20</td>
+			<td>40</td>
+		</tr>
+		<tr>
+			<td><p>zarea</p></td>
+			<td><p>2</p></td>
+			<td>20</td>
+			<td>40</td>
+		</tr>
+		<tr>
+			<td><p>zarea</p></td>
+			<td><p>2</p></td>
+			<td>20</td>
+			<td>40</td>
+		</tr>
+		<tr>
+			<td><p>zarea</p></td>
+			<td><p>2</p></td>
+			<td>20</td>
+			<td>40</td>
+		</tr>
+		<tr>
+			<td><p>zarea</p></td>
+			<td><p>2</p></td>
+			<td>20</td>
+			<td>40</td>
+		</tr>
+		<tr>
+			<td><p>zarea</p></td>
+			<td><p>2</p></td>
+			<td>20</td>
+			<td>40</td>
+		</tr>
+		<tr>
+			<td><p>zarea</p></td>
+			<td><p>2</p></td>
+			<td>20</td>
+			<td>40</td>
+		</tr>
+		<tr>
+			<td><p>zarea</p></td>
+			<td><p>2</p></td>
+			<td>20</td>
+			<td>40</td>
+		</tr>
+		<tr>
+			<td><p>zarea</p></td>
+			<td><p>2</p></td>
+			<td>20</td>
+			<td>40</td>
+		</tr>
+		<tr>
+			<td><p>zarea</p></td>
+			<td><p>2</p></td>
+			<td>20</td>
+			<td>40</td>
+		</tr>
+		<tr>
+			<td><p>zarea</p></td>
+			<td><p>2</p></td>
+			<td>20</td>
+			<td>40</td>
+		</tr>
+		<tr>
+			<td><p>zarea</p></td>
+			<td><p>2</p></td>
+			<td>20</td>
+			<td>40</td>
+		</tr>
+		<tr>
+			<td><p>zarea</p></td>
+			<td><p>2</p></td>
+			<td>20</td>
+			<td>40</td>
+		</tr>
 	</table>
 </div>
 </div>
@@ -317,17 +416,20 @@
 		<br>
 		
 		<div class="row">
+		
+			
 			<div class="col-md-6">
-				<input type="text" id="myInput" style="width:100%" onkeyup="myFunction()" placeholder="Search for restaurants ...">
-				<ul id="myUL">
-				  <li><a href="#" class="header">C</a></li>
-				  <li><a href="#">Crave</a></li>
-				  <li><a href="#">Casper</a></li>
-				  
-				  <li><a href="#" class="header">P</a></li>
-				  <li><a href="#">Pizza hut</a></li>
-				  <li><a href="#">Papa john's</a></li>
-				</ul>
+			<div>
+				<input type="text" style="width:100%;max-width:100%;" id="orderSetupFilterList" class="filterListInputOrder" onkeyup="initializeOrderList()" placeholder="Search for a restaurant..">
+					<ul id="orderSetupItems" class="filterList">
+						  <li><a href="#" class="header">C</a></li>
+						  <li><a href="#">Crave</a></li>
+						  <li><a href="#" class="header">P</a></li>
+						  <li><a href="#">Pizza hut</a></li>
+						  <li><a href="#" class="header">Z</a></li>
+						  <li><a href="#">Zooba</a></li>
+					</ul>
+			</div>
 			</div>
 			
 			<div class="col-md-6">
@@ -340,12 +442,12 @@
 		</div>	
 </div>
 </body>
-	
-
 <script type="text/javascript">
   $('#timepicker1').timepicker({
     showInputs: false
   });
-</script>
+  
+			
 
+</script>
 </html>

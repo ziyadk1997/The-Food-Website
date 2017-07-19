@@ -1,11 +1,35 @@
 
 
-	function myFunction() 
+	
+	
+	function initializeOrderList() 
 	{
     var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
+    input = document.getElementById("orderSetupFilterList");
     filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
+    ul = document.getElementById("orderSetupItems");
+	ul.style.display="";
+    li = ul.getElementsByTagName('li');
+
+    for (i = 0; i < li.length; i++) 
+	{
+        a = li[i].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+	
+	}
+	
+	function initializeItemList() 
+	{
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("ItemSetupFilterList");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("ItemSetupItems");
+	ul.style.display="";
     li = ul.getElementsByTagName('li');
 
     for (i = 0; i < li.length; i++) 
@@ -32,12 +56,27 @@
   $("#recipt").hide();
   $("#order_setup").hide();
   
-   $(".orders td").click(function() {
-        alert("You clicked my <td>!" + $(this).html() + 
-              "My TR is:" + $(this).parent("tr").html());
-        //get <td> element values here!!??
+  
+  
+  
+  $("#ItemSetupItems li a ").click(function()
+    {
+	  $("#ItemSetupItems").hide();
+	  $("#ItemSetupFilterList").val(this.innerText);
+	  var res = this.innerText;
     });
-  $("#history_btn").click(function()
+	
+	 $("#orderSetupItems li a ").click(function()
+    {
+	  $("#orderSetupItems").hide();
+	  $("#orderSetupFilterList").val(this.innerText);
+    });
+	
+	
+	
+	
+	
+	$("#history_btn").click(function()
 	{	
 			$("#history").show();
 			$("#history_select").hide();
@@ -96,6 +135,14 @@
 			$("#recipt").hide();
 			$("#order_setup").hide();
 			var name=prompt("Please enter your name");
+			var btn=document.createElement("BUTTON");
+			btn.innerHTML=name+"<br>";
+			btn.innerHTML += $("#timepicker1").val();
+			btn.innerHTML += "<br>";
+			btn.innerHTML += $("#orderSetupFilterList").val();
+			btn.setAttribute("class","btn btn-primary header orders");
+			var table=$("#home_table");
+			table.append(btn);
 	});
 	$(".orders").click(function()
 	{
