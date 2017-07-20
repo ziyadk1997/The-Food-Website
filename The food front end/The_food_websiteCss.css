@@ -1,8 +1,8 @@
 body
-{	
-	background-image: url('back1.jpg');
-	background-size: 100%;	
+{		
+	background-color:#D9E9FF !important;
 }
+
 .btn-circle.btn-xl 
 {
   background-color:#FFBB02 ;
@@ -46,7 +46,10 @@ body
 	max-width:40%  !important;
 	height:100%  !important;
 	max-height:100%  !important;
-	background-color: #FFBB02!important;
+	background-color: #F7403C!important;
+	border-radius:25px !important;
+	border-color:transparent ;
+	color:#703724;
 	
 }
 
@@ -60,14 +63,24 @@ body
 	border:none !important;
 	
 }
+.add_unexisting
+{
+	width:100% !important;
+	max-width:100 % !important;
+	height:100%;
+	max-height:100% !important;
+	background-color:transparent !important;
+	color:black !important;
+	border:none !important;
+}
 .header
 {
 	background-color: #FFBB02!important;
 	color:#703724 !important;
-	border-right:1px solid #703724 !important;
-	border-left:1px solid #703724!important;
-	border-top:1px solid #703724!important;
-	border-bottom:1px solid #703724!important;
+	
+	border-radius:25px !important;
+	border-color:#703724 !important;
+	
 }
 .table_g
 {
@@ -106,11 +119,13 @@ body
 	height:90% !important;
 	max-height:90% !important;
 	border-color:#703724 !important;
-	border-style:	solid!important;
-	border:		10px	!important;
+	
 	color:#703724 !important;
 	font-size: 15px !important;
+	border-style:	solid!important;
+	border:		10px	!important;
 	border-collapse: collapse !important;
+	
 }
 .table_history_select th,td
 {
@@ -232,6 +247,12 @@ body
     padding: 12px 20px 12px 40px; /* Add some padding */
     border: 1px solid #ddd; /* Add a grey border */
     margin-bottom: 12px; /* Add some space below the input */
+	 border-radius: 25px;
+    background: #FFBB02;
+    padding: 20px;
+	border-color:transparent;
+	background: #FFBB02;
+
 }
 .filterListInputOrder {
     background-position: 10px 12px; /* Position the search icon */
@@ -239,8 +260,11 @@ body
     width: 100%; /* Full-width */
     font-size: 16px; /* Increase font-size */
     padding: 12px 20px 12px 40px; /* Add some padding */
-    border: 1px solid #ddd; /* Add a grey border */
+    border: none;
     margin-bottom: 12px; /* Add some space below the input */
+	 border-radius: 25px;
+	border-color:transparent;
+    padding: 20px;
 }
 .filterList {
     /* Remove default list styling */
@@ -258,6 +282,7 @@ body
     color: black; /* Add a black text color */
     display: block; /* Make it into a block element to fill the whole list */
 }
+
 .filterList li a.header {
     background-color: #FFBB02; /* Add a darker background color for headers */
     cursor: default; /* Change cursor style */

@@ -63,13 +63,13 @@
     {
 	  $("#ItemSetupItems").hide();
 	  $("#ItemSetupFilterList").val(this.innerText);
-	  var res = this.innerText;
     });
 	
 	 $("#orderSetupItems li a ").click(function()
     {
 	  $("#orderSetupItems").hide();
 	  $("#orderSetupFilterList").val(this.innerText);
+	  
     });
 	
 	
@@ -87,6 +87,18 @@
 			$("#recipt").hide();
 			$("#order_setup").hide();	
 	});
+	$("#close_order").click(function()
+	{	
+			$("#history").show();
+			$("#history_select").hide();
+			$("#home_select").hide();
+			$("#home").hide();	
+			$("#add_btn").hide();
+			$("#check_btn").hide();
+			$("#recipt").hide();
+			$("#order_setup").hide();	
+	});
+	
 	$("#details").click(function()
 	{
 			var details=prompt("please type any special comments you would like to include in the order");
@@ -155,6 +167,16 @@
 			$("#check_btn").show();
 			$("#recipt").hide();
 			$("#order_setup").hide();
+	});
+	$("#add_restaurant").click(function()
+	{
+			var new_res=prompt("Please enter the restaurant name");
+			this.innerText=new_res;
+	});
+	$("#add_item").click(function()
+	{
+			var new_item=prompt("Please enter the item name");
+			this.innerText=new_item;
 	});
 	$(".pay").click(function()
 	{
