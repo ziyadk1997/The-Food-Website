@@ -15,10 +15,6 @@ namespace FoodWebsite.Controllers
         [HttpGet]
         public void Add(Guid restaurantID, DateTime deadline)
         {
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Methods", "GET");
-
             Restaurant restaurant = DAL.Restaurant.Get(restaurantID);
 
             Broadcast broadcast = new Broadcast
@@ -36,47 +32,73 @@ namespace FoodWebsite.Controllers
         [HttpGet]
         public void Close(Guid id)
         {
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Methods", "GET");
             Broadcast.Close(id);
         }
         [HttpGet]
         public List<Broadcast> History()
         {
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Methods", "GET");
-
             return Broadcast.GetAll().Where(e => e.Active == false).ToList();
         }
         [HttpGet]
         public void AddOrder(Order order,Guid id)
         {
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Methods", "GET");
             Broadcast.Get(id).Orders.Add(order);
         }
         [HttpGet]
         public List<Order> Reciept(Guid id)
         {
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Methods", "GET");
             return Broadcast.Get(id).Orders;
         }
 
         [HttpGet]
         public List<Broadcast> Active()
         {
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Methods", "GET");
-
             return Broadcast.GetAll().Where(e => e.Active == true).ToList();
         }
-        
+        [HttpGet]
+        public static List<ItemValue> GetCurrentOrder(Guid id)
+        {
+            Guid UserID = UserIdentityManager.GetUserId();
+            List<Order> cur = Broadcast.Get(id).Orders;
+            for (int i = 0;i< cur.Count(); i++)
+            {
+                if(cur.ElementAt(i).UserId == UserID)
+                {
+                    return cur.ElementAt(i).Items;
+                }
+            }
+            return null;
+        }
+        [HttpGet]
+        public static void UpdateOrder(List<ItemValue> x,Guid id)
+        {
+            Guid UserID = UserIdentityManager.GetUserId();
+            List<Order> cur = Broadcast.Get(id).Orders;
+            for (int i = 0; i < cur.Count(); i++)
+            {
+                if (cur.ElementAt(i).UserId == UserID)
+                {
+                    cur.ElementAt(i).Items = x;
+                }
+            }
+        }
+
+        [HttpGet]
+        public static void DeleteOrder(Guid id)
+        {
+            Guid UserID = UserIdentityManager.GetUserId();
+            List<Order> cur = Broadcast.Get(id).Orders;
+            for (int i = 0; i < cur.Count(); i++)
+            {
+                if (cur.ElementAt(i).UserId == UserID)
+                {
+                    cur.ElementAt(i).Items = new List<ItemValue>();
+                }
+            }
+        }
+
+
+
     }
 }
 

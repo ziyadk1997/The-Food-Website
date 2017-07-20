@@ -9,7 +9,6 @@ namespace FoodWebsite.DAL
     public class Broadcast
     {
         private static Dictionary<Guid, Broadcast> BroadCasts { set; get; } = new Dictionary<Guid, Broadcast>();
-
         public double Reciept { set; get; } = 0.0;
         public bool Active { set; get; } = true;
         public Guid BroadcastID { set; get; }

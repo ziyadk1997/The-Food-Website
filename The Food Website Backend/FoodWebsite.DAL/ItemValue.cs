@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace FoodWebsite.DAL
 {
-    public  class Item
+    public class ItemValue
     {
-        public String Name { set; get; }
-        public double Price { set; get; }
+        public Item Item { set; get; }
+        public int Value { set; get; }
     }
 }

@@ -237,8 +237,6 @@
     <Compile Include="Api Controllers\BroadcastController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Api Controllers\ItemController.cs" />
-    <Compile Include="Api Controllers\OrderController.cs" />
     <Compile Include="Api Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
