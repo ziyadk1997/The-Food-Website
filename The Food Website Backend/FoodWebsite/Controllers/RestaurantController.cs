@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace FoodWebsite.Controllers
@@ -13,6 +14,10 @@ namespace FoodWebsite.Controllers
         [HttpGet]
         public void Add(String restaurantName)
         {
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Methods", "GET");
+
             Restaurant restaurant = new Restaurant
             {
 
@@ -22,10 +27,19 @@ namespace FoodWebsite.Controllers
             Restaurant.Add(restaurant.RestaurantID,restaurant);
         }
         [HttpGet]
-        public void AddItem(Guid itemID,Guid restaurantID)
+        public void AddItem(string name,Guid restaurantID)
         {
-            Item item = Item.Get(itemID);
-            Restaurant.AddItem(restaurantID, item);
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Methods", "GET");
+            Restaurant.AddItem(restaurantID, new Item { Name = name, ItemID = Guid.NewGuid() });
+        }
+        public List<Restaurant> GetAll()
+        {
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Methods", "GET");
+            return Restaurant.GetAll();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace FoodWebsite.DAL
         private static Dictionary<Guid, Restaurant> Restaurants { set; get; } = new Dictionary<Guid, Restaurant>();
         public Guid RestaurantID { set; get; }
         public String Name { set; get; }
-        public List<Item> Items { set; get; }
+        public List<Item> Items { set; get; } = new List<Item>();
 
         public static void Add(Guid id, Restaurant res)
         {
@@ -25,6 +25,11 @@ namespace FoodWebsite.DAL
         public static Restaurant Get (Guid id)
         {
             return Restaurants[id];
+        }
+
+        public static List<Restaurant> GetAll()
+        {
+            return Restaurants.ToList().Select(Restaurants => Restaurants.Value).ToList();
         }
     }
 }

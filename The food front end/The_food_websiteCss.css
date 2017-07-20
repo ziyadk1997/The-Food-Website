@@ -63,6 +63,7 @@ body
 	border:none !important;
 	
 }
+
 .add_unexisting
 {
 	width:100% !important;
@@ -73,14 +74,13 @@ body
 	color:black !important;
 	border:none !important;
 }
+
 .header
 {
 	background-color: #FFBB02!important;
 	color:#703724 !important;
-	
 	border-radius:25px !important;
-	border-color:#703724 !important;
-	
+	border-color:#703724 !important;	
 }
 .table_g
 {
@@ -252,7 +252,6 @@ body
     padding: 20px;
 	border-color:transparent;
 	background: #FFBB02;
-
 }
 .filterListInputOrder {
     background-position: 10px 12px; /* Position the search icon */

@@ -69,7 +69,6 @@
     {
 	  $("#orderSetupItems").hide();
 	  $("#orderSetupFilterList").val(this.innerText);
-	  
     });
 	
 	

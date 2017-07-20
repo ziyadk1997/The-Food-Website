@@ -12,7 +12,7 @@ namespace FoodWebsite.DAL
 
         public Guid OrderID { set; get; }
         public String Comments { set; get; }
-        public User User { set; get; }
+        public Guid UserId { set; get; }
 
         public Dictionary<Guid, int> Items { set; get; }
 
