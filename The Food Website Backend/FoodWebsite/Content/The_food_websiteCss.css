@@ -1,195 +1,186 @@
-body
-{		
-	background-color:#D9E9FF !important;
+body {
+    background-color: #D9E9FF !important;
 }
 
-.btn-circle.btn-xl 
-{
-  background-color:#25aacf ;
-  color:white!important;
-  border:none !important;
-  width: 70px;
-  height: 70px;
-  padding: 10px 16px;
-  font-size: 24px;
-  line-height: 1.33;
-  border-radius: 35px;
+.btn-circle.btn-xl {
+    background-color: #25aacf;
+    color: white !important;
+    border: none !important;
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 35px;
 }
 
-.btn-circle.btn-x3
-{
-  background-color:#25aacf ;
-  color:white!important;
-  border:none !important;
-  width: 50px;
-  height: 50px;
-  padding: 10px 16px;
-  font-size: 24px;
-  line-height: 1.33;
-  border-radius: 25px;
-}
-.btn-circle.btn-x2 
-{
-  background-color:#25aacf ;
-  color:white!important;
-  border:none !important;
-  width: 70px;
-  height: 70px;
-  padding: 10px 16px;
-  font-size: 24px;
-  line-height: 1.33;
-  border-radius: 35px;
-}
-.close_btn
-{
-	width:40% !important;
-	max-width:40%  !important;
-	height:100%  !important;
-	max-height:100%  !important;
-	background-color: #F7403C!important;
-	border-radius:25px !important;
-	border-color:transparent ;
-	color:white;
-	
+.btn-circle.btn-x3 {
+    background-color: #25aacf;
+    color: white !important;
+    border: none !important;
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 25px;
 }
 
-.details
-{
-	width:100% !important;
-	max-width:100% !important;
-	height:100% !important;
-	max-height:100% !important;
-	background-color:transparent !important;
-	border:none !important;
-    color:black !important;
-	
+.btn-circle.btn-x2 {
+    background-color: #25aacf;
+    color: white !important;
+    border: none !important;
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 35px;
 }
 
-.add_unexisting
-{
-	width:100% !important;
-	max-width:100 % !important;
-	height:100%;
-	max-height:100% !important;
-	background-color:transparent !important;
-	color:black !important;
-	border:none !important;
+.close_btn {
+    width: 40% !important;
+    max-width: 40% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    background-color: #F7403C !important;
+    border-radius: 25px !important;
+    border-color: transparent;
+    color: white;
 }
 
-.header
-{
-	background-color: #25aacf!important;
-	color:white !important;
-	border-radius:25px !important;
-	border-color:transparent !important;	
+.details {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    background-color: transparent !important;
+    border: none !important;
+    color: black !important;
 }
-.table_g
-{
-	width:100% !important;
-	max-width:100% !important;
-	height:70% !important;
-	max-height:70% !important;
-	border:none !important;
+
+.add_unexisting {
+    width: 100% !important;
+    max-width: 100 % !important;
+    height: 100%;
+    max-height: 100% !important;
+    background-color: transparent !important;
+    color: black !important;
+    border: none !important;
 }
-.table_f th
-{
-	border: 0px solid black;
-	text-align:center !important;
+
+.header {
+    background-color: #25aacf !important;
+    color: white !important;
+    border-radius: 25px !important;
+    border-color: transparent !important;
 }
-.table_f td
-{
-	border: 0px solid black;
-	text-align:center !important;
+
+.table_g {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 70% !important;
+    max-height: 70% !important;
+    border: none !important;
 }
-.one
-{
-	color:white!important;
+
+.table_f th {
+    border: 0px solid black;
+    text-align: center !important;
 }
-.other_details tr td:last-child{
-    width:1%;
-    white-space:nowrap;
+
+.table_f td {
+    border: 0px solid black;
+    text-align: center !important;
 }
+
+.one {
+    color: white !important;
+}
+
+.other_details tr td:last-child {
+    width: 1%;
+    white-space: nowrap;
+}
+
 .table-responsive {
-    max-height:300px;
+    max-height: 300px;
 }
-.table_history_select
-{
-	max-height:500px;
-	width:100% !important;
-	max-width:100% !important;
-	height:90% !important;
-	max-height:90% !important;
-	border-color:black !important;
-	
-	color:black !important;
-	font-size: 15px !important;
-	border-style:	solid!important;
-	border:		10px	!important;
-	border-collapse: collapse !important;
-	
+
+.table_history_select {
+    max-height: 500px;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 90% !important;
+    max-height: 90% !important;
+    border-color: black !important;
+    color: black !important;
+    font-size: 15px !important;
+    border-style: solid !important;
+    border: 10px !important;
+    border-collapse: collapse !important;
 }
-.table_history_select th,td
-{
-	border: 1.25px solid black;
-	text-align:center !important;
-    color:black!important;
+
+    .table_history_select th, td {
+        border: 1.25px solid black;
+        text-align: center !important;
+        color: black !important;
+    }
+
+.table_history_select1 {
+    max-height: 400px;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 90% !important;
+    max-height: 90% !important;
+    border-color: black !important;
+    border-style: solid !important;
+    border: 10px !important;
+    color: black !important;
+    font-size: 15px !important;
+    border-collapse: collapse !important;
 }
-.table_history_select1
-{
-	max-height:400px;
-	width:100% !important;
-	max-width:100% !important;
-	height:90% !important;
-	max-height:90% !important;
-	border-color:black !important;
-	border-style:	solid!important;
-	border:		10px	!important;
-	color:black !important;
-	font-size: 15px !important;
-	border-collapse: collapse !important;
+
+    .table_history_select1 th, td {
+        border: 1.25px solid black;
+        text-align: center !important;
+    }
+
+.order_details {
+    color: black !important;
 }
-.table_history_select1 th,td
-{
-	border: 1.25px solid black;
-	text-align:center !important;
+
+.table_f {
+    width: 30% !important;
+    max-width: 30% !important;
+    height: 90% !important;
+    max-height: 90% !important;
+    border-color: black !important;
+    border-style: solid !important;
+    border: 10px !important;
+    text-align: center !important;
+    color: black !important;
+    font-size: 15px !important;
+    border-collapse: collapse !important;
 }
-.order_details
-{
-	
-	color:black !important;
+
+.scrollable {
+    overflow: auto;
+    max-height: 30em !important;
 }
-.table_f
-{
-	width:30% !important;
-	max-width:30% !important;
-	height:90% !important;
-	max-height:90% !important;
-	border-color: black !important;
-	border-style:	solid!important;
-	border:		10px	!important;
-	text-align:center !important;
-	color:black !important;
-	font-size: 15px !important;
-	border-collapse: collapse !important;
+
+.table_f th {
+    border: 1.25px solid black;
+    text-align: center !important;
 }
-.scrollable 
-{ 
-	overflow:auto;
-	max-height:30em !important;
+
+.table_f td {
+    border: 1.25px solid black;
+    text-align: center !important;
 }
-.table_f th
-{
-	border: 1.25px solid black;
-	text-align:center !important;
-}
-.table_f td
-{
-	border: 1.25px solid black;
-	text-align:center !important;
-}
-.table_g td
-{
-	width:100% !important;
+
+.table_g td {
+    width: 100% !important;
 }
 /* Dropdown Button */
 .dropbtn {
@@ -213,17 +204,23 @@ body
     text-decoration: none;
     display: block;
 }
+
 .dropdown-content {
     position: absolute;
-    background-color: #25aacf!important;
+    background-color: #25aacf !important;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-	border:none !important;
+    border: none !important;
 }
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #eb430c}
-.header a:hover{background-color: #eb430c}
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {
+        background-color: #eb430c;
+    }
+
+.header a:hover {
+    background-color: #eb430c;
+}
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
@@ -232,6 +229,7 @@ body
 .dropdown:hover .dropbtn {
     background-color: #25aacf;
 }
+
 .filterListInputItem {
     background-position: 10px 12px; /* Position the search icon */
     background-repeat: no-repeat; /* Do not repeat the icon image */
@@ -240,11 +238,12 @@ body
     padding: 12px 20px 12px 40px; /* Add some padding */
     border: 1px solid #ddd; /* Add a grey border */
     margin-bottom: 12px; /* Add some space below the input */
-	border-radius: 25px;
+    border-radius: 25px;
     padding: 20px;
-	border-color:transparent;
-    color:white;
+    border-color: transparent;
+    color: white;
 }
+
 .filterListInputOrder {
     background-position: 10px 12px; /* Position the search icon */
     background-repeat: no-repeat; /* Do not repeat the icon image */
@@ -253,31 +252,34 @@ body
     padding: 12px 20px 12px 40px; /* Add some padding */
     border: none;
     margin-bottom: 12px; /* Add some space below the input */
-	 border-radius: 25px;
-	border-color:transparent;
+    border-radius: 25px;
+    border-color: transparent;
     padding: 20px;
 }
+
 .filterList {
     /* Remove default list styling */
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
-.filterList li a {
-    border: 1px solid #ddd; /* Add a border to all links */
-    margin-top: -1px; /* Prevent double borders */
-    background-color: #f6f6f6; /* Grey background color */
-    padding: 12px; /* Add some padding */
-    text-decoration: none; /* Remove default text underline */
-    font-size: 18px; /* Increase the font-size */
-    color: black; /* Add a black text color */
-    display: block; /* Make it into a block element to fill the whole list */
-}
 
-.filterList li a.header {
-    background-color: #25aacf; /* Add a darker background color for headers */
-    cursor: default; /* Change cursor style */
-}
-.filterList li a:hover:not(.header) {
-    background-color: #eee; /* Add a hover effect to all links, except for headers */
-}
+    .filterList li a {
+        border: 1px solid #ddd; /* Add a border to all links */
+        margin-top: -1px; /* Prevent double borders */
+        background-color: #f6f6f6; /* Grey background color */
+        padding: 12px; /* Add some padding */
+        text-decoration: none; /* Remove default text underline */
+        font-size: 18px; /* Increase the font-size */
+        color: black; /* Add a black text color */
+        display: block; /* Make it into a block element to fill the whole list */
+    }
+
+        .filterList li a.header {
+            background-color: #25aacf; /* Add a darker background color for headers */
+            cursor: default; /* Change cursor style */
+        }
+
+        .filterList li a:hover:not(.header) {
+            background-color: #eee; /* Add a hover effect to all links, except for headers */
+        }

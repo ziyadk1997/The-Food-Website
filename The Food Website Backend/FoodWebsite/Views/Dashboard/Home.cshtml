@@ -12,140 +12,144 @@
     <link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
     <script>
-			$.ajax({
-			  url:"http://localhost:18151/api/Broadcast/Active",
-			  type:"GET",
-			  success: function(response){
-				displayBroadcasts(response);
-			  }})
-			 $.ajax({
-			  url:"http://localhost:18151/api/Broadcast/History",
-			  type:"GET",
-			  success: function(response){
-				displayHistory(response);
-			  }})
+        $.ajax({
+            url: "http://localhost:18151/api/Broadcast/Active",
+            type: "GET",
+            success: function (response) {
+                displayBroadcasts(response);
+            }
+        })
+        $.ajax({
+            url: "http://localhost:18151/api/Broadcast/History",
+            type: "GET",
+            success: function (response) {
+                displayHistory(response);
+            }
+        })
 
 
-			function AddRestaurant(RestaurantName){
-			$.ajax({
-			  url:"http://localhost:18151/api/Restaurant/Add",
-			  type:"GET",
-			  data: {
-					restaurantName: RestaurantName
-					}
-			  })
-			}
+        function AddRestaurant(RestaurantName) {
+            $.ajax({
+                url: "http://localhost:18151/api/Restaurant/Add",
+                type: "GET",
+                data: {
+                    restaurantName: RestaurantName
+                },
+                success: function (response) {
+                }
+            })
+        }
 
 
-			function AddRestaurantItem(itemName,id){
-				var data = {
-				name:itemName,
-				restaurantID: id
-				};
-			$.ajax({
-			  url:"http://localhost:18151/api/Restaurant/AddItem",
-			  type:"GET",
-			  data:data
-			  })
-			}
+        function AddRestaurantItem(itemName, id) {
+            var data = {
+                name: itemName,
+                restaurantID: id
+            };
+            $.ajax({
+                url: "http://localhost:18151/api/Restaurant/AddItem",
+                type: "GET",
+                data: data
+            })
+        }
 
 
-			function GetRestaurants(){
-			$.ajax({
-			  url:"http://localhost:18151/api/Restaurant/GetAll",
-			  type:"GET",
-			  success: function (response) {
-                  // RETURNS ALL RESTAURANTS
-			  }
-			  })
-			}
+        function GetRestaurants() {
+            $.ajax({
+                url: "http://localhost:18151/api/Restaurant/GetAll",
+                type: "GET",
+                success: function (response) {
+                    LoadRestaurants(response);
+                }
+            })
+        }
 
 
-			function GetReciept(id){
-			$.ajax({
-			    url: "http://localhost:18151/api/Broadcast/Reciept",
-			  type:"GET",
-			  data: {
-					id:id
-					},
-			success: function(response){
-			// THIS RETURNS ALL ORDERS OF BROADCAST
-			  }
-			  })
+        function GetReciept(id) {
+            $.ajax({
+                url: "http://localhost:18151/api/Broadcast/Reciept",
+                type: "GET",
+                data: {
+                    id: id
+                },
+                success: function (response) {
+                    // THIS RETURNS ALL ORDERS OF BROADCAST
+                }
+            })
 
-			}
+        }
 
-			function AddBroadcast(id,deadline){
-			$.ajax({
-			  url:"http://localhost:18151/api/Broadcast/Add",
-			  type:"GET",
-			  data: {
-					restaurantID : id,
-					deadline:deadline
-					}
-			  })
-			}
-			function AddOrder(items, values, comments,id) {
-			    $.ajax({
-			        url: "http://localhost:18151/api/Broadcast/AddOrder",
-			        type: "GET",
-			        data: {
-			            items: items,
-			            values: values,
-			            commments: comments,
-                        id:id
+        function AddBroadcast(id, deadline) {
+            $.ajax({
+                url: "http://localhost:18151/api/Broadcast/Add",
+                type: "GET",
+                data: {
+                    restaurantID: id,
+                    deadline: deadline
+                }
+            })
+        }
+        function AddOrder(items, values, comments, id) {
+            $.ajax({
+                url: "http://localhost:18151/api/Broadcast/AddOrder",
+                type: "GET",
+                data: {
+                    items: items,
+                    values: values,
+                    commments: comments,
+                    id: id
 
-			        }
-			    })
-			}
+                }
+            })
+        }
 
-			function CloseBroadcast(id) {
-			    $.ajax({
-			        url: "http://localhost:18151/api/Broadcast/Close",
-			        type: "GET",
-			        data: {
-			            id: id
-			        }
-			    })
-			}
+        function CloseBroadcast(id) {
+            $.ajax({
+                url: "http://localhost:18151/api/Broadcast/Close",
+                type: "GET",
+                data: {
+                    id: id
+                }
+            })
+        }
 
-			function CurrentOrder(id) {
-			    $.ajax({
-			        url: "http://localhost:18151/api/Broadcast/GetCurrentOrder",
-			        type: "GET",
-			        data: {
-			            id: id
-			        },
-			        success: function (response) {
-			            // THIS RETURNS CURRENT ORDER IN LIST OF ITEM VALUES WHICH IS STRING NAME AND INT VALUE ATTRIBUTES
-			        }
-			    })
-			}
+        function CurrentOrder(id) {
+            $.ajax({
+                url: "http://localhost:18151/api/Broadcast/GetCurrentOrder",
+                type: "GET",
+                data: {
+                    id: id
+                },
+                success: function (response) {
+                    // THIS RETURNS CURRENT ORDER IN LIST OF ITEM VALUES WHICH IS STRING NAME AND INT VALUE ATTRIBUTES
+                }
+            })
+        }
 
-			function DeleteOrder(id) {
-			        $.ajax({
-			            url: "http://localhost:18151/api/Broadcast/DeleteOrder",
-			            type: "GET",
-			            data: {
-			                id: id
-			            }
-			        })
-			}
-			function UpdateOrder(items, values, comments, id) {
-			    $.ajax({
-			        url: "http://localhost:18151/api/Broadcast/UpdateOrder",
-			        type: "GET",
-			        data: {
-			            items: items,
-			            values: values,
-			            commments: comments,
-			            id: id
+        function DeleteOrder(id) {
+            $.ajax({
+                url: "http://localhost:18151/api/Broadcast/DeleteOrder",
+                type: "GET",
+                data: {
+                    id: id
+                }
+            })
+        }
+        function UpdateOrder(items, values, comments, id) {
+            $.ajax({
+                url: "http://localhost:18151/api/Broadcast/UpdateOrder",
+                type: "GET",
+                data: {
+                    items: items,
+                    values: values,
+                    commments: comments,
+                    id: id
 
-			        }
-			    })
-			}
+                }
+            })
+        }
 
-            
+
 
 
 
@@ -181,7 +185,7 @@
             </div>
             <div class="col-md-1">
                 <div style="text-align:bottom;">
-                    
+
                     <button type="button" class="btn btn-default btn-circle btn-xl" id="add_btn"><i class="glyphicon glyphicon-plus"></i></button>
                 </div>
             </div>
@@ -714,42 +718,6 @@
                     <input type="text" style="width:100%;max-width:100%;" id="orderSetupFilterList" class="filterListInputOrder " onkeyup="initializeOrderList()" placeholder="Search for a restaurant..">
                     <div class="col-md-12 scrollable">
                         <ul id="orderSetupItems" class="filterList" style="max-height:25em;">
-
-                            <li><a href="#">Crave</a></li>
-
-                            <li><a href="#">Pizza hut</a></li>
-
-                            <li><a href="#">Zooba</a></li>
-                            <li><a href="#">Crave</a></li>
-
-                            <li><a href="#">Pizza hut</a></li>
-
-                            <li><a href="#">Zooba</a></li>
-                            <li><a href="#">Crave</a></li>
-
-                            <li><a href="#">Pizza hut</a></li>
-
-                            <li><a href="#">Zooba</a></li>
-                            <li><a href="#">Crave</a></li>
-
-                            <li><a href="#">Pizza hut</a></li>
-
-                            <li><a href="#">Zooba</a></li>
-                            <li><a href="#">Crave</a></li>
-
-                            <li><a href="#">Pizza hut</a></li>
-
-                            <li><a href="#">Zooba</a></li>
-                            <li><a href="#">Crave</a></li>
-
-                            <li><a href="#">Pizza hut</a></li>
-
-                            <li><a href="#">Zooba</a></li>
-                            <li><a href="#">Crave</a></li>
-
-                            <li><a href="#">Pizza hut</a></li>
-
-                            <li><a href="#">Zooba</a></li>
                             <li><a><button class="add_unexisting" id="add_restaurant" style="font-size:20px!important;">+</button></a></li>
                         </ul>
                     </div>
@@ -769,9 +737,9 @@
     </div>
 </body>
 <script type="text/javascript">
-  $('#timepicker1').timepicker({
-    showInputs: false
-  });
+    $('#timepicker1').timepicker({
+        showInputs: false
+    });
 
 
 
