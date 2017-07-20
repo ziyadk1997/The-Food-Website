@@ -1,4 +1,5 @@
 ﻿using FoodWebsite.DAL;
+using FoodWebsite.UserIdentity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,13 @@ namespace FoodWebsite.Controllers
         [HttpGet]
         public void Add(String comment,Dictionary<Guid,int> items,Guid userID)
         {
-            DAL.User user = DAL.User.Get(userID);
             Order order = new Order
             {
                 Comments = comment,
                 Items = items,
                 OrderID = Guid.NewGuid(),
-                User = user
+                UserId = UserIdentityManager.GetUserId()
+
             };
 
             Order.Add(order);

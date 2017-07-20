@@ -16,7 +16,7 @@ namespace FoodWebsite.DAL
         public List<Order> Orders { set; get; } = new List<Order>();
         public Restaurant Restaurant { set; get; }
         public DateTime Deadline { set; get; }
-        public User User { set; get; }
+        public Guid UserId { set; get; }
 
         public static void Add(Broadcast broadcast)
         {

@@ -1,4 +1,5 @@
 ﻿using FoodWebsite.DAL;
+using FoodWebsite.UserIdentity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +13,19 @@ namespace FoodWebsite.Controllers
     public class BroadcastController : ApiController
     {
         [HttpGet]
-        public void Add(Guid userID, Guid restaurantID, DateTime deadline)
+        public void Add(Guid restaurantID, DateTime deadline)
         {
-            DAL.User user = DAL.User.Get(userID);
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Methods", "GET");
+
             Restaurant restaurant = DAL.Restaurant.Get(restaurantID);
 
             Broadcast broadcast = new Broadcast
             {
                 Restaurant = restaurant,
                 Active = true,
-                User = user,
+                UserId = UserIdentityManager.GetUserId(),
                 Deadline = deadline,
                 BroadcastID = Guid.NewGuid()
 
@@ -32,6 +36,9 @@ namespace FoodWebsite.Controllers
         [HttpGet]
         public void Close(Guid id)
         {
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Methods", "GET");
             Broadcast.Close(id);
         }
         [HttpGet]
@@ -41,36 +48,22 @@ namespace FoodWebsite.Controllers
             HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
             HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Methods", "GET");
 
-            var dummyBroadcast = new Broadcast
-            {
-                User = new DAL.User
-                {
-                    Name = "Zare3"
-                },
-                Restaurant = new Restaurant
-                {
-                    Name = "KFC"
-                },
-                Deadline = DateTime.Now
-            };
-
-            return new List<Broadcast> { dummyBroadcast };
-
-            // return Broadcast.GetAll().Where(e => e.Active == false).ToList();
+            return Broadcast.GetAll().Where(e => e.Active == false).ToList();
         }
         [HttpGet]
         public void AddOrder(Order order,Guid id)
         {
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Methods", "GET");
             Broadcast.Get(id).Orders.Add(order);
-        }
-        [HttpGet]
-        public List<Order> GetOrder(Guid id)
-        {
-            return Broadcast.Get(id).Orders;
         }
         [HttpGet]
         public List<Order> Reciept(Guid id)
         {
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Methods", "GET");
             return Broadcast.Get(id).Orders;
         }
 
@@ -80,58 +73,8 @@ namespace FoodWebsite.Controllers
             HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
             HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
             HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Methods", "GET");
-            var dummyBroadcast1 = new Broadcast
-            {
-                User = new DAL.User
-                {
-                    Name = "Zare3"
-                },
-                Restaurant = new Restaurant
-                {
-                    Name = "KFC"
-                },
-                Deadline = DateTime.Now
-            };
-            var dummyBroadcast2 = new Broadcast
-            {
-                User = new DAL.User
-                {
-                    Name = "ziyad"
-                },
-                Restaurant = new Restaurant
-                {
-                    Name = "PapaJohns"
-                },
-                Deadline = DateTime.Now
-            };
-            var dummyBroadcast4 = new Broadcast
-            {
-                User = new DAL.User
-                {
-                    Name = "Zare3"
-                },
-                Restaurant = new Restaurant
-                {
-                    Name = "KFC"
-                },
-                Deadline = DateTime.Now,
-                Active = false
-            };
-            var dummyBroadcast3 = new Broadcast
-            {
-                User = new DAL.User
-                {
-                    Name = "Lotfy"
-                },
-                Restaurant = new Restaurant
-                {
-                    Name = "PizzaHut"
-                },
-                Deadline = DateTime.Now
-            };
 
-            return new List<Broadcast> { dummyBroadcast1, dummyBroadcast2, dummyBroadcast3 }.Where(e => e.Active == true).ToList();
-            //return Broadcast.GetAll().Where(e => e.Active == true).ToList();
+            return Broadcast.GetAll().Where(e => e.Active == true).ToList();
         }
         
     }
