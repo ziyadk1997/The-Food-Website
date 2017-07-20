@@ -32,9 +32,7 @@
 			  type:"GET",
 			  data: {
 					restaurantName: RestaurantName
-					},
-			success: function(response){
-			  }
+					}
 			  })
 			}
 
@@ -56,8 +54,8 @@
 			$.ajax({
 			  url:"http://localhost:18151/api/Restaurant/GetAll",
 			  type:"GET",
-			success: function(response){
-			console.log(response);
+			  success: function (response) {
+                  // RETURNS ALL RESTAURANTS
 			  }
 			  })
 			}
@@ -65,7 +63,7 @@
 
 			function GetReciept(id){
 			$.ajax({
-			  url:"http://localhost:18151/api/Restaurant/Add",
+			    url: "http://localhost:18151/api/Broadcast/Reciept",
 			  type:"GET",
 			  data: {
 					id:id
@@ -87,7 +85,67 @@
 					}
 			  })
 			}
+			function AddOrder(items, values, comments,id) {
+			    $.ajax({
+			        url: "http://localhost:18151/api/Broadcast/AddOrder",
+			        type: "GET",
+			        data: {
+			            items: items,
+			            values: values,
+			            commments: comments,
+                        id:id
 
+			        }
+			    })
+			}
+
+			function CloseBroadcast(id) {
+			    $.ajax({
+			        url: "http://localhost:18151/api/Broadcast/Close",
+			        type: "GET",
+			        data: {
+			            id: id
+			        }
+			    })
+			}
+
+			function CurrentOrder(id) {
+			    $.ajax({
+			        url: "http://localhost:18151/api/Broadcast/GetCurrentOrder",
+			        type: "GET",
+			        data: {
+			            id: id
+			        },
+			        success: function (response) {
+			            // THIS RETURNS CURRENT ORDER IN LIST OF ITEM VALUES WHICH IS STRING NAME AND INT VALUE ATTRIBUTES
+			        }
+			    })
+			}
+
+			function DeleteOrder(id) {
+			        $.ajax({
+			            url: "http://localhost:18151/api/Broadcast/DeleteOrder",
+			            type: "GET",
+			            data: {
+			                id: id
+			            }
+			        })
+			}
+			function UpdateOrder(items, values, comments, id) {
+			    $.ajax({
+			        url: "http://localhost:18151/api/Broadcast/UpdateOrder",
+			        type: "GET",
+			        data: {
+			            items: items,
+			            values: values,
+			            commments: comments,
+			            id: id
+
+			        }
+			    })
+			}
+
+            
 
 
 

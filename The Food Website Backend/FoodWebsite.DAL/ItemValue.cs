@@ -8,7 +8,7 @@ namespace FoodWebsite.DAL
 {
     public class ItemValue
     {
-        public Item Item { set; get; }
+        public String Item { set; get; }
         public int Value { set; get; }
     }
 }

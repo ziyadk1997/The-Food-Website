@@ -40,9 +40,14 @@ namespace FoodWebsite.Controllers
             return Broadcast.GetAll().Where(e => e.Active == false).ToList();
         }
         [HttpGet]
-        public void AddOrder(Order order,Guid id)
+        public void AddOrder(String [] items,int [] values,String comments,Guid id)
         {
-            Broadcast.Get(id).Orders.Add(order);
+            List<ItemValue> x = new List<ItemValue>();
+            for (int i = 0; i < items.Length; i++)
+            {
+                x.Add(new ItemValue { Item = items[i], Value = values[i] });
+            }
+            Broadcast.Get(id).Orders.Add(new Order { Items = x, Comments = comments, UserId = UserIdentityManager.GetUserId() });
         }
         [HttpGet]
         public List<Order> Reciept(Guid id)
@@ -70,8 +75,13 @@ namespace FoodWebsite.Controllers
             return null;
         }
         [HttpGet]
-        public static void UpdateOrder(List<ItemValue> x,Guid id)
+        public static void UpdateOrder(String[] items, int[] values, String comments, Guid id)
         {
+            List<ItemValue> x = new List<ItemValue>();
+            for (int i = 0; i < items.Length; i++)
+            {
+                x.Add(new ItemValue { Item = items[i], Value = values[i] });
+            }
             Guid UserID = UserIdentityManager.GetUserId();
             List<Order> cur = Broadcast.Get(id).Orders;
             for (int i = 0; i < cur.Count(); i++)
