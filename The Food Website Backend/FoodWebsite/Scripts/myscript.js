@@ -1,4 +1,5 @@
-
+var broadcastid;
+var restaurantid;
 function LoadRestaurants(restList) {
     $('#orderSetupItems li:not(:first)').remove();
     for (var i = 0; i < restList.length; i++) {
@@ -97,6 +98,7 @@ $(document).ready(function () {
         $("#check_btn").hide();
         $("#recipt").hide();
         $("#order_setup").hide();
+        CloseBroadcast(broadcastid);
     });
 
     $("#details").click(function () {
@@ -146,9 +148,9 @@ $(document).ready(function () {
         var id = $($("#orderSetupItems").find("li.active")).attr("restid");
         var deadline = $("#timepicker1").val();
         AddBroadcast(id, deadline);
+
     });
     $(".orders").click(function () {
-
         $("#history").hide();
         $("#history_select").hide();
         $("#home_select").show();
@@ -169,7 +171,8 @@ $(document).ready(function () {
 
     });
     $(".pay").click(function () {
-
+        broadcastid = $(this).attr('unique_id');
+        restaurantid = $(this).attr('restaurantid');
         $("#history").hide();
         $("#history_select").show();
         $("#home_select").hide();
