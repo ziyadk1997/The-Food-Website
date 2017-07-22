@@ -27,9 +27,21 @@ namespace FoodWebsite.Controllers
         {
             Restaurant.AddItem(restaurantID, new Item { Name = name});
         }
+        [HttpGet]
         public List<Restaurant> GetAll()
         {
             return Restaurant.GetAll();
+        }
+        [HttpGet]
+        public List<String> GetRestaurantItems(Guid id)
+        {
+            List<Item> x = Restaurant.Get(id).Items;
+            List<String> y = new List<String>();
+            for(int i = 0; i < x.Count; i++)
+            {
+                y.Add(x.ElementAt(i).Name);
+            }
+            return y;
         }
     }
 }
