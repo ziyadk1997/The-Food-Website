@@ -53,6 +53,18 @@
             })
         }
 
+        function GetRestaurantItems(id) {
+            $.ajax({
+                url: "http://localhost:18151/api/Restaurant/GetRestaurantItems",
+                type: "GET",
+                date:{
+                id:id
+                 },
+                success: function (response) {
+                    LoadRestaurantsItems(response);
+                }
+            })
+        }
 
         function GetRestaurants() {
             $.ajax({

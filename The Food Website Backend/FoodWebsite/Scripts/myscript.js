@@ -8,6 +8,14 @@ function LoadRestaurants(restList) {
     }
 }
 
+function LoadRestaurantItems(items) {
+    $('#ItemSetupItems li:not(:first)').remove();
+    for (var i = 0; i < items.length; i++) {
+        var name = items[i].Name;
+        $("#ItemSetupItems").append("<li> <a href=#>"+ name + "</a> </li>");
+    }
+}
+
 
 function initializeOrderList() {
     var input, filter, ul, li, a, i;
@@ -165,11 +173,17 @@ $(document).ready(function () {
     });
     $("#add_item").click(function () {
         var new_item = prompt("Please enter the item name");
+        //AddRestaurantItem(new_item, restaurantid);
         this.innerText = new_item;
 
     });
     $(".pay").click(function () {
+<<<<<<< HEAD
 
+=======
+        broadcastid = $(this).attr('unique_id');
+        //restaurantid = $(this).attr('restaurantid');
+>>>>>>> origin/master
         $("#history").hide();
         $("#history_select").show();
         $("#home_select").hide();
