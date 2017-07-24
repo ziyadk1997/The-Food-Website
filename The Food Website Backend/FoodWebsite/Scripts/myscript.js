@@ -138,6 +138,30 @@ $(document).ready(function () {
         $("#done_settling").hide();
     });
 
+    $(".items_list").click(function () {
+
+        
+
+        // Find a <table> element with id="myTable":
+        var table = document.getElementById("user_order_details");
+
+        // Create an empty <tr> element and add it to the 1st position of the table:
+        var row = table.insertRow(1);
+
+        // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+
+        // Add some text to the new cells:
+        cell1.innerHTML = $("#ItemSetupFilterList").innerText;
+        cell2.innerHTML = "2";
+        cell3.innerHTML = "2";
+        cell4.innerHTML = "2";
+
+    });
+
     $("#settled_btn").click(function () {
         $("#settled_btn").hide();
         $("#unsettled_btn").hide();
@@ -245,6 +269,7 @@ $(document).ready(function () {
         AddBroadcast(id, deadline);
 
     });
+
     $(".orders").click(function () {
         broadcastid = $(this).attr('unique_id');
         restaurantid = $(this).attr('restaurantid');
@@ -258,19 +283,19 @@ $(document).ready(function () {
         LoadOrders(broadcastid);
         GetRestaurantItems(restaurantid);
     });
+
     $("#add_restaurant").click(function () {
         var new_res = prompt("Please enter the restaurant name");
         $('#orderSetupFilterList').val(new_res);
         AddRestaurant(new_res);
     });
+
     $("#add_item").click(function () {
         var new_item = prompt("Please enter the item name");
         $('#ItemSetupFilterList').val(new_item);
         AddRestaurantItem(new_item, restaurantid);
-        
-        
-
     });
+
     $(".pay").click(function () {
         
         $("#history").hide();
