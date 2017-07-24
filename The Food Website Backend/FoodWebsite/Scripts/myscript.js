@@ -139,7 +139,7 @@ $(document).ready(function () {
     });
 
     $("#ItemSetupItems").on("click", ".restButton", function () {
-        $("#ItemSetupItems").hide();
+       
         $("#ItemSetupFilterList").val(this.innerText);
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
@@ -177,7 +177,7 @@ $(document).ready(function () {
 
 
     $("#history_btn").click(function () {
-        $("#history").hide();
+        $("#history").show();
         $("#history_select").hide();
         $("#home_select").hide();
         $("#home").hide();
@@ -189,40 +189,16 @@ $(document).ready(function () {
         $("#will_order").hide();
         $("#close_order").hide();
         $("#review_order_table").hide();
-        $("#settled_btn").show();
-        $("#unsettled_btn").show();
-        $("#history_trans").show();
-        $("#to_settle").hide();
-        $("#to_settle_orders").hide();
-        $("#done_settling").hide();
+        
+        
     });
 
    
 
-    $("#settled_btn").click(function () {
-        $("#settled_btn").hide();
-        $("#unsettled_btn").hide();
-        $("#history_trans").hide();
-        $("#history").show();
-    });
-    $("#unsettled_btn").click(function () {
-        $("#settled_btn").hide();
-        $("#unsettled_btn").hide();
-        $("#history_trans").hide();
-        $("#to_settle_orders").show();
-
-
-    });
-    $(".settle_this").click(function () {
-        $("#to_settle").show();
-        $("#to_settle_orders").hide();
-        $("#done_settling").show();
-    });
+    
 
     $("#close_order").click(function () {
-        $("#settled_btn").show();
-        $("#unsettled_btn").show();
-        $("#history_trans").show();
+        
         $("#history_select").hide();
         $("#home_select").hide();
         $("#home").hide();
@@ -233,6 +209,7 @@ $(document).ready(function () {
         $("#close_order").hide();
         $("#review_order_table").hide();
         CloseBroadcast(broadcastid);
+        $("#history").show();
     });
 
     $("#details").click(function () {
@@ -300,7 +277,6 @@ $(document).ready(function () {
         $("#check_btn").hide();
         $("#recipt").hide();
         $("#order_setup").hide();
-        var name = prompt("Please enter your name");
         var id = $($("#orderSetupItems").find("li.active")).attr("restid");
         var deadline = $("#timepicker1").val();
         AddBroadcast(id, deadline);
