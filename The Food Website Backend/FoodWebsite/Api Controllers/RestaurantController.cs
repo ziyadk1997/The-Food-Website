@@ -43,5 +43,16 @@ namespace FoodWebsite.Controllers
             }
             return y;
         }
+        public void PutPrice(Guid id,String name,double price)
+        {
+            List<Item> x = Restaurant.Get(id).Items;
+            for(int i = 0; i < x.Count; i++)
+            {
+                if (x[i].Name.Equals(name))
+                {
+                    x[i].Price= price;
+                }
+            }
+        }
     }
 }

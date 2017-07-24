@@ -2,12 +2,37 @@ var broadcastid;
 var restaurantid;
 
 function LoadRestaurants(restList) {
-    $('#orderSetupItems li:not(:first)').remove();
-    $("#orderSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + restList[restList.length - 1].RestaurantID + ">" + restList[restList.length - 1].Name + "</li>");
-    for (var i = restList.length - 2; i >=0 ; i--) {
-        var name = restList[i].Name;
-        $("#orderSetupItems").append("<li class=\"restButton list-group-item\" restId = " + restList[i].RestaurantID + ">" + name + "</li>");
+    if (restList != null && restList.length > 0)
+    {
+        $('#orderSetupItems li:not(:first)').remove();
+        $("#orderSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + restList[restList.length - 1].RestaurantID + ">" + restList[restList.length - 1].Name + "</li>");
+        for (var i = restList.length - 2; i >= 0; i--) {
+            var name = restList[i].Name;
+            $("#orderSetupItems").append("<li class=\"restButton list-group-item\" restId = " + restList[i].RestaurantID + ">" + name + "</li>");
+        }
     }
+}
+
+
+
+function LoadTotalReceipt(receipt)
+{
+    $("#total_receipt").empty();
+    receiptItems = receipt.ReceiptItems;
+    total = receipt.Total;
+    for (i = 0; i < receiptItems.length; i++)
+    {
+        $("#total_receipt").append("<tr class=\"details order_details\"><td><p>" + receiptItems[i].Email + "</p></td><td><p>" + receiptItems[i].Total + "</p></td></tr>");
+    }
+    if (total != null && total > 0)
+    {
+        $("#history_total_amount").text("Total: " + total);
+    }
+    else
+    {
+        $("#history_total_amount").text("Total is undefined. Please set prices for all items");
+    }
+
 }
 
 
@@ -292,7 +317,7 @@ $(document).ready(function () {
         $("#recipt").hide();
         $("#order_setup").hide();
         $("#trans").show();
-        // LoadOrders(broadcastid);
+        //CurrentOrder(broadcastid);
         GetRestaurantItems(restaurantid);
     });
 
@@ -305,7 +330,7 @@ $(document).ready(function () {
    
 
     $(".pay").click(function () {
-        
+        GetReciept($(this).attr('unique_id'));
         $("#history").hide();
         $("#history_select").show();
         $("#home_select").hide();
