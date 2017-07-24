@@ -8,13 +8,9 @@ function LoadRestaurants(restList) {
     }
 }
 
-function LoadRestaurantItems(items) {
-    $('#ItemSetupItems li:not(:first)').remove();
-    for (var i = 0; i < items.length; i++) {
-        var name = items[i].Name;
-        $("#ItemSetupItems").append("<li> <a href=#>"+ name + "</a> </li>");
-    }
-}
+
+
+
 
 
 function initializeOrderList() {
@@ -55,6 +51,8 @@ function initializeItemList() {
 
 }
 
+
+
 $(document).ready(function () {
 
 
@@ -66,6 +64,19 @@ $(document).ready(function () {
     $("#check_btn").hide();
     $("#recipt").hide();
     $("#order_setup").hide();
+    $("#trans").hide();
+    $("#will_order").hide();
+    $("#close_order").hide();
+    $("#review_order_table").hide();
+    $("#settled_btn").hide();
+    $("#unsettled_btn").hide();
+    $("#history_trans").hide();
+    $("#to_settle").hide();
+    $("#to_settle_orders").hide();
+    $("#done_settling").hide();
+    displayBroadcasts();
+
+   
 
 
 
@@ -82,12 +93,17 @@ $(document).ready(function () {
         $(this).addClass('active');
     });
 
+    $("#done_settling").click(function () {
+        $("#done_settling").hide();
+        $("#to_settle").hide();
+        $("#history").show();
 
+    });
 
 
 
     $("#history_btn").click(function () {
-        $("#history").show();
+        $("#history").hide();
         $("#history_select").hide();
         $("#home_select").hide();
         $("#home").hide();
@@ -95,9 +111,48 @@ $(document).ready(function () {
         $("#check_btn").hide();
         $("#recipt").hide();
         $("#order_setup").hide();
+        $("#trans").hide();
+        $("#will_order").hide();
+        $("#close_order").hide();
+        $("#review_order_table").hide();
+        $("#settled_btn").show();
+        $("#unsettled_btn").show();
+        $("#history_trans").show();
+        $("#to_settle").hide();
+        $("#to_settle_orders").hide();
+        $("#done_settling").hide();
+        
+
+
+      
+       
     });
-    $("#close_order").click(function () {
+
+    $("#settled_btn").click(function () {
+        $("#settled_btn").hide();
+        $("#unsettled_btn").hide();
+        $("#history_trans").hide();
         $("#history").show();
+    });
+    $("#unsettled_btn").click(function () {
+        $("#settled_btn").hide();
+        $("#unsettled_btn").hide();
+        $("#history_trans").hide();
+        $("#to_settle_orders").show();
+       
+        
+    });
+    $(".settle_this").click(function () {
+        $("#to_settle").show();
+        $("#to_settle_orders").hide();
+        $("#done_settling").show();
+    });
+
+
+    $("#close_order").click(function () {
+        $("#settled_btn").show();
+        $("#unsettled_btn").show();
+        $("#history_trans").show();
         $("#history_select").hide();
         $("#home_select").hide();
         $("#home").hide();
@@ -105,6 +160,9 @@ $(document).ready(function () {
         $("#check_btn").hide();
         $("#recipt").hide();
         $("#order_setup").hide();
+        $("#close_order").hide();
+        $("#review_order_table").hide();
+
     });
 
     $("#details").click(function () {
@@ -129,6 +187,15 @@ $(document).ready(function () {
         $("#check_btn").hide();
         $("#recipt").hide();
         $("#order_setup").hide();
+        $("#trans").hide();
+        $("#will_order").hide();
+        $("#close_order").hide();
+        $("#review_order_table").hide();
+        $("#history_trans").hide();
+        $("#to_settle").hide();
+        $("#to_settle_orders").hide();
+        $("#done_settling").hide();
+        displayBroadcasts();
     });
     $("#add_btn").on("click", function () {
         $("#history").hide();
@@ -139,8 +206,26 @@ $(document).ready(function () {
         $("#check_btn").hide();
         $("#recipt").hide();
         $("#order_setup").show();
-        GetRestaurants();
+        var name = prompt("Please enter your name");
+        var id = $($("#orderSetupItems").find("li.active")).attr("restid");
+        var deadline = $("#timepicker1").val();
+        AddBroadcast(id, deadline);
+        
     });
+    $("#order_btn").click(function () {
+        $("#trans").hide();
+        $("#home_select").show();
+        $("#check_btn").show();
+
+    });
+    $("#review_btn").click(function () {
+        $("#trans").hide();
+        $("#will_order").show();
+        $("#review_order_table").show();
+        $("#close_order").show();
+    });
+    
+
     $("#done").on("click", function () {
         $("#history").hide();
         $("#history_select").hide();
@@ -150,21 +235,24 @@ $(document).ready(function () {
         $("#check_btn").hide();
         $("#recipt").hide();
         $("#order_setup").hide();
-        var name = prompt("Please enter your name");
-        var id = $($("#orderSetupItems").find("li.active")).attr("restid");
-        var deadline = $("#timepicker1").val();
-        AddBroadcast(id, deadline);
+
+        
+
+        
     });
     $(".orders").click(function () {
 
         $("#history").hide();
         $("#history_select").hide();
-        $("#home_select").show();
         $("#home").hide();
         $("#add_btn").hide();
-        $("#check_btn").show();
         $("#recipt").hide();
         $("#order_setup").hide();
+
+        $("#trans").show();
+        
+
+       
     });
     $("#add_restaurant").click(function () {
         var new_res = prompt("Please enter the restaurant name");
@@ -173,17 +261,11 @@ $(document).ready(function () {
     });
     $("#add_item").click(function () {
         var new_item = prompt("Please enter the item name");
-        //AddRestaurantItem(new_item, restaurantid);
         this.innerText = new_item;
 
     });
     $(".pay").click(function () {
-<<<<<<< HEAD
 
-=======
-        broadcastid = $(this).attr('unique_id');
-        //restaurantid = $(this).attr('restaurantid');
->>>>>>> origin/master
         $("#history").hide();
         $("#history_select").show();
         $("#home_select").hide();
@@ -191,6 +273,7 @@ $(document).ready(function () {
         $("#add_btn").hide();
         $("#check_btn").hide();
         $("#recipt").hide();
+        
     });
     $("#check_btn").click(function () {
         $("#history").hide();
