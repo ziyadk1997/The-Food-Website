@@ -100,7 +100,20 @@ namespace FoodWebsite.Controllers
             }
             return new Receipt { ReceiptItems = x, Total = t };
         }
-
+        [HttpGet]
+        public List<ItemValue> ReceiptDetail(Guid id,String email)
+        {
+            Guid user = UserIdentityManager.GetUserID(email);
+            List<Order> x = Broadcast.Get(id).Orders.Select(order => order.Value).ToList();
+            for(int i = 0; i < x.Count; i++)
+            {
+                if(x[i].UserId == user)
+                {
+                    return x[i].Items;
+                }
+            }
+            return null;
+        }
         [HttpGet]
         public List<Broadcast> Active()
         {

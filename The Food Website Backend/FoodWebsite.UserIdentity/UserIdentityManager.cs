@@ -41,6 +41,10 @@ namespace FoodWebsite.UserIdentity
         {
             return usersEmail[id];
         }
+        public static Guid GetUserID(String email)
+        {
+            return usersId[email];
+        }
 
     }
 }
