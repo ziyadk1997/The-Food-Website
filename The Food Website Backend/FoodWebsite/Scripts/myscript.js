@@ -2,12 +2,28 @@ var broadcastid;
 var restaurantid;
 
 function LoadRestaurants(restList) {
-    $('#orderSetupItems li:not(:first)').remove();
-    $("#orderSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + restList[restList.length - 1].RestaurantID + ">" + restList[restList.length - 1].Name + "</li>");
-    for (var i = restList.length - 2; i >=0 ; i--) {
-        var name = restList[i].Name;
-        $("#orderSetupItems").append("<li class=\"restButton list-group-item\" restId = " + restList[i].RestaurantID + ">" + name + "</li>");
+    if (restList != null && restList.length > 0)
+    {
+        $('#orderSetupItems li:not(:first)').remove();
+        $("#orderSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + restList[restList.length - 1].RestaurantID + ">" + restList[restList.length - 1].Name + "</li>");
+        for (var i = restList.length - 2; i >= 0; i--) {
+            var name = restList[i].Name;
+            $("#orderSetupItems").append("<li class=\"restButton list-group-item\" restId = " + restList[i].RestaurantID + ">" + name + "</li>");
+        }
     }
+}
+
+
+
+function LoadTotalReceipt(receipt)
+{
+    receiptItems = receipt.ReceiptItems;
+    total = receipt.Total;
+    for (i = 0; i < receiptItems.length; i++)
+    {
+        $("#total_receipt").append("<tr class=\"details order_details\"><td><p>" + receiptItems[i].Email + "</p></td><td><p>" + receiptItems[i].Total + "</p></td></tr>");
+    }
+
 }
 
 

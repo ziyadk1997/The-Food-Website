@@ -89,7 +89,7 @@
 
         function GetReciept(id) {
             $.ajax({
-                url: "http://localhost:18151/api/Broadcast/Reciept",
+                url: "http://localhost:18151/api/Broadcast/Receipt",
                 type: "GET",
                 data: {
                     id: id
@@ -288,7 +288,7 @@
                 <div class="col-md-4 scrollable" style="text-align:center">
                     <br>
                     <br>
-                    <table class="table_history_select">
+                    <table class="table_history_select" id="total_receipt">
                         <tr>
                             <th>Name</th>
                             <th>Total (L.E)</th>
