@@ -158,13 +158,11 @@ $(document).ready(function () {
         // Add some text to the new cells:
         cell1.innerHTML = $("#ItemSetupFilterList").val();
 
-        cell2.innerHTML = "2";/////
-        /////////////////
+        cell2.appendChil.innerHTML="2";
         t3 = document.createElement("INPUT");
         t3.setAttribute("class", 'txt_box_color');
         cell3.appendChild(t3);
-        ///////////////
-        cell4.innerHTML = "2";///delete button
+        cell4.innerHTML="2";
     });
 
     $("#done_settling").click(function () {
@@ -321,11 +319,11 @@ $(document).ready(function () {
         $("#history").hide();
         $("#history_select").hide();
         $("#home_select").hide();
-        $("#home").show();
-        $("#add_btn").show();
+        
         $("#check_btn").hide();
         $("#recipt").hide();
         $("#order_setup").hide();
+        $("#trans").show();
     });
 
     LoadBroadcasts();
