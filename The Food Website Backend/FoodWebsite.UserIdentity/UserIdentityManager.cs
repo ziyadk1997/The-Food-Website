@@ -30,14 +30,14 @@ namespace FoodWebsite.UserIdentity
             }
         }
 
-        private static string GetUserEmail()
+        public static string GetUserEmail()
         {
             Random rnd = new Random();
             int idx = rnd.Next(0, userEmails.Count);
             return userEmails[idx];
         }
 
-        public static String GetName(Guid id)
+        public static String GetUserEmail(Guid id)
         {
             return usersEmail[id];
         }

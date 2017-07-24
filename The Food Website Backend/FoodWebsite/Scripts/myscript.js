@@ -1,4 +1,4 @@
-var broadcastid;
+﻿var broadcastid;
 var restaurantid;
 
 function LoadRestaurants(restList) {
@@ -317,7 +317,7 @@ $(document).ready(function () {
         $("#recipt").hide();
         $("#order_setup").hide();
         $("#trans").show();
-        //CurrentOrder(broadcastid);
+        CurrentOrder(broadcastid);
         GetRestaurantItems(restaurantid);
     });
 
@@ -340,6 +340,16 @@ $(document).ready(function () {
         $("#recipt").hide();
     });
     $("#check_btn").click(function () {
+        var names = $("#user_order_details tr td:nth-child(1)").map(function () {
+            return $(this).text();
+        }).get();
+        var quantity = $("#user_order_details tr td:nth-child(2)").map(function () {
+            return parseInt($(this).text());
+        }).get();
+        var comments = $("#user_order_details tr td:nth-child(3)").map(function () {
+            return $(this).text();
+        }).get();
+        AddOrder(names, quantity, comments, broadcastid);
         $("#history").hide();
         $("#history_select").hide();
         $("#home_select").hide();

@@ -23,7 +23,8 @@ namespace FoodWebsite.Controllers
                 Active = true,
                 UserId = UserIdentityManager.GetUserId(),
                 Deadline = deadline,
-                BroadcastID = Guid.NewGuid()
+                BroadcastID = Guid.NewGuid(),
+                Email = UserIdentityManager.GetUserEmail()
 
             };
 
@@ -40,7 +41,7 @@ namespace FoodWebsite.Controllers
             return Broadcast.GetAll().Where(e => e.Active == false).ToList();
         }
         [HttpGet]
-        public void AddOrder(String [] items,int [] values,String [] comments,Guid id)
+        public void AddOrder([FromUri] String [] items, [FromUri] int [] values, [FromUri] String [] comments,Guid id)
         {
             List<ItemValue> x = new List<ItemValue>();
             Item n = null;
@@ -57,7 +58,7 @@ namespace FoodWebsite.Controllers
                 }
                 x.Add(new ItemValue { Item = n, Quantity = values[i],comments = comments[i] });
             }
-            Broadcast.Get(id).Orders.Add(new Order { Items = x, UserId = UserIdentityManager.GetUserId() });
+            Broadcast.Get(id).Orders.Add(new Order { Items = x, UserId = UserIdentityManager.GetUserId()});
         }
         [HttpGet]
         public Receipt Receipt(Guid id)
@@ -82,7 +83,7 @@ namespace FoodWebsite.Controllers
                 t = t + sum;
                 ReceiptItem y = new ReceiptItem
                 {
-                    Email = UserIdentityManager.GetName(o[i].UserId),
+                    Email = UserIdentityManager.GetUserEmail(o[i].UserId),
                     Total = sum
                 };
                 x.Add(y);

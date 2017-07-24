@@ -16,6 +16,7 @@ namespace FoodWebsite.DAL
         public Restaurant Restaurant { set; get; }
         public DateTime Deadline { set; get; }
         public Guid UserId { set; get; }
+        public String Email { set; get; }
 
         public static void Add(Broadcast broadcast)
         {
