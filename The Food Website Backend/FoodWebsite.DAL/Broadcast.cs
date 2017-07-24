@@ -12,7 +12,7 @@ namespace FoodWebsite.DAL
         public double Reciept { set; get; } = 0.0;
         public bool Active { set; get; } = true;
         public Guid BroadcastID { set; get; }
-        public List<Order> Orders { set; get; } = new List<Order>();
+        public Dictionary<Guid, Order> Orders { set; get; } = new Dictionary<Guid, Order>();
         public Restaurant Restaurant { set; get; }
         public DateTime Deadline { set; get; }
         public Guid UserId { set; get; }
