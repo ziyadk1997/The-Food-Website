@@ -37,9 +37,9 @@ function LoadTotalReceipt(receipt)
 
 
 function LoadOrders(orders) {
+    $('#user_order_details').find("tr:gt(0)").remove();
     if (orders != null)
     {
-        $('#user_order_details').slice(1).remove();
         for (var i = 0; i < orders.length; i++) {
             var name = orders[i].Item.Name;
             var quantity = orders[i].Quantity;
