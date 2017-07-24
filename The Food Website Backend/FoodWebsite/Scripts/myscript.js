@@ -131,6 +131,7 @@ $(document).ready(function () {
         $("#check_btn").hide();
         $("#recipt").hide();
         $("#order_setup").hide();
+        LoadBroadcaststs();
     });
     $("#add_btn").on("click", function () {
         $("#history").hide();
@@ -200,6 +201,8 @@ $(document).ready(function () {
         $("#recipt").hide();
         $("#order_setup").hide();
     });
+
+    LoadBroadcaststs();
 });
 
 

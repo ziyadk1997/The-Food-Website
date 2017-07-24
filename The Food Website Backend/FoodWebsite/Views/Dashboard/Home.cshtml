@@ -12,13 +12,17 @@
     <link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
     <script>
-        $.ajax({
-            url: "http://localhost:18151/api/Broadcast/Active",
-            type: "GET",
-            success: function (response) {
-                displayBroadcasts(response);
-            }
-        })
+        function LoadBroadcaststs()
+        {
+            $.ajax({
+                url: "http://localhost:18151/api/Broadcast/Active",
+                type: "GET",
+                success: function (response) {
+                    displayBroadcasts(response);
+                }
+            })
+        }
+         
         $.ajax({
             url: "http://localhost:18151/api/Broadcast/History",
             type: "GET",
@@ -98,6 +102,10 @@
                 data: {
                     restaurantID: id,
                     deadline: deadline
+                },
+                success : function(response)
+                {
+                    LoadBroadcaststs();
                 }
             })
         }
