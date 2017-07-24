@@ -13,7 +13,7 @@ function LoadRestaurants(restList) {
 }
 function LoadOrders(orders) {
     $('#user_order_details').slice(1).remove();
-    for (var i = 0; i < 1; i++) {
+    for (var i = 0; i < orders.length; i++) {
         var name = orders[i].Item.Name;
         var quantity = orders[i].Quantity;
         var comments = orders[i].comments;
@@ -280,7 +280,7 @@ $(document).ready(function () {
         $("#recipt").hide();
         $("#order_setup").hide();
         $("#trans").show();
-        LoadOrders(broadcastid);
+        //CurrentOrder(broadcastid);
         GetRestaurantItems(restaurantid);
     });
 

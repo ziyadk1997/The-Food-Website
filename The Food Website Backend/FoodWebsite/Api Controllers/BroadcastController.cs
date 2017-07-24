@@ -50,9 +50,19 @@ namespace FoodWebsite.Controllers
             Broadcast.Get(id).Orders.Add(new Order { Items = x, UserId = UserIdentityManager.GetUserId() });
         }
         [HttpGet]
-        public List<Order> Reciept(Guid id)
+        public Receipt Receipt(Guid id)
         {
-            return Broadcast.Get(id).Orders;
+            List<ReceiptItem> x = new List<ReceiptItem>();
+            double t = 0.0;
+            List<Order> o = Broadcast.Get(id).Orders;
+            ////for(int i = 0; i < o.Count; i++)
+            ////{
+            ////    ReceiptItem y = new ReceiptItem
+            ////    {
+            ////        Email = 
+            ////    }
+            ////}
+            return null;
         }
 
         [HttpGet]
