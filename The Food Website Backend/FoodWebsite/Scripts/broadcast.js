@@ -13,12 +13,16 @@ function displayBroadcasts (broadcasts)
 }
 function displayHistory(broadcasts)
 {
+    
+    $("#history").empty();
+    $("#history").append("<br>");
+    $("#history").append("<br>");
 	for(var i=0;i<broadcasts.length;i++)
 	{
 		var uniqueId = broadcasts[i].BroadcastID;
 		var resname=broadcasts[i].Restaurant.Name;
 		var deadline=broadcasts[i].Deadline;
-		var btn = "<button unique_id = \"" +uniqueId + "\" class=\"btn btn-primary header pay\">" + resname + "<br>" + deadline +"</button>";
+		var btn = "<button unique_id = \"" + uniqueId + "\" class=\"btn btn-primary header pay\">" + resname + "<br>" + deadline + "</button>";
 		$("#history").append(btn);
 	}
 }
