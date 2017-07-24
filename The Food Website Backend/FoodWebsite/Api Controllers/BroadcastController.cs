@@ -40,14 +40,14 @@ namespace FoodWebsite.Controllers
             return Broadcast.GetAll().Where(e => e.Active == false).ToList();
         }
         [HttpGet]
-        public void AddOrder(String [] items,int [] values,String comments,Guid id)
+        public void AddOrder(String [] items,int [] values,String [] comments,Guid id)
         {
             List<ItemValue> x = new List<ItemValue>();
             for (int i = 0; i < items.Length; i++)
             {
-                x.Add(new ItemValue { Item = items[i], Value = values[i] });
+                x.Add(new ItemValue { Item = new Item { Name = items[i] }, Quantity = values[i],comments = comments[i] });
             }
-            Broadcast.Get(id).Orders.Add(new Order { Items = x, Comments = comments, UserId = UserIdentityManager.GetUserId() });
+            Broadcast.Get(id).Orders.Add(new Order { Items = x, UserId = UserIdentityManager.GetUserId() });
         }
         [HttpGet]
         public List<Order> Reciept(Guid id)

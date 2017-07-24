@@ -161,22 +161,6 @@
                 }
             })
         }
-        function UpdateOrder(items, values, comments, id) {
-            $.ajax({
-                url: "http://localhost:18151/api/Broadcast/UpdateOrder",
-                type: "GET",
-                data: {
-                    items: items,
-                    values: values,
-                    commments: comments,
-                    id: id
-
-                }
-            })
-        }
-
-
-
 
 
 
@@ -237,10 +221,6 @@
                 <div class="col-md-12">
                     <div style="text-align:center;" id="history">
                         <br>
-
-                        <button class="btn btn-primary header pay">KFC<br>22/8/2017</button>
-                        <button class="btn btn-primary header pay">papa johns<br>23/8/2017</button>
-                        <button class="btn btn-primary header pay">zooba<br>24/8/2017</button>
                     </div>
                 </div>
             </div>
