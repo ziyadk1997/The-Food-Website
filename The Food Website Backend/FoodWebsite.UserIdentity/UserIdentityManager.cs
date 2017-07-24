@@ -8,7 +8,7 @@ namespace FoodWebsite.UserIdentity
 {
     public static class UserIdentityManager
     {
-        private static List<string> userEmails = new List<string> { "ziadk@windowslive.com", "a-ahzari@microsoft.com", "mohamedashraf@hotmail.com", "zare3@aucegypt.edu", "a-ibelse@microsoft.com"};
+        private static List<string> userEmails = new List<string> {"a-ahzari@microsoft.com"};
 
         private static Dictionary<string, Guid> usersId = new Dictionary<string, Guid>();
 
@@ -30,14 +30,14 @@ namespace FoodWebsite.UserIdentity
             }
         }
 
-        private static string GetUserEmail()
+        public static string GetUserEmail()
         {
             Random rnd = new Random();
             int idx = rnd.Next(0, userEmails.Count);
             return userEmails[idx];
         }
 
-        public static String GetName(Guid id)
+        public static String GetUserEmail(Guid id)
         {
             return usersEmail[id];
         }

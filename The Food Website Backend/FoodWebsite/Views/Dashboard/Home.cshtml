@@ -118,16 +118,17 @@
             })
         }
         function AddOrder(items, values, comments, id) {
+            var data = {
+                items: items,
+                values: values,
+                comments: comments,
+                id: id
+            };
             $.ajax({
                 url: "http://localhost:18151/api/Broadcast/AddOrder",
                 type: "GET",
-                data: {
-                    items: items,
-                    values: values,
-                    commments: comments,
-                    id: id
-
-                }
+                data: data,
+                traditional: true
             })
         }
 
@@ -266,7 +267,7 @@
                     <p></p>
                 </div>
                 <div class="col-md-6 scrollable">
-                    <table class="table_history_select" id="user_order_details">
+                    <table class="table_history_select">
                         <tr>
                             <th>
                                 Item
@@ -281,6 +282,9 @@
                                 Delete
                             </th>
                         </tr>
+                        <tbody id="user_order_details">
+
+                        </tbody>
                     </table>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-var broadcastid;
+﻿var broadcastid;
 var restaurantid;
 
 function LoadRestaurants(restList) {
@@ -37,14 +37,14 @@ function LoadTotalReceipt(receipt)
 
 
 function LoadOrders(orders) {
+    $('#user_order_details').empty();
     if (orders != null)
     {
-        $('#user_order_details').slice(1).remove();
         for (var i = 0; i < orders.length; i++) {
             var name = orders[i].Item.Name;
             var quantity = orders[i].Quantity;
             var comments = orders[i].comments;
-            $("#user_order_details").append("<tr> <td>" + name + "</td> <td>" + quantity + "</td><td>" + comments + "</th><td>Delete</td></tr>");
+            $("#user_order_details").append("<tr><td>" + name + "</td><td>" + quantity + "</td><td>" + comments + "</th><td>Delete</td></tr>");
         }
     }
 }
@@ -144,25 +144,9 @@ $(document).ready(function () {
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
         // Find a <table> element with id="myTable":
-        var table = document.getElementById("user_order_details");
+        var name = $("#ItemSetupFilterList").val();
 
-        // Create an empty <tr> element and add it to the 1st position of the table:
-        var row = table.insertRow(1);
-
-        // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-
-        // Add some text to the new cells:
-        cell1.innerHTML = $("#ItemSetupFilterList").val();
-
-        cell2.appendChil.innerHTML="2";
-        t3 = document.createElement("INPUT");
-        t3.setAttribute("class", 'txt_box_color');
-        cell3.appendChild(t3);
-        cell4.innerHTML="2";
+        $("#user_order_details").append("<tr><td>" + name + "</td><td>1</td><td>some comment</td><td><input type=\"button\"></td>");
     });
 
     $("#done_settling").click(function () {
@@ -214,7 +198,7 @@ $(document).ready(function () {
     $("#details").click(function () {
         var details = prompt("please type any special comments you would like to include in the order");
     });
-    $(".order_details").click(function () {
+    $("#total_receipt").on("click", "tr", function () {
         $("#history").hide();
         $("#history_select").hide();
         $("#home_select").hide();
@@ -292,7 +276,7 @@ $(document).ready(function () {
         $("#recipt").hide();
         $("#order_setup").hide();
         $("#trans").show();
-        //CurrentOrder(broadcastid);
+        CurrentOrder(broadcastid);
         GetRestaurantItems(restaurantid);
     });
 
@@ -316,6 +300,16 @@ $(document).ready(function () {
     });
 
     $("#check_btn").click(function () {
+        var names = $("#user_order_details tr td:nth-child(1)").map(function () {
+            return $(this).text();
+        }).get();
+        var quantity = $("#user_order_details tr td:nth-child(2)").map(function () {
+            return parseInt($(this).text());
+        }).get();
+        var comments = $("#user_order_details tr td:nth-child(3)").map(function () {
+            return $(this).text();
+        }).get();
+        AddOrder(names, quantity, comments, broadcastid);
         $("#history").hide();
         $("#history_select").hide();
         $("#home_select").hide();
