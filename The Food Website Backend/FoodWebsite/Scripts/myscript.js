@@ -14,12 +14,9 @@ function LoadRestaurants(restList) {
 function LoadOrders(orders) {
     $('#user_order_details').slice(1).remove();
     for (var i = 0; i < 1; i++) {
-        var name = "McPizza";
-            //orders[i].Item.Name;
-        var quantity = 2;
-            //orders[i].Quantity;
-        var comments = "Stuft Crust";
-            //orders[i].comments;
+        var name = orders[i].Item.Name;
+        var quantity = orders[i].Quantity;
+        var comments = orders[i].comments;
         $("#user_order_details").append("<tr> <td>"+name + "</td> <td>" + quantity + "</td><td>" + comments+ "</th><td>Delete</td></tr>");
     }
 }
