@@ -8,7 +8,7 @@ namespace FoodWebsite.UserIdentity
 {
     public static class UserIdentityManager
     {
-        private static List<string> userEmails = new List<string> { "ziadk@windowslive.com", "a-ahzari@microsoft.com", "mohamedashraf@hotmail.com", "zare3@aucegypt.edu", "a-ibelse@microsoft.com"};
+        private static List<string> userEmails = new List<string> {"a-ahzari@microsoft.com"};
 
         private static Dictionary<string, Guid> usersId = new Dictionary<string, Guid>();
 
