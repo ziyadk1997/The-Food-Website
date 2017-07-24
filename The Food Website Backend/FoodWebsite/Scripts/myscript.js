@@ -8,25 +8,31 @@ function LoadRestaurants(restList) {
         var name = restList[i].Name;
         $("#orderSetupItems").append("<li class=\"restButton list-group-item\" restId = " + restList[i].RestaurantID + ">" + name + "</li>");
     }
-
-
 }
+
+
 function LoadOrders(orders) {
-    $('#user_order_details').slice(1).remove();
-    for (var i = 0; i < orders.length; i++) {
-        var name = orders[i].Item.Name;
-        var quantity = orders[i].Quantity;
-        var comments = orders[i].comments;
-        $("#user_order_details").append("<tr> <td>"+name + "</td> <td>" + quantity + "</td><td>" + comments+ "</th><td>Delete</td></tr>");
+    if (orders != null)
+    {
+        $('#user_order_details').slice(1).remove();
+        for (var i = 0; i < orders.length; i++) {
+            var name = orders[i].Item.Name;
+            var quantity = orders[i].Quantity;
+            var comments = orders[i].comments;
+            $("#user_order_details").append("<tr> <td>" + name + "</td> <td>" + quantity + "</td><td>" + comments + "</th><td>Delete</td></tr>");
+        }
     }
 }
 
-function LoadRestaurantItems(items) {
-    $('#ItemSetupItems li:not(:first)').remove();
-    $("#ItemSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + restList[restList.length - 1].RestaurantID + ">" + restList[restList.length - 1].Name + "</li>");
-    for (var i = restList.length - 2; i >= 0 ; i--) {
-        var name = restList[i].Name;
-        $("#ItemSetupItems").append("<li class=\"restButton list-group-item\" restId = " + restList[i].RestaurantID + ">" + name + "</li>");
+function LoadRestaurantItems(restList) {
+    if (restList != null && restList.length > 0)
+    {
+        $('#ItemSetupItems li:not(:first)').remove();
+        $("#ItemSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + restList[restList.length - 1].RestaurantID + ">" + restList[restList.length - 1].Name + "</li>");
+        for (var i = restList.length - 2; i >= 0; i--) {
+            var name = restList[i].Name;
+            $("#ItemSetupItems").append("<li class=\"restButton list-group-item\" restId = " + restList[i].RestaurantID + ">" + name + "</li>");
+        }
     }
 }
 
@@ -270,7 +276,7 @@ $(document).ready(function () {
 
     });
 
-    $(".orders").click(function () {
+    $(".orders").on("click", "button", function () {
         broadcastid = $(this).attr('unique_id');
         restaurantid = $(this).attr('restaurantid');
         $("#history").hide();
