@@ -1,5 +1,6 @@
 
-function LoadRestaurants(restList) {
+function LoadRestaurants(restList)
+{
     $('#orderSetupItems li:not(:first)').remove();
     for (var i = 0; i < restList.length; i++) {
         var name = restList[i].Name;
@@ -7,11 +8,6 @@ function LoadRestaurants(restList) {
 
     }
 }
-
-
-
-
-
 
 function initializeOrderList() {
     var input, filter, ul, li, a, i;
