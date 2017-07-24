@@ -148,6 +148,30 @@ namespace FoodWebsite.Controllers
             }
         }
 
+        public List<ItemSummary> GetBroadcastSummary(Guid broadcastId)
+        {
+            Broadcast broadcast = Broadcast.Get(broadcastId);
+            List<Order> orders = broadcast.Orders.Select(order => order.Value).ToList();
+            Dictionary<string, int> itemsCnt = new Dictionary<string, int>();
+            foreach (var order in orders)
+            {
+                foreach (var item in order.Items)
+                {
+                    if(itemsCnt.ContainsKey(item.Item.Name))
+                    {
+                        itemsCnt[item.Item.Name]++;
+                    }
+                    else
+                    {
+                        itemsCnt.Add(item.Item.Name, 1);
+                    }
+                }
+            }
+
+            return itemsCnt.Select(e => new ItemSummary { ItemName = e.Key, Quantity = e.Value }).ToList();
+            
+        }
+
 
 
     }

@@ -325,11 +325,11 @@ $(document).ready(function () {
         $("#history").hide();
         $("#history_select").hide();
         $("#home_select").hide();
-        $("#home").show();
-        $("#add_btn").show();
+        
         $("#check_btn").hide();
         $("#recipt").hide();
         $("#order_setup").hide();
+        $("#trans").show();
     });
 
     LoadBroadcasts();
