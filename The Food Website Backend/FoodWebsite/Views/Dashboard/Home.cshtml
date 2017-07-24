@@ -95,7 +95,7 @@
                     id: id
                 },
                 success: function (response) {
-                    // THIS RETURNS ALL ORDERS OF BROADCAST
+                    LoadTotalReceipt(response);
                 }
             })
 
@@ -288,67 +288,22 @@
                 <div class="col-md-4 scrollable" style="text-align:center">
                     <br>
                     <br>
-                    <table class="table_history_select" id="total_receipt">
-                        <tr>
-                            <th>Name</th>
-                            <th>Total (L.E)</th>
-
-                        </tr>
-                        <tr class="details order_details">
-                            <td><p>zarea</p></td>
-                            <td><p>150</p></td>
-                        </tr>
-                        <tr class="details order_details">
-                            <td><p>zarea</p></td>
-                            <td><p>150</p></td>
-                        </tr>
-                        <tr class="details order_details">
-                            <td><p>zarea</p></td>
-                            <td><p>150</p></td>
-                        </tr>
-                        <tr class="details order_details">
-                            <td><p>zarea</p></td>
-                            <td><p>150</p></td>
-                        </tr>
-                        <tr class="details order_details">
-                            <td><p>zarea</p></td>
-                            <td><p>150</p></td>
-                        </tr>
-                        <tr class="details order_details">
-                            <td><p>zarea</p></td>
-                            <td><p>150</p></td>
-                        </tr>
-                        <tr class="details order_details">
-                            <td><p>zarea</p></td>
-                            <td><p>150</p></td>
-                        </tr>
-                        <tr class="details order_details">
-                            <td><p>zarea</p></td>
-                            <td><p>150</p></td>
-                        </tr>
-                        <tr class="details order_details">
-                            <td><p>zarea</p></td>
-                            <td><p>150</p></td>
-                        </tr>
-                        <tr class="details order_details">
-                            <td><p>zarea</p></td>
-                            <td><p>150</p></td>
-                        </tr>
-                        <tr class="details order_details">
-                            <td><p>zarea</p></td>
-                            <td><p>150</p></td>
-                        </tr>
-                        <tr class="details order_details">
-                            <td><p>zarea</p></td>
-                            <td><p>150</p></td>
-                        </tr>
-                        <tr class="details order_details">
-                            <td><p>zarea</p></td>
-                            <td><p>150</p></td>
-                        </tr>
+                    <table class="table_history_select">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Total (L.E)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="total_receipt">
+                        </tbody>
 
                     </table>
                 </div>
+            </div>
+            <hr />
+            <div class="row" style="text-align:center">
+                <h4 id="history_total_amount"></h4>
             </div>
         </div>
         <!///////////////////////////////////////////////////////////////////////////////////////////////>

@@ -17,11 +17,20 @@ function LoadRestaurants(restList) {
 
 function LoadTotalReceipt(receipt)
 {
+    $("#total_receipt").empty();
     receiptItems = receipt.ReceiptItems;
     total = receipt.Total;
     for (i = 0; i < receiptItems.length; i++)
     {
         $("#total_receipt").append("<tr class=\"details order_details\"><td><p>" + receiptItems[i].Email + "</p></td><td><p>" + receiptItems[i].Total + "</p></td></tr>");
+    }
+    if (total != null && total > 0)
+    {
+        $("#history_total_amount").text("Total: " + total);
+    }
+    else
+    {
+        $("#history_total_amount").text("Total is undefined. Please set prices for all items");
     }
 
 }
@@ -319,7 +328,7 @@ $(document).ready(function () {
     });
 
     $(".pay").click(function () {
-        
+        GetReciept($(this).attr('unique_id'));
         $("#history").hide();
         $("#history_select").show();
         $("#home_select").hide();
