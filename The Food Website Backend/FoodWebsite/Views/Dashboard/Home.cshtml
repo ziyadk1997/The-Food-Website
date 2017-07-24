@@ -142,7 +142,7 @@
                     id: id
                 },
                 success: function (response) {
-                    // THIS RETURNS CURRENT ORDER IN LIST OF ITEM VALUES WHICH IS STRING NAME AND INT VALUE ATTRIBUTES
+                    LoadOrders(response);
                 }
             })
         }
@@ -272,9 +272,6 @@
                             </th>
                             <th>
                                 Delete
-                            </th>
-                            <th>
-                                Edit
                             </th>
                         </tr>
                     </table>
