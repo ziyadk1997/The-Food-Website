@@ -13,7 +13,7 @@ function LoadRestaurantItems(items) {
     $('#ItemSetupItems li:not(:first)').remove();
     for (var i = 0; i < items.length; i++) {
         var name = items[i].Name;
-        $("#ItemSetupItems").append("<li> <a href=#>"+ name + "</a> </li>");
+        $("#ItemSetupItems").append("<li> <a href=#>" + name + "</a> </li>");
     }
 }
 
@@ -131,7 +131,6 @@ $(document).ready(function () {
         $("#check_btn").hide();
         $("#recipt").hide();
         $("#order_setup").hide();
-        LoadBroadcaststs();
     });
     $("#add_btn").on("click", function () {
         $("#history").hide();
@@ -176,13 +175,13 @@ $(document).ready(function () {
     });
     $("#add_item").click(function () {
         var new_item = prompt("Please enter the item name");
-        //AddRestaurantItem(new_item, restaurantid);
-        this.innerText = new_item;
+        AddRestaurantItem(new_item, restaurantid);
+        $("#ItemSetupFilterList").innerText = new_item;
 
     });
     $(".pay").click(function () {
         broadcastid = $(this).attr('unique_id');
-        //restaurantid = $(this).attr('restaurantid');
+        restaurantid = $(this).attr('restaurantid');
         $("#history").hide();
         $("#history_select").show();
         $("#home_select").hide();
@@ -190,6 +189,7 @@ $(document).ready(function () {
         $("#add_btn").hide();
         $("#check_btn").hide();
         $("#recipt").hide();
+        GetRestaurantItems(restaurantid);
     });
     $("#check_btn").click(function () {
         $("#history").hide();
@@ -201,8 +201,7 @@ $(document).ready(function () {
         $("#recipt").hide();
         $("#order_setup").hide();
     });
-
-    LoadBroadcaststs();
+    LoadBroadcasts();
 });
 
 

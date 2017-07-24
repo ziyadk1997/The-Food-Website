@@ -12,7 +12,7 @@
     <link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
     <script>
-        function LoadBroadcaststs()
+        function LoadBroadcasts()
         {
             $.ajax({
                 url: "http://localhost:18151/api/Broadcast/Active",
@@ -265,16 +265,6 @@
                     <div class="scrollable">
                         <input type="text" style="width:100%;max-width:100%;" id="ItemSetupFilterList" class="filterListInputItem" onkeyup="initializeItemList()" placeholder="Search for an item..">
                         <ul id="ItemSetupItems" class="filterList">
-
-                            <li><a href="#">Burger</a></li>
-                            <li><a href="#">Burger</a></li>
-                            <li><a href="#">Burger</a></li>
-                            <li><a href="#">Burger</a></li>
-                            <li><a href="#">Burger</a></li>
-                            <li><a href="#">Burger</a></li>
-                            <li><a href="#">Burger</a></li>
-                            <li><a href="#">Burger</a></li>
-                            <li><a href="#">Burger</a></li>
                             <li><a><button class="add_unexisting" id="add_item" style="font-size:20px!important;">+</button></a></li>
                         </ul>
                     </div>
