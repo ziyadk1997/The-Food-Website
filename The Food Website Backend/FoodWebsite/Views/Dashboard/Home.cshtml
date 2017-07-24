@@ -12,7 +12,8 @@
     <link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
     <script>
-        function LoadBroadcasts() {
+        function LoadBroadcasts()
+        {
             $.ajax({
                 url: "http://localhost:18151/api/Broadcast/Active",
                 type: "GET",
@@ -21,7 +22,7 @@
                 }
             })
         }
-
+         
         $.ajax({
             url: "http://localhost:18151/api/Broadcast/History",
             type: "GET",
@@ -39,6 +40,7 @@
                     restaurantName: RestaurantName
                 },
                 success: function (response) {
+                    GetRestaurants();
                 }
             })
         }
@@ -53,7 +55,8 @@
                 url: "http://localhost:18151/api/Restaurant/AddItem",
                 type: "GET",
                 data: data,
-                success: function (response) {
+                success:function(response)
+                {
                     GetRestaurantItems(id);
                 }
             })
@@ -63,9 +66,9 @@
             $.ajax({
                 url: "http://localhost:18151/api/Restaurant/GetRestaurantItems",
                 type: "GET",
-                data: {
-                    id: id
-                },
+                date:{
+                id:id
+                 },
                 success: function (response) {
                     LoadRestaurantsItems(response);
                 }
@@ -77,6 +80,7 @@
                 url: "http://localhost:18151/api/Restaurant/GetAll",
                 type: "GET",
                 success: function (response) {
+                    console.log(response);
                     LoadRestaurants(response);
                 }
             })
@@ -105,7 +109,8 @@
                     restaurantID: id,
                     deadline: deadline
                 },
-                success: function (response) {
+                success : function(response)
+                {
                     LoadBroadcasts();
                 }
             })
@@ -223,7 +228,6 @@
         <!///////////////////////////////////////////////////////////////////////////////////////////////>
         <div name="enrolled in an order" id="home_select">
 
-
             <div class="row">
 
                 <div class="col-md-11">
@@ -232,7 +236,6 @@
                 <div class="col-md-1">
                     <div>
                         <button type="button" class="btn btn-default btn-circle btn-x2" id="check_btn"><i class="glyphicon glyphicon-check"></i></button>
-
                     </div>
                 </div>
 

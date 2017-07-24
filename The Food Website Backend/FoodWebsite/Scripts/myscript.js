@@ -3,11 +3,13 @@ var restaurantid;
 
 function LoadRestaurants(restList) {
     $('#orderSetupItems li:not(:first)').remove();
-    for (var i = 0; i < restList.length; i++) {
+    $("#orderSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + restList[restList.length - 1].RestaurantID + ">" + restList[restList.length - 1].Name + "</li>");
+    for (var i = restList.length - 2; i >=0 ; i--) {
         var name = restList[i].Name;
         $("#orderSetupItems").append("<li class=\"restButton list-group-item\" restId = " + restList[i].RestaurantID + ">" + name + "</li>");
-
     }
+
+
 }
 function LoadOrders(orders) {
     $('#user_order_details').slice(1).remove();
@@ -24,9 +26,10 @@ function LoadOrders(orders) {
 
 function LoadRestaurantItems(items) {
     $('#ItemSetupItems li:not(:first)').remove();
-    for (var i = 0; i < items.length; i++) {
-        var name = items[i].Name;
-        $("#ItemSetupItems").append("<li> <a href=#>" + name + "</a> </li>");
+    $("#ItemSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + restList[restList.length - 1].RestaurantID + ">" + restList[restList.length - 1].Name + "</li>");
+    for (var i = restList.length - 2; i >= 0 ; i--) {
+        var name = restList[i].Name;
+        $("#ItemSetupItems").append("<li class=\"restButton list-group-item\" restId = " + restList[i].RestaurantID + ">" + name + "</li>");
     }
 }
 
@@ -98,6 +101,7 @@ $(document).ready(function () {
     $("#ItemSetupItems li a ").click(function () {
         $("#ItemSetupItems").hide();
         $("#ItemSetupFilterList").val(this.innerText);
+        
     });
 
     $("#orderSetupItems").on("click", ".restButton", function () {
@@ -244,8 +248,7 @@ $(document).ready(function () {
         AddBroadcast(id, deadline);
 
     });
-
-    $(".orders").on("click", "button", function () {
+    $(".orders").click(function () {
         broadcastid = $(this).attr('unique_id');
         restaurantid = $(this).attr('restaurantid');
         $("#history").hide();
@@ -265,9 +268,14 @@ $(document).ready(function () {
     });
     $("#add_item").click(function () {
         var new_item = prompt("Please enter the item name");
+        $('#ItemSetupFilterList').val(new_item);
         AddRestaurantItem(new_item, restaurantid);
+        
+        
+
     });
-    $(".pay").on("click", function () {
+    $(".pay").click(function () {
+        
         $("#history").hide();
         $("#history_select").show();
         $("#home_select").hide();
@@ -294,4 +302,4 @@ $(document).ready(function () {
 
 
 
-
+    
