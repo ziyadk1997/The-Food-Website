@@ -7,7 +7,7 @@ function displayBroadcasts (broadcasts)
 		var resname=broadcasts[i].Restaurant.Name;
 		var deadline=broadcasts[i].Deadline;
 		var uniqueId = broadcasts[i].BroadcastID;
-		var btn = "<button unique_id = \"" + uniqueId + "\" class=\"btn btn-primary header orders single_order\">" + resname + "<br>" + deadline +"</button>";
+        var btn = "<button unique_id = \"" + uniqueId + "\" restaurantid = \"" + broadcasts[i].Restaurant.RestaurantID + "\" class=\"btn btn-primary header orders single_order\">" + resname + "<br>" + deadline + "</button>";
 		$("#home_table").append(btn);
 	}
 }

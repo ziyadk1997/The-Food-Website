@@ -3,33 +3,36 @@ var restaurantid;
 
 function LoadRestaurants(restList) {
     $('#orderSetupItems li:not(:first)').remove();
-    $("#orderSetupItems").append("<li class=\"restButton list-group-item active\" restId = "  + restList[restList.length - 1].Name + "</li>");
+    $("#orderSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + restList[restList.length - 1].RestaurantID + ">" + restList[restList.length - 1].Name + "</li>");
     for (var i = restList.length - 2; i >=0 ; i--) {
         var name = restList[i].Name;
-        $("#orderSetupItems").append("<li class=\"restButton list-group-item\" restId = " +  name + "</li>");
+        $("#orderSetupItems").append("<li class=\"restButton list-group-item\" restId = " + restList[i].RestaurantID + ">" + name + "</li>");
     }
-
-
 }
+
+
 function LoadOrders(orders) {
-    $('#user_order_details').slice(1).remove();
-    for (var i = 0; i < 1; i++) {
-        var name = "McPizza";
-            //orders[i].Item.Name;
-        var quantity = 2;
-            //orders[i].Quantity;
-        var comments = "Stuft Crust";
-            //orders[i].comments;
-        $("#user_order_details").append("<tr> <td>"+name + "</td> <td>" + quantity + "</td><td>" + comments+ "</th><td>Delete</td></tr>");
+    if (orders != null)
+    {
+        $('#user_order_details').slice(1).remove();
+        for (var i = 0; i < orders.length; i++) {
+            var name = orders[i].Item.Name;
+            var quantity = orders[i].Quantity;
+            var comments = orders[i].comments;
+            $("#user_order_details").append("<tr> <td>" + name + "</td> <td>" + quantity + "</td><td>" + comments + "</th><td>Delete</td></tr>");
+        }
     }
 }
 
-function LoadRestaurantItems(items) {
-    $('#ItemSetupItems li:not(:first)').remove();
-    $("#ItemSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + items[items.length - 1].RestaurantID + ">" + items[items.length - 1].Name + "</li>");
-    for (var i = items.length - 2; i >= 0 ; i--) {
-        var name = items[i].Name;
-        $("#ItemSetupItems").append("<li class=\"restButton list-group-item\" restId = " + items[i].RestaurantID + ">" + name + "</li>");
+function LoadRestaurantItems(restList) {
+    if (restList != null && restList.length > 0)
+    {
+        $('#ItemSetupItems li:not(:first)').remove();
+        $("#ItemSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + restList[restList.length - 1].RestaurantID + ">" + restList[restList.length - 1].Name + "</li>");
+        for (var i = restList.length - 2; i >= 0; i--) {
+            var name = restList[i].Name;
+            $("#ItemSetupItems").append("<li class=\"restButton list-group-item\" restId = " + restList[i].RestaurantID + ">" + name + "</li>");
+        }
     }
 }
 
@@ -98,18 +101,15 @@ $(document).ready(function () {
 
 
 
-   
+    $("#ItemSetupItems li a ").click(function () {
+        $("#ItemSetupItems").hide();
+        $("#ItemSetupFilterList").val(this.innerText);
+        
+    });
 
     $("#orderSetupItems").on("click", ".restButton", function () {
         $("#orderSetupItems").hide();
         $("#orderSetupFilterList").val(this.innerText);
-        $(this).siblings().removeClass('active');
-        $(this).addClass('active');
-    });
-
-    $("#ItemSetupItems").on("click", ".restButton", function () {
-        $("#ItemSetupItems").hide();
-        $("#ItemSetupFilterList").val(this.innerText);
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
     });
@@ -276,7 +276,7 @@ $(document).ready(function () {
 
     });
 
-    $(".orders").click(function () {
+    $(".orders").on("click", "button", function () {
         broadcastid = $(this).attr('unique_id');
         restaurantid = $(this).attr('restaurantid');
         $("#history").hide();
@@ -286,7 +286,7 @@ $(document).ready(function () {
         $("#recipt").hide();
         $("#order_setup").hide();
         $("#trans").show();
-        //LoadOrders(broadcastid);
+        // LoadOrders(broadcastid);
         GetRestaurantItems(restaurantid);
     });
 
@@ -321,7 +321,6 @@ $(document).ready(function () {
         $("#check_btn").hide();
         $("#recipt").hide();
         $("#order_setup").hide();
-        GetRestaurantItems(restaurantid);
     });
 
     LoadBroadcasts();
