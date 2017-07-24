@@ -168,6 +168,19 @@
                 }
             })
         }
+        function ReceiptDetail(id, email) {
+            $.ajax({
+                url: "http://localhost:18151/api/Broadcast/ReceiptDetail",
+                type: "GET",
+                data: {
+                    id: id,
+                    email:email
+                },
+                success: function (response) {
+                    LoadUserReceipt(response);
+                }
+            })
+        }
 
 
 
@@ -286,9 +299,6 @@
 
                         </tbody>
                     </table>
-                    <tbody>
-
-                    </tbody>
                 </div>
             </div>
         </div>
@@ -369,216 +379,10 @@
                             <th>price (per one)</th>
                             <th>total</th>
                         </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td><p>zarea</p></td>
-                            <td><p>2</p></td>
-                            <td>20</td>
-                            <td>40</td>
-                        </tr>
+                        <tbody id="user_receipt_table_body">
+
+                        </tbody>
+                        
                     </table>
                 </div>
             </div>

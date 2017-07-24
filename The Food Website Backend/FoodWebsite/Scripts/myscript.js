@@ -1,6 +1,6 @@
 ﻿var broadcastid;
 var restaurantid;
-
+var email;
 function LoadRestaurants(restList) {
     if (restList != null && restList.length > 0)
     {
@@ -35,7 +35,16 @@ function LoadTotalReceipt(receipt)
 
 }
 
-
+function LoadUserReceipt(items) {
+    $('#user_receipt_table_body').empty();
+    for (var i = 0; i < items.length; i++) {
+        var name = items[i].Item.Name;
+        var quantity = items[i].Quantity;
+        var price = items[i].Item.Price;
+        var total = quantity * price;
+        $("#user_receipt_table_body").append("<tr><td><p>" + name + "</p></td><td><p>" + quantity + "</p></td><td>" + price + "</td><td>" + total + "</td></tr>");
+    }
+}
 function LoadOrders(orders) {
     $('#user_order_details').empty();
     if (orders != null)
@@ -199,6 +208,8 @@ $(document).ready(function () {
         var details = prompt("please type any special comments you would like to include in the order");
     });
     $("#total_receipt").on("click", "tr", function () {
+        email = $(this).closest('tr').children('td:first').text();
+        ReceiptDetail(broadcastid, email);
         $("#history").hide();
         $("#history_select").hide();
         $("#home_select").hide();
@@ -290,6 +301,7 @@ $(document).ready(function () {
 
     $("#history").on("click", "button", function () {
         GetReciept($(this).attr('unique_id'));
+        broadcastid = $(this).attr('unique_id');
         $("#history").hide();
         $("#history_select").show();
         $("#home_select").hide();
