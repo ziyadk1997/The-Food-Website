@@ -302,7 +302,7 @@ $(document).ready(function () {
         $("#recipt").hide();
         $("#order_setup").hide();
         $("#trans").show();
-        // LoadOrders(broadcastid);
+        //CurrentOrder(broadcastid);
         GetRestaurantItems(restaurantid);
     });
 
