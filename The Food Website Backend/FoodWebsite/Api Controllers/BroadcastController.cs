@@ -43,9 +43,19 @@ namespace FoodWebsite.Controllers
         public void AddOrder(String [] items,int [] values,String [] comments,Guid id)
         {
             List<ItemValue> x = new List<ItemValue>();
+            Item n = null;
             for (int i = 0; i < items.Length; i++)
             {
-                x.Add(new ItemValue { Item = new Item { Name = items[i] }, Quantity = values[i],comments = comments[i] });
+                List<Item> it = Broadcast.Get(id).Restaurant.Items;
+                for(int j = 0; j < it.Count; j++)
+                {
+                    if(items[i].Equals(it[j].Name))
+                    {
+                        n = it[j];
+                        break;
+                    }
+                }
+                x.Add(new ItemValue { Item = n, Quantity = values[i],comments = comments[i] });
             }
             Broadcast.Get(id).Orders.Add(new Order { Items = x, UserId = UserIdentityManager.GetUserId() });
         }
@@ -55,14 +65,29 @@ namespace FoodWebsite.Controllers
             List<ReceiptItem> x = new List<ReceiptItem>();
             double t = 0.0;
             List<Order> o = Broadcast.Get(id).Orders;
-            ////for(int i = 0; i < o.Count; i++)
-            ////{
-            ////    ReceiptItem y = new ReceiptItem
-            ////    {
-            ////        Email = 
-            ////    }
-            ////}
-            return null;
+            for (int i = 0; i < o.Count; i++)
+            {
+                double sum = 0.0;
+                List<ItemValue> it = o[i].Items;
+                for(int j = 0; j < it.Count; j++)
+                {
+                    if (it[j].Item.Price == 0.0)
+                    {
+                        sum = 0.0;
+                        break;
+                    }
+                        sum = sum + (it[j].Item.Price * it[j].Quantity);
+                    
+                }
+                t = t + sum;
+                ReceiptItem y = new ReceiptItem
+                {
+                    Email = UserIdentityManager.GetName(o[i].UserId),
+                    Total = sum
+                };
+                x.Add(y);
+            }
+            return new Receipt { ReceiptItems = x, Total = t };
         }
 
         [HttpGet]
@@ -71,7 +96,7 @@ namespace FoodWebsite.Controllers
             return Broadcast.GetAll().Where(e => e.Active == true).ToList();
         }
         [HttpGet]
-        public static List<ItemValue> GetCurrentOrder(Guid id)
+        public List<ItemValue> GetCurrentOrder(Guid id)
         {
             Guid UserID = UserIdentityManager.GetUserId();
             List<Order> cur = Broadcast.Get(id).Orders;
@@ -86,7 +111,7 @@ namespace FoodWebsite.Controllers
         }
 
         [HttpGet]
-        public static void DeleteOrder(Guid id)
+        public void DeleteOrder(Guid id)
         {
             Guid UserID = UserIdentityManager.GetUserId();
             List<Order> cur = Broadcast.Get(id).Orders;
