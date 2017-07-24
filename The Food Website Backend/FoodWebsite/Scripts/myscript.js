@@ -189,7 +189,7 @@ $(document).ready(function () {
         $("#will_order").hide();
         $("#close_order").hide();
         $("#review_order_table").hide();
-        
+        LoadHistory();
         
     });
 
@@ -210,6 +210,7 @@ $(document).ready(function () {
         $("#review_order_table").hide();
         CloseBroadcast(broadcastid);
         $("#history").show();
+        
     });
 
     $("#details").click(function () {
@@ -305,7 +306,7 @@ $(document).ready(function () {
 
    
 
-    $(".pay").click(function () {
+    $("#history").on("click", "button", function () {
         GetReciept($(this).attr('unique_id'));
         $("#history").hide();
         $("#history_select").show();
@@ -315,6 +316,7 @@ $(document).ready(function () {
         $("#check_btn").hide();
         $("#recipt").hide();
     });
+
     $("#check_btn").click(function () {
         $("#history").hide();
         $("#history_select").hide();

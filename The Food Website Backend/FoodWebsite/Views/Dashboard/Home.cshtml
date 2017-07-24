@@ -23,14 +23,16 @@
             })
         }
          
-        $.ajax({
-            url: "http://localhost:18151/api/Broadcast/History",
-            type: "GET",
-            success: function (response) {
-                displayHistory(response);
-            }
-        })
-
+        function LoadHistory()
+        {
+            $.ajax({
+                url: "http://localhost:18151/api/Broadcast/History",
+                type: "GET",
+                success: function (response) {
+                    displayHistory(response);
+                }
+            })
+        }
 
         function AddRestaurant(RestaurantName) {
             $.ajax({
@@ -135,6 +137,10 @@
                 type: "GET",
                 data: {
                     id: id
+                },
+                success : function(response)
+                {
+                    LoadHistory();
                 }
             })
         }
