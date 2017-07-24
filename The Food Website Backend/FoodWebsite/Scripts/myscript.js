@@ -28,10 +28,9 @@ function LoadRestaurantItems(restList) {
     if (restList != null && restList.length > 0)
     {
         $('#ItemSetupItems li:not(:first)').remove();
-        $("#ItemSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + restList[restList.length - 1].RestaurantID + ">" + restList[restList.length - 1].Name + "</li>");
+        $("#ItemSetupItems").append("<li class=\"restButton items_list list-group-item active\">" + restList[restList.length - 1] + "</li>");
         for (var i = restList.length - 2; i >= 0; i--) {
-            var name = restList[i].Name;
-            $("#ItemSetupItems").append("<li class=\"restButton list-group-item\" restId = " + restList[i].RestaurantID + ">" + name + "</li>");
+            $("#ItemSetupItems").append("<li class=\"restButton items_list list-group-item\">" + restList[i] + "</li>");
         }
     }
 }
@@ -73,7 +72,6 @@ function initializeItemList() {
             li[i].style.display = "none";
         }
     }
-
 }
 
 $(document).ready(function () {
@@ -99,19 +97,49 @@ $(document).ready(function () {
     $("#done_settling").hide();
 
 
-
-
-    $("#ItemSetupItems li a ").click(function () {
-        $("#ItemSetupItems").hide();
-        $("#ItemSetupFilterList").val(this.innerText);
-        
+    $("#add_item").click(function () {
+        var new_item = prompt("Please enter the item name");
+        $('#ItemSetupFilterList').val(new_item);
+        AddRestaurantItem(new_item, restaurantid);
     });
+
+
+    
 
     $("#orderSetupItems").on("click", ".restButton", function () {
         $("#orderSetupItems").hide();
         $("#orderSetupFilterList").val(this.innerText);
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
+    });
+
+    $("#ItemSetupItems").on("click", ".restButton", function () {
+        $("#ItemSetupItems").hide();
+        $("#ItemSetupFilterList").val(this.innerText);
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+        // Find a <table> element with id="myTable":
+        var table = document.getElementById("user_order_details");
+
+        // Create an empty <tr> element and add it to the 1st position of the table:
+        var row = table.insertRow(1);
+
+        // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+
+        // Add some text to the new cells:
+        cell1.innerHTML = $("#ItemSetupFilterList").val();
+
+        cell2.innerHTML = "2";/////
+        /////////////////
+        t3 = document.createElement("INPUT");
+        t3.setAttribute("class", 'txt_box_color');
+        cell3.appendChild(t3);
+        ///////////////
+        cell4.innerHTML = "2";///delete button
     });
 
     $("#done_settling").click(function () {
@@ -144,29 +172,7 @@ $(document).ready(function () {
         $("#done_settling").hide();
     });
 
-    $(".items_list").click(function () {
-
-        
-
-        // Find a <table> element with id="myTable":
-        var table = document.getElementById("user_order_details");
-
-        // Create an empty <tr> element and add it to the 1st position of the table:
-        var row = table.insertRow(1);
-
-        // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-
-        // Add some text to the new cells:
-        cell1.innerHTML = $("#ItemSetupFilterList").innerText;
-        cell2.innerHTML = "2";
-        cell3.innerHTML = "2";
-        cell4.innerHTML = "2";
-
-    });
+   
 
     $("#settled_btn").click(function () {
         $("#settled_btn").hide();
@@ -296,11 +302,7 @@ $(document).ready(function () {
         AddRestaurant(new_res);
     });
 
-    $("#add_item").click(function () {
-        var new_item = prompt("Please enter the item name");
-        $('#ItemSetupFilterList').val(new_item);
-        AddRestaurantItem(new_item, restaurantid);
-    });
+   
 
     $(".pay").click(function () {
         

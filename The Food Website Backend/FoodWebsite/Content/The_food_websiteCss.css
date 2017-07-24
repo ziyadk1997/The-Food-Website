@@ -196,6 +196,14 @@ body {
     display: block;
 }
 
+.txt_box_color
+{
+    background-color : #D9E9FF !important;
+    width:100% !important;
+    border:none !important;
+    
+}
+
 .dropdown-content {
     position: absolute;
     background-color: #25aacf !important;
