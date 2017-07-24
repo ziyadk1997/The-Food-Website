@@ -74,24 +74,6 @@ namespace FoodWebsite.Controllers
             }
             return null;
         }
-        [HttpGet]
-        public static void UpdateOrder(String[] items, int[] values, String comments, Guid id)
-        {
-            List<ItemValue> x = new List<ItemValue>();
-            for (int i = 0; i < items.Length; i++)
-            {
-                x.Add(new ItemValue { Item = items[i], Value = values[i] });
-            }
-            Guid UserID = UserIdentityManager.GetUserId();
-            List<Order> cur = Broadcast.Get(id).Orders;
-            for (int i = 0; i < cur.Count(); i++)
-            {
-                if (cur.ElementAt(i).UserId == UserID)
-                {
-                    cur.ElementAt(i).Items = x;
-                }
-            }
-        }
 
         [HttpGet]
         public static void DeleteOrder(Guid id)
@@ -102,7 +84,7 @@ namespace FoodWebsite.Controllers
             {
                 if (cur.ElementAt(i).UserId == UserID)
                 {
-                    cur.ElementAt(i).Items = new List<ItemValue>();
+                    cur.Remove(cur[i]);
                 }
             }
         }
