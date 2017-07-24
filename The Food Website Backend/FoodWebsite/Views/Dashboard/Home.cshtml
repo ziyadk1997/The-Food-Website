@@ -12,7 +12,7 @@
     <link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
     <script>
-        function LoadBroadcaststs()
+        function LoadBroadcasts()
         {
             $.ajax({
                 url: "http://localhost:18151/api/Broadcast/Active",
@@ -105,7 +105,7 @@
                 },
                 success : function(response)
                 {
-                    LoadBroadcaststs();
+                    LoadBroadcasts();
                 }
             })
         }
@@ -179,582 +179,579 @@
 </head>
 <body>
     <!///////////////////////////////////////////////////////////////////////////////////////////////>
-    <div class="container" name="History & current orders buttons">
-        <div class="row">
-            <div class="col-md-12">
-                <div style="text-align:center;">
-                    <div class="btn-group" data-toggle="buttons">
-                        <br>
-                        <br>
-                        <label class="btn btn-primary dropdown-content one" style="border-bottom-left-radius:25px;background-color:#25aacf!important;border-top-left-radius:25px;">
-                            <input type="radio" id="current_order_btn">Current orders
-                        </label>
-                        <label class="btn btn-primary dropdown-content one" style="border-bottom-right-radius:25px;background-color:#25aacf!important;border-top-right-radius:25px;">
-                            <input type="radio" id="history_btn">History
-                        </label>
+    <div class="container">
+        <div name="History & current orders buttons">
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="text-align:center;">
+                        <div class="btn-group" data-toggle="buttons">
+                            <br>
+                            <br>
+                            <label class="btn btn-primary dropdown-content one" style="border-bottom-left-radius:25px;background-color:#25aacf!important;border-top-left-radius:25px;">
+                                <input type="radio" id="current_order_btn">Current orders
+                            </label>
+                            <label class="btn btn-primary dropdown-content one" style="border-bottom-right-radius:25px;background-color:#25aacf!important;border-top-right-radius:25px;">
+                                <input type="radio" id="history_btn">History
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!///////////////////////////////////////////////////////////////////////////////////////////////>
-    <div class="container" name="new broadcast button">
-        <div class="row">
-            <div class="col-md-11">
+        <!///////////////////////////////////////////////////////////////////////////////////////////////>
+        <div name="new broadcast button">
+            <div class="row">
+                <div class="col-md-11">
+
+                </div>
+                <div class="col-md-1">
+                    <div style="text-align:bottom;">
+
+                        <button type="button" class="btn btn-default btn-circle btn-xl" id="add_btn"><i class="glyphicon glyphicon-plus"></i></button>
+                    </div>
+                </div>
 
             </div>
-            <div class="col-md-1">
-                <div style="text-align:bottom;">
-
-                    <button type="button" class="btn btn-default btn-circle btn-xl" id="add_btn"><i class="glyphicon glyphicon-plus"></i></button>
+        </div>
+        <!///////////////////////////////////////////////////////////////////////////////////////////////>
+        <div name="where the broadcasts go">
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="text-align:center;" id="home">
+                        <br>
+                        <table class="orders table_g" id="home_table" ;align="center"></table>
+                    </div>
                 </div>
             </div>
-
         </div>
-    </div>
-    <!///////////////////////////////////////////////////////////////////////////////////////////////>
-    <div class="container" name="where the broadcasts go">
-        <div class="row">
-            <div class="col-md-12">
-                <div style="text-align:center;" id="home">
-                    <br>
-                    <table class="orders table_g" id="home_table" ;align="center">
-                        <tr></tr>
+        <!///////////////////////////////////////////////////////////////////////////////////////////////>
+        <div name="where history orders go">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="text-align:center;" id="history">
+                        <br>
+
+                        <button class="btn btn-primary header pay">KFC<br>22/8/2017</button>
+                        <button class="btn btn-primary header pay">papa johns<br>23/8/2017</button>
+                        <button class="btn btn-primary header pay">zooba<br>24/8/2017</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!///////////////////////////////////////////////////////////////////////////////////////////////>
+        <div name="enrolled in an order" id="home_select">
+
+            <div class="row">
+
+                <div class="col-md-11">
+                    <p></p>
+                </div>
+                <div class="col-md-1">
+                    <div>
+                        <button type="button" class="btn btn-default btn-circle btn-x2" id="check_btn"><i class="glyphicon glyphicon-check"></i></button>
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <div style="text-align:center;">
+                        <div class="scrollable">
+                            <input type="text" style="width:100%;max-width:100%;" id="ItemSetupFilterList" class="filterListInputItem" onkeyup="initializeItemList()" placeholder="Search for an item..">
+                            <ul id="ItemSetupItems" class="filterList">
+                                <li><a><button class="add_unexisting" id="add_item" style="font-size:20px!important;">+</button></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-1">
+                    <form action="/action_page.php">
+                        Quantity
+                        <input type="number" name="quantity" style="width:100%;max-width:100%;border-radius:15px!important;border-color:transparent;" id="counter" min="1" max="10">
+                    </form>
+                </div>
+                <div class="col-md-6 scrollable">
+                    <table class="table_history_select" id="user_order_details">
+                        <tr>
+                            <th>
+                                Item
+                            </th>
+                            <th>
+                                Quantity
+                            </th>
+                            <th>
+                                Special comments
+                            </th>
+                            <th>
+                                Delete
+                            </th>
+                            <th>
+                                Edit
+                            </th>
+                        </tr>
                     </table>
                 </div>
             </div>
         </div>
-    </div>
-    <!///////////////////////////////////////////////////////////////////////////////////////////////>
-    <div class="container" name="where history orders go">
+        <!///////////////////////////////////////////////////////////////////////////////////////////////>
+        <div name="table of people as buttons and their order details" id="history_select">
+            <div class="row" style="text-align:center">
+                <div class="col-md-4 scrollable" style="text-align:center">
+                </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div style="text-align:center;" id="history">
+                <div class="col-md-4 scrollable" style="text-align:center">
                     <br>
-                    <button class="btn btn-primary header pay">zarea<br>KFC<br>22/8/2017</button>
-                    <button class="btn btn-primary header pay">Mohamed<br>papa johns<br>23/8/2017</button>
-                    <button class="btn btn-primary header pay">Ahmed<br>zooba<br>24/8/2017</button>
+                    <br>
+                    <table class="table_history_select">
+                        <tr>
+                            <th>Name</th>
+                            <th>Total (L.E)</th>
+
+                        </tr>
+                        <tr class="details order_details">
+                            <td><p>zarea</p></td>
+                            <td><p>150</p></td>
+                        </tr>
+                        <tr class="details order_details">
+                            <td><p>zarea</p></td>
+                            <td><p>150</p></td>
+                        </tr>
+                        <tr class="details order_details">
+                            <td><p>zarea</p></td>
+                            <td><p>150</p></td>
+                        </tr>
+                        <tr class="details order_details">
+                            <td><p>zarea</p></td>
+                            <td><p>150</p></td>
+                        </tr>
+                        <tr class="details order_details">
+                            <td><p>zarea</p></td>
+                            <td><p>150</p></td>
+                        </tr>
+                        <tr class="details order_details">
+                            <td><p>zarea</p></td>
+                            <td><p>150</p></td>
+                        </tr>
+                        <tr class="details order_details">
+                            <td><p>zarea</p></td>
+                            <td><p>150</p></td>
+                        </tr>
+                        <tr class="details order_details">
+                            <td><p>zarea</p></td>
+                            <td><p>150</p></td>
+                        </tr>
+                        <tr class="details order_details">
+                            <td><p>zarea</p></td>
+                            <td><p>150</p></td>
+                        </tr>
+                        <tr class="details order_details">
+                            <td><p>zarea</p></td>
+                            <td><p>150</p></td>
+                        </tr>
+                        <tr class="details order_details">
+                            <td><p>zarea</p></td>
+                            <td><p>150</p></td>
+                        </tr>
+                        <tr class="details order_details">
+                            <td><p>zarea</p></td>
+                            <td><p>150</p></td>
+                        </tr>
+                        <tr class="details order_details">
+                            <td><p>zarea</p></td>
+                            <td><p>150</p></td>
+                        </tr>
+
+                    </table>
                 </div>
             </div>
         </div>
-    </div>
-    <!///////////////////////////////////////////////////////////////////////////////////////////////>
-    <div class="container" name="enrolled in an order" id="home_select">
-
-        <div class="row">
-
-            <div class="col-md-11">
-                <div>
-                    <button type="button" class="btn btn-default btn-circle btn-x2" id="details"><i class="glyphicon glyphicon-edit"></i></button>
+        <!///////////////////////////////////////////////////////////////////////////////////////////////>
+        <div id="to_settle">
+            <div class="row">
+                <div class="col-md-11">
+                    <p></p>
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="btn btn-default btn-circle btn-x2" id="done_settling"><i class="glyphicon glyphicon-euro"></i></button>
                 </div>
             </div>
-            <div class="col-md-1">
-                <div>
-                    <button type="button" class="btn btn-default btn-circle btn-x2" id="check_btn"><i class="glyphicon glyphicon-check"></i></button>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table_history_select">
+                        <tr>
+                            <th>
+
+                            </th>
+                        </tr>
+                    </table>
                 </div>
             </div>
+        </div>
+        <!///////////////////////////////////////////////////////////////////////////////////////////////>
+        <div id="to_settle_orders" style="text-align:center;">
+
+            <br>
+
+            <button class="btn btn-primary header settle_this">KFC<br>22/8/2017</button>
+            <button class="btn btn-primary header settle_this">papa johns<br>23/8/2017</button>
+            <button class="btn btn-primary header settle_this">zooba<br>24/8/2017</button>
 
         </div>
+        <!///////////////////////////////////////////////////////////////////////////////////////////////>
+        <div name="recipt per person" id="recipt">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Name: zarea</p>
+                    <p>Order Date: 22/7/2017  2:15 pm</p>
+                    <p>Restaurant: Pizza hut</p>
+                    <p>Total: 150 LE</p>
+                </div>
 
-        <br>
+                <div class="col-md-6 scrollable" style="text-align:center">
+                    <table class="table_history_select">
+                        <tr>
+                            <th>item</th>
+                            <th>Quantity</th>
+                            <th>price (per one)</th>
+                            <th>total</th>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td><p>zarea</p></td>
+                            <td><p>2</p></td>
+                            <td>20</td>
+                            <td>40</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!///////////////////////////////////////////////////////////////////////////////////////////////>
+        <div name="make a new broadcast" id="order_setup">
 
-        <div class="row">
-            <div class="col-md-5">
-                <div style="text-align:center;">
-                    <div class="scrollable">
-                        <input type="text" style="width:100%;max-width:100%;" id="ItemSetupFilterList" class="filterListInputItem" onkeyup="initializeItemList()" placeholder="Search for an item..">
-                        <ul id="ItemSetupItems" class="filterList">
+            <div class="row">
+                <div class="col-md-11">
 
-                            <li><a href="#">Burger</a></li>
-                            <li><a href="#">Burger</a></li>
-                            <li><a href="#">Burger</a></li>
-                            <li><a href="#">Burger</a></li>
-                            <li><a href="#">Burger</a></li>
-                            <li><a href="#">Burger</a></li>
-                            <li><a href="#">Burger</a></li>
-                            <li><a href="#">Burger</a></li>
-                            <li><a href="#">Burger</a></li>
-                            <li><a><button class="add_unexisting" id="add_item" style="font-size:20px!important;">+</button></a></li>
-                        </ul>
-                    </div>
+                </div>
+                <div class="col-md-1">
+                    <button style="align:left;" type="button" class="btn btn-default btn-circle btn-x2 " id="done"><i class="glyphicon glyphicon-ok"></i></button>
                 </div>
             </div>
 
-            <div class="col-md-1">
-                <form action="/action_page.php">
-                    Quantity
-                    <input type="number" name="quantity" style="width:100%;max-width:100%;border-radius:15px!important;border-color:transparent;" id="counter" min="1" max="10">
-                </form>
-            </div>
+            <br>
+
+            <div class="row">
 
 
-            <div class="col-md-6">
-                <div class="row">
-
-                    <div class="scrollable" style="text-align:center;max-height:25em !important;">
-                        <table class=" table_history_select ">
-                            <tr>
-                                <th>Name</th>
-                                <th>Order</th>
-                            </tr>
-                            <tr>
-                                <td><p>zarea</p></td>
-                                <td><p>kfc</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>zarea</p></td>
-                                <td><p>kfc</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>zarea</p></td>
-                                <td><p>kfc</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>zarea</p></td>
-                                <td><p>kfc</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>zarea</p></td>
-                                <td><p>kfc</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>zarea</p></td>
-                                <td><p>kfc</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>zarea</p></td>
-                                <td><p>kfc</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>zarea</p></td>
-                                <td><p>kfc</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>zarea</p></td>
-                                <td><p>kfc</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>zarea</p></td>
-                                <td><p>kfc</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>zarea</p></td>
-                                <td><p>kfc</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>zarea</p></td>
-                                <td><p>kfc</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>zarea</p></td>
-                                <td><p>kfc</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>zarea</p></td>
-                                <td><p>kfc</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>zarea</p></td>
-                                <td><p>kfc</p></td>
-                            </tr>
-                        </table>
+                <div class="col-md-6 ">
+                    <div>
+                        <input type="text" style="width:100%;max-width:100%;" id="orderSetupFilterList" class="filterListInputOrder " onkeyup="initializeOrderList()" placeholder="Search for a restaurant..">
+                        <div class="col-md-12 scrollable">
+                            <ul id="orderSetupItems" class="filterList" style="max-height:25em;">
+                                <li><a><button class="add_unexisting" id="add_restaurant" style="font-size:20px!important;">+</button></a></li>
+                            </ul>
+                        </div>
                     </div>
-
                 </div>
 
+                <div class="col-md-6">
+
+                    <div class=" input-group bootstrap-timepicker timepicker" style="height:20px !important;">
+                        <input id="timepicker1" type="text" class="form-control input-small " style="border-radius: 25px;">
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+        <!///////////////////////////////////////////////////////////////////////////////////////////////>
+        <div name="transition page">
+
+
+            <div class="row" id="trans" style="text-align:center;">
                 <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="col-md-4">
+                    <p> </p>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" style="border-bottom-left-radius:50px;border-top-left-radius:50px;" class="trans_btn" id="review_btn">Review order</button>
 
-                <div style="text-align:center;">
-                    <button type="button" class="close_btn bnt bnt-primary" id="close_order">Close order</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="trans_btn" style="border-top-right-radius:50px;border-bottom-right-radius:50px;" id="order_btn">Edit order</button>
+                </div>
+            </div>
+        </div>
+        <!///////////////////////////////////////////////////////////////////////////////////////////////>
+        <!///////////////////////////////////////////////////////////////////////////////////////////////>
+        <div name="transition history page ">
+
+
+            <div class="row" id="history_trans" style="text-align:center;">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="col-md-4">
+                    <p> </p>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" style="border-bottom-left-radius:50px;border-top-left-radius:50px;" class="trans_btn" id="settled_btn">Closed & settled</button>
+
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="trans_btn" style="border-top-right-radius:50px;border-bottom-right-radius:50px;" id="unsettled_btn">unsettled</button>
+                </div>
+            </div>
+        </div>
+        <!///////////////////////////////////////////////////////////////////////////////////////////////>
+        <div name="review bnt close" id="wil_order">
+            <div class="row">
+                <div class="col-md-11">
+                </div>
+                <div class="col-md-1">
+                    <button type="button" style="color:white!important;background-color:#F7403C !important;" class="btn btn-default btn-circle btn-x2" id="close_order"><i class="glyphicon glyphicon-bell"></i></button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="scrollable" style="text-align:center;max-height:25em !important;">
+                    <br>
+                    <table class="table_history_select" id="review_order_table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Order</th>
+                            <th>Special comments</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+
+                    </table>
+
+
+
                 </div>
             </div>
         </div>
     </div>
     <!///////////////////////////////////////////////////////////////////////////////////////////////>
-    <div class="container" name="table of people as buttons and their order details" id="history_select">
-        <div class="row" style="text-align:center">
-            <div class="col-md-4 scrollable" style="text-align:center">
-            </div>
-
-            <div class="col-md-4 scrollable" style="text-align:center">
-                <table class="table_history_select">
-                    <tr>
-                        <th>Name</th>
-                        <th>Total (L.E)</th>
-
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                    <tr>
-                        <td><button class="details order_details">zarea</button></td>
-                        <td><button class="details order_details">150</button></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-    <!///////////////////////////////////////////////////////////////////////////////////////////////>
-    <div class="container" name="recipt per person" id="recipt">
-        <div class="row">
-            <div class="col-md-6">
-                <p>Name: zarea</p>
-                <p>Order Date: 22/7/2017  2:15 pm</p>
-                <p>Restaurant: Pizza hut</p>
-                <p>Total: 150 LE</p>
-            </div>
-
-            <div class="col-md-6 scrollable" style="text-align:center">
-                <table class="table_history_select">
-                    <tr>
-                        <th>item</th>
-                        <th>Quantity</th>
-                        <th>price (per one)</th>
-                        <th>total</th>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td><p>zarea</p></td>
-                        <td><p>2</p></td>
-                        <td>20</td>
-                        <td>40</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-    <!///////////////////////////////////////////////////////////////////////////////////////////////>
-    <div class="container" name="make a new broadcast" id="order_setup">
-
-        <div class="row">
-            <div class="col-md-11">
-
-            </div>
-            <div class="col-md-1">
-                <button style="align:left;" type="button" class="btn btn-default btn-circle btn-x2 " id="done"><i class="glyphicon glyphicon-ok"></i></button>
-            </div>
-        </div>
-
-        <br>
-
-        <div class="row">
-
-
-            <div class="col-md-6 ">
-                <div>
-                    <input type="text" style="width:100%;max-width:100%;" id="orderSetupFilterList" class="filterListInputOrder " onkeyup="initializeOrderList()" placeholder="Search for a restaurant..">
-                    <div class="col-md-12 scrollable">
-                        <ul id="orderSetupItems" class="filterList" style="max-height:25em;">
-                            <li><a><button class="add_unexisting" id="add_restaurant" style="font-size:20px!important;">+</button></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-
-                <div class=" input-group bootstrap-timepicker timepicker" style="height:20px !important;">
-                    <input id="timepicker1" type="text" class="form-control input-small " style="border-radius: 25px;">
-                </div>
-
-
-
-            </div>
-        </div>
-    </div>
 </body>
 <script type="text/javascript">
     $('#timepicker1').timepicker({

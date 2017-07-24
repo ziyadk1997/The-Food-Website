@@ -1,5 +1,6 @@
 function displayBroadcasts (broadcasts)
 {
+    
     $("#home_table").empty();
 	for(var i=0;i<broadcasts.length;i++)
 	{
