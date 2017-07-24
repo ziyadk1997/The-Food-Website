@@ -40,6 +40,7 @@
                     restaurantName: RestaurantName
                 },
                 success: function (response) {
+                    GetRestaurants();
                 }
             })
         }
@@ -53,7 +54,11 @@
             $.ajax({
                 url: "http://localhost:18151/api/Restaurant/AddItem",
                 type: "GET",
-                data: data
+                data: data,
+                success:function(response)
+                {
+                    GetRestaurantItems(id);
+                }
             })
         }
 
@@ -75,6 +80,7 @@
                 url: "http://localhost:18151/api/Restaurant/GetAll",
                 type: "GET",
                 success: function (response) {
+                    console.log(response);
                     LoadRestaurants(response);
                 }
             })
@@ -289,9 +295,6 @@
                             </th>
                             <th>
                                 Delete
-                            </th>
-                            <th>
-                                Edit
                             </th>
                         </tr>
                     </table>
