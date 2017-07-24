@@ -12,6 +12,8 @@ namespace FoodWebsite.UserIdentity
 
         private static Dictionary<string, Guid> usersId = new Dictionary<string, Guid>();
 
+        private static Dictionary<Guid, string> usersEmail = new Dictionary<Guid, string>();
+
         public static Guid GetUserId()
         {
             string userEmail = GetUserEmail();
@@ -23,6 +25,7 @@ namespace FoodWebsite.UserIdentity
             {
                 Guid userId = Guid.NewGuid();
                 usersId.Add(userEmail, userId);
+                usersEmail.Add(userId, userEmail);
                 return userId;
             }
         }
@@ -32,6 +35,11 @@ namespace FoodWebsite.UserIdentity
             Random rnd = new Random();
             int idx = rnd.Next(0, userEmails.Count);
             return userEmails[idx];
+        }
+
+        public static String GetName(Guid id)
+        {
+            return usersEmail[id];
         }
 
     }

@@ -8,7 +8,6 @@ namespace FoodWebsite.DAL
 {
     public class Order
     {
-        public String Comments { set; get; }
         public Guid UserId { set; get; }
         public List<ItemValue> Items { set; get; }
     }

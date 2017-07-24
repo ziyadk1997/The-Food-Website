@@ -23,7 +23,7 @@ namespace FoodWebsite.Controllers
             Restaurant.Add(restaurant.RestaurantID,restaurant);
         }
         [HttpGet]
-        public void AddItem(string name,Guid restaurantID)
+        public void AddItem(String name,Guid restaurantID)
         {
             Restaurant.AddItem(restaurantID, new Item { Name = name});
         }
