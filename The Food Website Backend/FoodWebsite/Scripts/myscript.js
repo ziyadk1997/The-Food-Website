@@ -3,10 +3,10 @@ var restaurantid;
 
 function LoadRestaurants(restList) {
     $('#orderSetupItems li:not(:first)').remove();
-    $("#orderSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + restList[restList.length - 1].RestaurantID + ">" + restList[restList.length - 1].Name + "</li>");
+    $("#orderSetupItems").append("<li class=\"restButton list-group-item active\" restId = "  + restList[restList.length - 1].Name + "</li>");
     for (var i = restList.length - 2; i >=0 ; i--) {
         var name = restList[i].Name;
-        $("#orderSetupItems").append("<li class=\"restButton list-group-item\" restId = " + restList[i].RestaurantID + ">" + name + "</li>");
+        $("#orderSetupItems").append("<li class=\"restButton list-group-item\" restId = " +  name + "</li>");
     }
 
 
@@ -26,10 +26,10 @@ function LoadOrders(orders) {
 
 function LoadRestaurantItems(items) {
     $('#ItemSetupItems li:not(:first)').remove();
-    $("#ItemSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + restList[restList.length - 1].RestaurantID + ">" + restList[restList.length - 1].Name + "</li>");
-    for (var i = restList.length - 2; i >= 0 ; i--) {
-        var name = restList[i].Name;
-        $("#ItemSetupItems").append("<li class=\"restButton list-group-item\" restId = " + restList[i].RestaurantID + ">" + name + "</li>");
+    $("#ItemSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + items[items.length - 1].RestaurantID + ">" + items[items.length - 1].Name + "</li>");
+    for (var i = items.length - 2; i >= 0 ; i--) {
+        var name = items[i].Name;
+        $("#ItemSetupItems").append("<li class=\"restButton list-group-item\" restId = " + items[i].RestaurantID + ">" + name + "</li>");
     }
 }
 
@@ -98,15 +98,18 @@ $(document).ready(function () {
 
 
 
-    $("#ItemSetupItems li a ").click(function () {
-        $("#ItemSetupItems").hide();
-        $("#ItemSetupFilterList").val(this.innerText);
-        
-    });
+   
 
     $("#orderSetupItems").on("click", ".restButton", function () {
         $("#orderSetupItems").hide();
         $("#orderSetupFilterList").val(this.innerText);
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+    });
+
+    $("#ItemSetupItems").on("click", ".restButton", function () {
+        $("#ItemSetupItems").hide();
+        $("#ItemSetupFilterList").val(this.innerText);
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
     });
@@ -283,7 +286,7 @@ $(document).ready(function () {
         $("#recipt").hide();
         $("#order_setup").hide();
         $("#trans").show();
-        LoadOrders(broadcastid);
+        //LoadOrders(broadcastid);
         GetRestaurantItems(restaurantid);
     });
 
@@ -318,6 +321,7 @@ $(document).ready(function () {
         $("#check_btn").hide();
         $("#recipt").hide();
         $("#order_setup").hide();
+        GetRestaurantItems(restaurantid);
     });
 
     LoadBroadcasts();
