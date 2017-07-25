@@ -3,6 +3,7 @@ var restaurantid;
 var email;
 var typingTimer;                //timer identifier
 var doneTypingInterval = 5000;  //time in ms, 5 second for example
+
 function LoadRestaurants(restList) {
     if (restList != null && restList.length > 0) {
         $('#orderSetupItems li:not(:first)').remove();
@@ -71,10 +72,9 @@ function LoadUserReceipt(items) {
                 price = "";
             }
 
-            $("#user_receipt_table_body").append("<tr><td>" + name + "</td><td>" + quantity + "</td><td><input type = \"number\" class=\"quantity_col_input\" value=\"" + price + "\"></td><td>" + total + "</td></tr>");
+            $("#user_receipt_table_body").append("<tr><td>" + name + "</td><td>" + quantity + "</td><td><input type = \"number\" class=\"quantity_col_input\" min=\"1\" value=\"1\"    " + price + "\"></td><td>" + total + "</td></tr>");
         }
         $('summary_per_user').empty();
-        // $('summary_per_user').append("<br><br><p>"+Name: zarea</p><p>Order Date: 22/7/2017  2:15 pm</p><p>Restaurant: Pizza hut</p><p>Total: 150 LE</p>");
     }
 }
 
@@ -167,8 +167,10 @@ $(document).ready(function () {
 
     $("#add_item").click(function () {
         var new_item = prompt("Please enter the item name");
-        $('#ItemSetupFilterList').val(new_item);
-        AddRestaurantItem(new_item, restaurantid);
+        if (new_item != null) {
+            $('#ItemSetupFilterList').val(new_item);
+            AddRestaurantItem(new_item, restaurantid);
+        }
     });
 
 
@@ -197,7 +199,7 @@ $(document).ready(function () {
         // Find a <table> element with id="myTable":
         var name = $("#ItemSetupFilterList").val();
 
-        $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\"></td><td><input type = \"text\" class=\"comments_col_input\"></td><td><input type=\"button\"></td>");
+        $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\"></td><td><input type = \"text\" class=\"comments_col_input\"></td><td><button class='delete_item'><p>X</p></button></td>");
     });
 
     $("#done_settling").click(function () {
@@ -260,6 +262,7 @@ $(document).ready(function () {
         $("#check_btn").hide();
         $("#recipt").show();
         $("#order_setup").hide();
+
     });
     $("#current_order_btn").click(function () {
         $("#history").hide();
@@ -295,6 +298,7 @@ $(document).ready(function () {
         $("#trans").hide();
         $("#home_select").show();
         $("#check_btn").show();
+
 
     });
     $("#review_btn").click(function () {
@@ -349,8 +353,11 @@ $(document).ready(function () {
 
     $("#add_restaurant").click(function () {
         var new_res = prompt("Please enter the restaurant name");
-        $('#orderSetupFilterList').val(new_res);
-        AddRestaurant(new_res);
+        if (new_res != null) {
+            $('#orderSetupFilterList').val(new_res);
+            AddRestaurant(new_res);
+        }
+        
     });
 
     $("#user_receipt_table_body").on("change", "input", function () {

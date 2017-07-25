@@ -231,6 +231,22 @@ hr {
     .dropdown-content a:hover {
         background-color: #eb430c;
     }
+.comments_col_input
+{
+        width:100% !important;
+        max-width:100% !important;
+        height:100% !important;
+        max-height:100% !important;
+
+}
+.quantity_col_input
+{
+         width:100% !important;
+        max-width:100% !important;
+        height:100% !important;
+        max-height:100% !important;
+        text-align:center !important;
+}
 
 .header a:hover {
     background-color: #eb430c;
