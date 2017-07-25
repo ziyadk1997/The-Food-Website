@@ -155,7 +155,7 @@ $(document).ready(function () {
         // Find a <table> element with id="myTable":
         var name = $("#ItemSetupFilterList").val();
 
-        $("#user_order_details").append("<tr><td>" + name + "</td><td>1</td><td>some comment</td><td><input type=\"button\"></td>");
+        $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\"></td><td><input type = \"text\" class=\"comments_col_input\"></td><td><input type=\"button\"></td>");
     });
 
     $("#done_settling").click(function () {
@@ -315,11 +315,11 @@ $(document).ready(function () {
         var names = $("#user_order_details tr td:nth-child(1)").map(function () {
             return $(this).text();
         }).get();
-        var quantity = $("#user_order_details tr td:nth-child(2)").map(function () {
-            return parseInt($(this).text());
+        var quantity = $(".quantity_col_input").map(function () {
+            return parseInt($(this).val());
         }).get();
-        var comments = $("#user_order_details tr td:nth-child(3)").map(function () {
-            return $(this).text();
+        var comments = $(".comments_col_input").map(function () {
+            return $(this).val();
         }).get();
         AddOrder(names, quantity, comments, broadcastid);
         $("#history").hide();
