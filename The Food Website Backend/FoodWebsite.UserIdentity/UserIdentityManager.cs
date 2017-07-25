@@ -9,8 +9,6 @@ namespace FoodWebsite.UserIdentity
 {
     public static class UserIdentityManager
     {
-        private static List<string> userEmails = new List<string> {"a-ahzari@microsoft.com"};
-
         private static Dictionary<string, Guid> usersId = new Dictionary<string, Guid>();
 
         private static Dictionary<Guid, string> usersEmail = new Dictionary<Guid, string>();
@@ -40,9 +38,7 @@ namespace FoodWebsite.UserIdentity
             }
             else
             {
-                Random rnd = new Random();
-                int idx = rnd.Next(0, userEmails.Count);
-                return userEmails[idx];
+                throw new Exception("Cannot fetch user");
             }
         }
 
