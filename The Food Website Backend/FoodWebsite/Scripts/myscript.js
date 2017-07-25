@@ -313,6 +313,20 @@ $(document).ready(function () {
 
     });
 
+    $(".table_history_select").on("click", "button", function () {
+        $(this).closest('tr').remove();
+        var names = $("#user_order_details tr td:nth-child(1)").map(function () {
+            return $(this).text();
+        }).get();
+        var quantity = $(".quantity_col_input").map(function () {
+            return parseInt($(this).val());
+        }).get();
+        var comments = $(".comments_col_input").map(function () {
+            return $(this).val();
+        }).get();
+        AddOrder(names, quantity, comments, broadcastid);
+    });
+
     $(".orders").on("click", "button", function () {
         broadcastid = $(this).attr('unique_id');
         restaurantid = $(this).attr('restaurantid');
