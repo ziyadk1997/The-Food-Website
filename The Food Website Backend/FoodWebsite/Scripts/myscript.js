@@ -197,7 +197,7 @@ $(document).ready(function () {
         // Find a <table> element with id="myTable":
         var name = $("#ItemSetupFilterList").val();
 
-        $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\"></td><td><input type = \"text\" class=\"comments_col_input\"></td><td><button class = 'delete_item'></button></td>");
+        $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\"></td><td><input type = \"text\" class=\"comments_col_input\"></td><td><input type=\"button\"></td>");
     });
 
     $("#done_settling").click(function () {
