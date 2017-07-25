@@ -194,6 +194,18 @@
             })
         }
 
+        function AddItemPrice(id,name,price) {
+            $.ajax({
+                url: "http://localhost:18151/api/Restaurant/PutPrice",
+                type: "GET",
+                data: {
+                    id: id,
+                    name: name,
+                    price: price
+                }
+            })
+        }
+
 
 
     </script>
