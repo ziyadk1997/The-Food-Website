@@ -181,6 +181,14 @@ $(document).ready(function () {
         $(this).addClass('active');
     });
 
+    $("#user_receipt_table_body").on("click", "button", function () {
+        var price = prompt("Enter Price");
+        var priced = parseFloat(price);
+        AddItemPrice(restaurantid,$(this).parent().siblings().filter(":first")[0].innerHTML,priced);
+        ReceiptDetail(broadcastid,email);
+
+    });
+
     $("#ItemSetupItems").on("click", ".restButton", function () {
 
         $("#ItemSetupFilterList").val(this.innerText);
@@ -189,7 +197,7 @@ $(document).ready(function () {
         // Find a <table> element with id="myTable":
         var name = $("#ItemSetupFilterList").val();
 
-        $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\"></td><td><input type = \"text\" class=\"comments_col_input\"></td><td><button class='delete_item'><p>X</p></button></td>");
+        $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\"></td><td><input type = \"text\" class=\"comments_col_input\"></td><td><input type=\"button\"></td>");
     });
 
     $("#done_settling").click(function () {
@@ -312,7 +320,6 @@ $(document).ready(function () {
         AddBroadcast(id, deadline);
 
     });
-
     $(".table_history_select").on("click", "button", function () {
         $(this).closest('tr').remove();
         var names = $("#user_order_details tr td:nth-child(1)").map(function () {
@@ -326,7 +333,6 @@ $(document).ready(function () {
         }).get();
         AddOrder(names, quantity, comments, broadcastid);
     });
-
     $(".orders").on("click", "button", function () {
         broadcastid = $(this).attr('unique_id');
         restaurantid = $(this).attr('restaurantid');
