@@ -82,7 +82,6 @@
                 url: "http://localhost:18151/api/Restaurant/GetAll",
                 type: "GET",
                 success: function (response) {
-                    console.log(response);
                     LoadRestaurants(response);
                 }
             })
@@ -190,6 +189,18 @@
                 },
                 success: function (response) {
                     LoadBroadcastSummary(response);
+                }
+            })
+        }
+
+        function AddItemPrice(id,name,price) {
+            $.ajax({
+                url: "http://localhost:18151/api/Restaurant/PutPrice",
+                type: "GET",
+                data: {
+                    id: id,
+                    name: name,
+                    price: price
                 }
             })
         }
@@ -511,10 +522,16 @@
                 <div class="scrollable" style="text-align:center;max-height:25em !important;">
                     <br>
                     <table class="table_history_select" id="review_order_table">
-                        <tr>
-                            <th>Item</th>
-                            <th>Quantity</th>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Quantity</th>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
 
                     </table>
 

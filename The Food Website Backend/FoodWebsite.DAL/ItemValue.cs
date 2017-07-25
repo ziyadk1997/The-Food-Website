@@ -12,6 +12,6 @@ namespace FoodWebsite.DAL
         
         public int Quantity { set; get; }
 
-        public String comments { set; get; }
+        public String Comments { set; get; }
     }
 }

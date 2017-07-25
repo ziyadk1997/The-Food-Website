@@ -12,5 +12,7 @@ namespace FoodWebsite.DAL
 
         public int Quantity { get; set; }
 
+        public List<string> Comments { get; set; }
+
     }
 }
