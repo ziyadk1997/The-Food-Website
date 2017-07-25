@@ -13,7 +13,14 @@ function LoadRestaurants(restList) {
     }
 }
 
-
+function LoadBroadcastSummary(orders) {
+    $('#review_order_table').empty();
+    for (var i = 0; i < orders.length; i++) {
+        var name = orders[i].ItemName;
+        var quantity = orders[i].Quantity;
+        $("#review_order_table").append("<tr><td><p>" + name + "</p></td><td><p>" + quantity + "</p></td><td>" + "BLA BLA" + "</td><td>" + "BLABLA" + "</td><td>" + "BLABLA" + "</td></tr>");
+    }
+}
 
 function LoadTotalReceipt(receipt)
 {
@@ -256,10 +263,12 @@ $(document).ready(function () {
 
     });
     $("#review_btn").click(function () {
+        GetBroadcastSummary(broadcastid);
         $("#trans").hide();
         $("#will_order").show();
         $("#review_order_table").show();
         $("#close_order").show();
+        
     });
 
     $("#done").on("click", function () {

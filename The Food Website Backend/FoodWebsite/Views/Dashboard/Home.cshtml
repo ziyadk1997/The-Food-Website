@@ -181,6 +181,18 @@
                 }
             })
         }
+        function GetBroadcastSummary(id) {
+            $.ajax({
+                url: "http://localhost:18151/api/Broadcast/GetBroadcastSummary",
+                type: "GET",
+                data: {
+                    broadcastId: id
+                },
+                success: function (response) {
+                    LoadBroadcastSummary(response);
+                }
+            })
+        }
 
 
 
