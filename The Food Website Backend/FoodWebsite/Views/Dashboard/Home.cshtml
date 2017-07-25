@@ -201,6 +201,9 @@
                     id: id,
                     name: name,
                     price: price
+                },
+                success: function (response) {
+                    ReceiptDetail(broadcastid, email);
                 }
             })
         }
@@ -388,13 +391,8 @@
         <div name="recipt per person" id="recipt">
             <div class="row">
                 
-                    <div class="col-md-3">
-                        <br>
-                        <br>
-                        <p>Name: zarea</p>
-                        <p>Order Date: 22/7/2017  2:15 pm</p>
-                        <p>Restaurant: Pizza hut</p>
-                        <p>Total: 150 LE</p>
+                    <div class="col-md-3" id="summary_per_user">
+                        
                     </div>
                
 

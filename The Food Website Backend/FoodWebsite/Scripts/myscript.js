@@ -1,15 +1,25 @@
 ﻿var broadcastid;
 var restaurantid;
 var email;
+var typingTimer;                //timer identifier
+var doneTypingInterval = 5000;  //time in ms, 5 second for example
 function LoadRestaurants(restList) {
-    if (restList != null && restList.length > 0)
-    {
+    if (restList != null && restList.length > 0) {
         $('#orderSetupItems li:not(:first)').remove();
         $("#orderSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + restList[restList.length - 1].RestaurantID + ">" + restList[restList.length - 1].Name + "</li>");
         for (var i = restList.length - 2; i >= 0; i--) {
             var name = restList[i].Name;
             $("#orderSetupItems").append("<li class=\"restButton list-group-item\" restId = " + restList[i].RestaurantID + ">" + name + "</li>");
         }
+    }
+}
+
+function updateItemPriceEvent(btn) {
+    var price = btn.val();
+    var name = btn.parent().siblings().filter(":first")[0].innerHTML;
+    if (price != null && name != null && price != "" && name != "")
+    {
+        AddItemPrice(restaurantid, name, price);
     }
 }
 
@@ -20,33 +30,27 @@ function LoadBroadcastSummary(orders) {
         var quantity = orders[i].Quantity;
         var comments = orders[i].Comments;
         var commentToBeWrittenInTable = "";
-        if (comments == null || comments.length == 0)
-        {
+        if (comments == null || comments.length == 0) {
             commentToBeWrittenInTable = "No Comments For This Item";
         }
-        else
-        {
+        else {
             commentToBeWrittenInTable = comments.slice('\n').join("<br />");
         }
         $("#review_order_table tbody").append("<tr><td><p>" + name + "</p></td><td><p>" + quantity + "</p></td><td>" + commentToBeWrittenInTable + "</td></tr>");
     }
 }
 
-function LoadTotalReceipt(receipt)
-{
+function LoadTotalReceipt(receipt) {
     $("#total_receipt").empty();
     receiptItems = receipt.ReceiptItems;
     total = receipt.Total;
-    for (i = 0; i < receiptItems.length; i++)
-    {
+    for (i = 0; i < receiptItems.length; i++) {
         $("#total_receipt").append("<tr class=\"details order_details\"><td><p>" + receiptItems[i].Email + "</p></td><td><p>" + receiptItems[i].Total + "</p></td></tr>");
     }
-    if (total != null && total > 0)
-    {
+    if (total != null && total > 0) {
         $("#history_total_amount").text("Total: " + total);
     }
-    else
-    {
+    else {
         $("#history_total_amount").text("Total is undefined. Please set prices for all items");
     }
 
@@ -54,35 +58,44 @@ function LoadTotalReceipt(receipt)
 
 function LoadUserReceipt(items) {
     $('#user_receipt_table_body').empty();
-    for (var i = 0; i < items.length; i++) {
-        var name = items[i].Item.Name;
-        var quantity = items[i].Quantity;
-        var price = items[i].Item.Price;
-        var total = quantity * price;
-        $("#user_receipt_table_body").append("<tr><td><p>" + name + "</p></td><td><p>" + quantity + "</p></td><td>" + price + "</td><td>" + total + "</td></tr>");
+    if (items != null) {
+        for (var i = 0; i < items.length; i++) {
+            var name = items[i].Item.Name;
+            var quantity = items[i].Quantity;
+            var price = items[i].Item.Price;
+            var total = "";
+            if (price != 0 && price != null) {
+                total = quantity * price;
+            }
+            else {
+                price = "";
+            }
+
+            $("#user_receipt_table_body").append("<tr><td>" + name + "</td><td>" + quantity + "</td><td><input type = \"number\" class=\"quantity_col_input\" value=\"" + price + "\"></td><td>" + total + "</td></tr>");
+        }
+        $('summary_per_user').empty();
+        // $('summary_per_user').append("<br><br><p>"+Name: zarea</p><p>Order Date: 22/7/2017  2:15 pm</p><p>Restaurant: Pizza hut</p><p>Total: 150 LE</p>");
     }
 }
+
 function LoadOrders(orders) {
     $('#user_order_details').empty();
-    if (orders != null)
-    {
+    if (orders != null) {
         for (var i = 0; i < orders.length; i++) {
             var name = orders[i].Item.Name;
             var quantity = orders[i].Quantity;
             var comments = orders[i].Comments;
-            if (comments == null || comments == "")
-            {
+            if (comments == null || comments == "") {
                 comments = "";
             }
 
-            $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\" value=\"" + quantity + "\"></td><td><input type = \"text\" class=\"comments_col_input\" value=\"" + comments +"\"></td><td><input type=\"button\"></td>");
+            $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\" value=\"" + quantity + "\"></td><td><input type = \"text\" class=\"comments_col_input\" value=\"" + comments + "\"></td><td><input type=\"button\"></td>");
         }
     }
 }
 
 function LoadRestaurantItems(restList) {
-    if (restList != null && restList.length > 0)
-    {
+    if (restList != null && restList.length > 0) {
         $('#ItemSetupItems li:not(:first)').remove();
         $("#ItemSetupItems").append("<li class=\"restButton items_list list-group-item active\">" + restList[restList.length - 1] + "</li>");
         for (var i = restList.length - 2; i >= 0; i--) {
@@ -92,8 +105,7 @@ function LoadRestaurantItems(restList) {
 }
 
 
-function initializeOrderList()
-{
+function initializeOrderList() {
     var input, filter, ul, li, a, i;
     input = document.getElementById("orderSetupFilterList");
     filter = input.value.toUpperCase();
@@ -160,7 +172,7 @@ $(document).ready(function () {
     });
 
 
-    
+
 
     $("#orderSetupItems").on("click", ".restButton", function () {
         $("#orderSetupItems").hide();
@@ -170,7 +182,7 @@ $(document).ready(function () {
     });
 
     $("#ItemSetupItems").on("click", ".restButton", function () {
-       
+
         $("#ItemSetupFilterList").val(this.innerText);
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
@@ -203,15 +215,15 @@ $(document).ready(function () {
         $("#close_order").hide();
         $("#review_order_table").hide();
         LoadHistory();
-        
+
     });
 
-   
 
-    
+
+
 
     $("#close_order").click(function () {
-        
+
         $("#history_select").hide();
         $("#home_select").hide();
         $("#home").hide();
@@ -223,7 +235,7 @@ $(document).ready(function () {
         $("#review_order_table").hide();
         CloseBroadcast(broadcastid);
         $("#history").show();
-        
+
     });
 
     $("#details").click(function () {
@@ -283,7 +295,7 @@ $(document).ready(function () {
         $("#will_order").show();
         $("#review_order_table").show();
         $("#close_order").show();
-        
+
     });
 
     $("#done").on("click", function () {
@@ -321,11 +333,14 @@ $(document).ready(function () {
         AddRestaurant(new_res);
     });
 
-   
+    $("#user_receipt_table_body").on("change", "input", function () {
+        updateItemPriceEvent($(this));
+    });
 
     $("#history").on("click", "button", function () {
         GetReciept($(this).attr('unique_id'));
         broadcastid = $(this).attr('unique_id');
+        restaurantid = $(this).attr('restaurantid');
         $("#history").hide();
         $("#history_select").show();
         $("#home_select").hide();
@@ -334,6 +349,7 @@ $(document).ready(function () {
         $("#check_btn").hide();
         $("#recipt").hide();
     });
+
 
     $("#check_btn").click(function () {
         var names = $("#user_order_details tr td:nth-child(1)").map(function () {
@@ -349,7 +365,7 @@ $(document).ready(function () {
         $("#history").hide();
         $("#history_select").hide();
         $("#home_select").hide();
-        
+
         $("#check_btn").hide();
         $("#recipt").hide();
         $("#order_setup").hide();
@@ -363,4 +379,4 @@ $(document).ready(function () {
 
 
 
-    
+

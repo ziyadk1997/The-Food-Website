@@ -162,16 +162,36 @@ namespace FoodWebsite.Controllers
                     if (itemsCnt.ContainsKey(item.Item.Name))
                     {
                         itemsCnt[item.Item.Name] += item.Quantity;
-                        if(item.Comments != null && item.Comments != string.Empty)
+                        if (itemsComments.ContainsKey(item.Item.Name))
                         {
-                            itemsComments[item.Item.Name].Add(comment);
+                            if (item.Comments != null && item.Comments != string.Empty)
+                            {
+                                itemsComments[item.Item.Name].Add(comment);
+                            }
+                        }
+                        else
+                        {
+                            if (item.Comments != null && item.Comments != string.Empty)
+                            {
+                                itemsComments.Add(item.Item.Name, new List<string> { comment });
+                            }
                         }
                     }
                     else
                     {
-                        if (item.Comments != null && item.Comments != string.Empty)
+                        if (itemsComments.ContainsKey(item.Item.Name))
                         {
-                            itemsComments.Add(item.Item.Name, new List<string> { comment });
+                            if (item.Comments != null && item.Comments != string.Empty)
+                            {
+                                itemsComments[item.Item.Name].Add(comment);
+                            }
+                        }
+                        else
+                        {
+                            if (item.Comments != null && item.Comments != string.Empty)
+                            {
+                                itemsComments.Add(item.Item.Name, new List<string> { comment });
+                            }
                         }
 
                         itemsCnt.Add(item.Item.Name, item.Quantity);

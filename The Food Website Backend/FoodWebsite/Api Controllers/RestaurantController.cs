@@ -25,8 +25,12 @@ namespace FoodWebsite.Controllers
         [HttpGet]
         public void AddItem(String name,Guid restaurantID)
         {
-            Restaurant.AddItem(restaurantID, new Item { Name = name});
+            if (name != null && name != string.Empty)
+            {
+                Restaurant.AddItem(restaurantID, new Item { Name = name });
+            }
         }
+
         [HttpGet]
         public List<Restaurant> GetAll()
         {
@@ -43,6 +47,8 @@ namespace FoodWebsite.Controllers
             }
             return y;
         }
+
+        [HttpGet]
         public void PutPrice(Guid id,String name,double price)
         {
             List<Item> x = Restaurant.Get(id).Items;
