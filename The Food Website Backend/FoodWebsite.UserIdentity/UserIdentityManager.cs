@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AuthManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,9 +33,17 @@ namespace FoodWebsite.UserIdentity
 
         public static string GetUserEmail()
         {
-            Random rnd = new Random();
-            int idx = rnd.Next(0, userEmails.Count);
-            return userEmails[idx];
+            string email = AuthLib.UserEmail;
+            if(email != null)
+            {
+                return email;
+            }
+            else
+            {
+                Random rnd = new Random();
+                int idx = rnd.Next(0, userEmails.Count);
+                return userEmails[idx];
+            }
         }
 
         public static String GetUserEmail(Guid id)
