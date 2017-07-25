@@ -25,8 +25,12 @@ namespace FoodWebsite.Controllers
         [HttpGet]
         public void AddItem(String name,Guid restaurantID)
         {
-            Restaurant.AddItem(restaurantID, new Item { Name = name});
+            if (name != null && name != string.Empty)
+            {
+                Restaurant.AddItem(restaurantID, new Item { Name = name });
+            }
         }
+
         [HttpGet]
         public List<Restaurant> GetAll()
         {
