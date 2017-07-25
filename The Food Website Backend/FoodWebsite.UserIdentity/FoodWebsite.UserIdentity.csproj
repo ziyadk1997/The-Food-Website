@@ -43,6 +43,12 @@
     <Compile Include="UserIdentityManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AuthManager\AuthManager.csproj">
+      <Project>{2470A32C-19A9-40C3-88DC-3BEDA68A9968}</Project>
+      <Name>AuthManager</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
