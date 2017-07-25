@@ -6,12 +6,17 @@ var doneTypingInterval = 5000;  //time in ms, 5 second for example
 
 function LoadRestaurants(restList) {
     if (restList != null && restList.length > 0) {
+        $("#orderSetupFilterList").prop('disabled', false);
         $('#orderSetupItems li:not(:first)').remove();
         $("#orderSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + restList[restList.length - 1].RestaurantID + ">" + restList[restList.length - 1].Name + "</li>");
         for (var i = restList.length - 2; i >= 0; i--) {
             var name = restList[i].Name;
             $("#orderSetupItems").append("<li class=\"restButton list-group-item\" restId = " + restList[i].RestaurantID + ">" + name + "</li>");
         }
+    }
+    else
+    {
+        $("#orderSetupFilterList").prop('disabled', true);
     }
 }
 
@@ -96,11 +101,16 @@ function LoadOrders(orders) {
 
 function LoadRestaurantItems(restList) {
     if (restList != null && restList.length > 0) {
+        $("#ItemSetupFilterList").prop('disabled', false);
         $('#ItemSetupItems li:not(:first)').remove();
         $("#ItemSetupItems").append("<li class=\"restButton items_list list-group-item active\">" + restList[restList.length - 1] + "</li>");
         for (var i = restList.length - 2; i >= 0; i--) {
             $("#ItemSetupItems").append("<li class=\"restButton items_list list-group-item\">" + restList[i] + "</li>");
         }
+    }
+    else
+    {
+        $("#ItemSetupFilterList").prop('disabled', true);
     }
 }
 

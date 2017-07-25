@@ -76,8 +76,14 @@ hr {
 .header {
     background-color: #25aacf !important;
     color: white !important;
-    border-radius: 25px !important;
+    border-radius: 35px !important;
     border-color: transparent !important;
+    font-size:20px ;
+    border-color:#D9E9FF !important;
+}
+.orders{
+    font-size:25px !important;
+    border-radius:25px !important;
 }
 
 .table_g {
@@ -287,6 +293,8 @@ hr {
     color: black !important;
     height:1em !important;
 }
+
+
 
 
 

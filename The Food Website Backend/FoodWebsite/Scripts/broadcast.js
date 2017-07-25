@@ -9,7 +9,9 @@ function displayBroadcasts (broadcasts)
 		var uniqueId = broadcasts[i].BroadcastID;
 		var array = deadline.split('T');
 		var time = array[1];
-        var btn = "<button unique_id = \"" + uniqueId + "\" restaurantid = \"" + broadcasts[i].Restaurant.RestaurantID + "\" class=\"btn btn-primary header orders single_order\">" + resname + "<br>" + time + "</button>";
+		var array2 = time.split(':');
+		var final_time = array2[0] + ":" + array2[1];
+        var btn = "<button unique_id = \"" + uniqueId + "\" restaurantid = \"" + broadcasts[i].Restaurant.RestaurantID + "\" class=\"btn btn-primary header orders single_order\">" + resname + "<br>" + final_time + "</button>";
 		$("#home_table").append(btn);
 	}
 }
@@ -27,7 +29,10 @@ function displayHistory(broadcasts)
 		var array = deadline.split('T');
 		var date = array[0];
 		var time = array[1];
-		var btn = "<button unique_id = \"" + uniqueId + "\" restaurantid = \"" + broadcasts[i].Restaurant.RestaurantID + "\" class=\"btn btn-primary header pay\">" + resname + "<br>" + time + "<br>" + date + "</button>";
+		var array2 = time.split(':');
+		var final_time = array2[0] + ":" + array2[1];
+		
+		var btn = "<button unique_id = \"" + uniqueId + "\" restaurantid = \"" + broadcasts[i].Restaurant.RestaurantID + "\" class=\"btn btn-primary header pay\">" + resname +  "<br>" + date+"<br>"+final_time + "</button>";
 		$("#history").append(btn);
 	}
 }
