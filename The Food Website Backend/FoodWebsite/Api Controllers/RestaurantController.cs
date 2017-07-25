@@ -43,6 +43,8 @@ namespace FoodWebsite.Controllers
             }
             return y;
         }
+
+        [HttpGet]
         public void PutPrice(Guid id,String name,double price)
         {
             List<Item> x = Restaurant.Get(id).Items;

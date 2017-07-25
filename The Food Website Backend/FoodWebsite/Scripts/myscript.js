@@ -59,7 +59,10 @@ function LoadUserReceipt(items) {
         var quantity = items[i].Quantity;
         var price = items[i].Item.Price;
         var total = quantity * price;
-        $("#user_receipt_table_body").append("<tr><td><p>" + name + "</p></td><td><p>" + quantity + "</p></td><td>" + price + "</td><td>" + total + "</td></tr>");
+        if (price == 0) {
+            price = "<button id ='put_price_item'>Press to Add Price</button>";
+        }
+        $("#user_receipt_table_body").append("<tr><td>" + name + "</td><td>" + quantity + "</td><td>" + price + "</td><td>" + total + "</td></tr>");
     }
 }
 function LoadOrders(orders) {
@@ -75,7 +78,7 @@ function LoadOrders(orders) {
                 comments = "";
             }
 
-            $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\" value=\"" + quantity + "\"></td><td><input type = \"text\" class=\"comments_col_input\" value=\"" + comments +"\"></td><td><input type=\"button\"></td>");
+            $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\" value=\"" + quantity + "\"></td><td><input type = \"text\" class=\"comments_col_input\" value=\"" + comments +"\"></td><td><button class = 'delete_item'></button></td>");
         }
     }
 }
@@ -169,6 +172,14 @@ $(document).ready(function () {
         $(this).addClass('active');
     });
 
+    $("#user_receipt_table_body").on("click", "button", function () {
+        var price = prompt("Enter Price");
+        var priced = parseFloat(price);
+        AddItemPrice(restaurantid,$(this).parent().siblings().filter(":first")[0].innerHTML,priced);
+        ReceiptDetail(broadcastid,email);
+
+    });
+
     $("#ItemSetupItems").on("click", ".restButton", function () {
        
         $("#ItemSetupFilterList").val(this.innerText);
@@ -177,7 +188,7 @@ $(document).ready(function () {
         // Find a <table> element with id="myTable":
         var name = $("#ItemSetupFilterList").val();
 
-        $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\"></td><td><input type = \"text\" class=\"comments_col_input\"></td><td><input type=\"button\"></td>");
+        $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\"></td><td><input type = \"text\" class=\"comments_col_input\"></td><td><button class = 'delete_item'></button></td>");
     });
 
     $("#done_settling").click(function () {
@@ -300,7 +311,19 @@ $(document).ready(function () {
         AddBroadcast(id, deadline);
 
     });
-
+    $(".table_history_select").on("click", "button", function () {
+        $(this).closest('tr').remove();
+        var names = $("#user_order_details tr td:nth-child(1)").map(function () {
+            return $(this).text();
+        }).get();
+        var quantity = $(".quantity_col_input").map(function () {
+            return parseInt($(this).val());
+        }).get();
+        var comments = $(".comments_col_input").map(function () {
+            return $(this).val();
+        }).get();
+        AddOrder(names, quantity, comments, broadcastid);
+    });
     $(".orders").on("click", "button", function () {
         broadcastid = $(this).attr('unique_id');
         restaurantid = $(this).attr('restaurantid');
@@ -326,6 +349,7 @@ $(document).ready(function () {
     $("#history").on("click", "button", function () {
         GetReciept($(this).attr('unique_id'));
         broadcastid = $(this).attr('unique_id');
+        restaurantid = $(this).attr('restaurantid');
         $("#history").hide();
         $("#history_select").show();
         $("#home_select").hide();
