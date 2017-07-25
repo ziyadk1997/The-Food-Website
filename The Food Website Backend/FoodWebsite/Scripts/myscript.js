@@ -14,11 +14,21 @@ function LoadRestaurants(restList) {
 }
 
 function LoadBroadcastSummary(orders) {
-    $('#review_order_table').empty();
+    $('#review_order_table tbody').empty();
     for (var i = 0; i < orders.length; i++) {
         var name = orders[i].ItemName;
         var quantity = orders[i].Quantity;
-        $("#review_order_table").append("<tr><td><p>" + name + "</p></td><td><p>" + quantity + "</p></td><td>" + "BLA BLA" + "</td><td>" + "BLABLA" + "</td><td>" + "BLABLA" + "</td></tr>");
+        var comments = orders[i].Comments;
+        var commentToBeWrittenInTable = "";
+        if (comments == null || comments.length == 0)
+        {
+            commentToBeWrittenInTable = "No Comments For This Item";
+        }
+        else
+        {
+            commentToBeWrittenInTable = comments.slice('\n').join("<br />");
+        }
+        $("#review_order_table tbody").append("<tr><td><p>" + name + "</p></td><td><p>" + quantity + "</p></td><td>" + commentToBeWrittenInTable + "</td></tr>");
     }
 }
 
@@ -59,8 +69,13 @@ function LoadOrders(orders) {
         for (var i = 0; i < orders.length; i++) {
             var name = orders[i].Item.Name;
             var quantity = orders[i].Quantity;
-            var comments = orders[i].comments;
-            $("#user_order_details").append("<tr><td>" + name + "</td><td>" + quantity + "</td><td>" + comments + "</th><td>Delete</td></tr>");
+            var comments = orders[i].Comments;
+            if (comments == null || comments == "")
+            {
+                comments = "";
+            }
+
+            $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\" value=\"" + quantity + "\"></td><td><input type = \"text\" class=\"comments_col_input\" value=\"" + comments +"\"></td><td><input type=\"button\"></td>");
         }
     }
 }

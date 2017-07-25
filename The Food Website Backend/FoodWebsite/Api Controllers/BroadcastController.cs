@@ -58,7 +58,7 @@ namespace FoodWebsite.Controllers
                         break;
                     }
                 }
-                x.Add(new ItemValue { Item = n, Quantity = values[i],comments = comments[i] });
+                x.Add(new ItemValue { Item = n, Quantity = values[i],Comments = comments[i] });
             }
 
             if(broadcast.Orders.ContainsKey(userId))
@@ -153,23 +153,33 @@ namespace FoodWebsite.Controllers
             Broadcast broadcast = Broadcast.Get(broadcastId);
             List<Order> orders = broadcast.Orders.Select(order => order.Value).ToList();
             Dictionary<string, int> itemsCnt = new Dictionary<string, int>();
+            Dictionary<string, List<string>> itemsComments = new Dictionary<string, List<string>>();
             foreach (var order in orders)
             {
                 foreach (var item in order.Items)
                 {
-                    if(itemsCnt.ContainsKey(item.Item.Name))
+                    string comment = $"This is a comment for {item.Quantity} items: " + item.Comments;
+                    if (itemsCnt.ContainsKey(item.Item.Name))
                     {
-                        itemsCnt[item.Item.Name]++;
+                        itemsCnt[item.Item.Name] += item.Quantity;
+                        if(item.Comments != null && item.Comments != string.Empty)
+                        {
+                            itemsComments[item.Item.Name].Add(comment);
+                        }
                     }
                     else
                     {
-                        itemsCnt.Add(item.Item.Name, 1);
+                        if (item.Comments != null && item.Comments != string.Empty)
+                        {
+                            itemsComments.Add(item.Item.Name, new List<string> { comment });
+                        }
+
+                        itemsCnt.Add(item.Item.Name, item.Quantity);
                     }
                 }
             }
 
-            return itemsCnt.Select(e => new ItemSummary { ItemName = e.Key, Quantity = e.Value }).ToList();
-            
+            return itemsCnt.Select(e => new ItemSummary { ItemName = e.Key, Quantity = e.Value, Comments = itemsComments.ContainsKey(e.Key) == true ? itemsComments[e.Key] : new List<string>() }).ToList(); 
         }
 
 
