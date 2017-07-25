@@ -12,10 +12,13 @@
     <link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
     <script>
+        var baseUrl = window.location.protocol + "//" + location.host;
+
+        baseUrl + "/api/Broadcast/Add"
         function LoadBroadcasts()
         {
             $.ajax({
-                url: "http://localhost:18151/api/Broadcast/Active",
+                url: baseUrl + "/api/Broadcast/Active",
                 type: "GET",
                 success: function (response) {
                     displayBroadcasts(response);
@@ -26,7 +29,7 @@
         function LoadHistory()
         {
             $.ajax({
-                url: "http://localhost:18151/api/Broadcast/History",
+                url: baseUrl + "/api/Broadcast/History",
                 type: "GET",
                 success: function (response) {
                     displayHistory(response);
@@ -36,7 +39,7 @@
 
         function AddRestaurant(RestaurantName) {
             $.ajax({
-                url: "http://localhost:18151/api/Restaurant/Add",
+                url: baseUrl + "/api/Restaurant/Add",
                 type: "GET",
                 data: {
                     restaurantName: RestaurantName
@@ -54,7 +57,7 @@
                 restaurantID: id
             };
             $.ajax({
-                url: "http://localhost:18151/api/Restaurant/AddItem",
+                url: baseUrl + "/api/Restaurant/AddItem",
                 type: "GET",
                 data: data,
                 success:function(response)
@@ -66,7 +69,7 @@
 
         function GetRestaurantItems(id) {
             $.ajax({
-                url: "http://localhost:18151/api/Restaurant/GetRestaurantItems",
+                url: baseUrl +"/api/Restaurant/GetRestaurantItems",
                 type: "GET",
                 data:{
                 id:id
@@ -79,7 +82,7 @@
 
         function GetRestaurants() {
             $.ajax({
-                url: "http://localhost:18151/api/Restaurant/GetAll",
+                url: baseUrl + "/api/Restaurant/GetAll",
                 type: "GET",
                 success: function (response) {
                     LoadRestaurants(response);
@@ -90,7 +93,7 @@
 
         function GetReciept(id) {
             $.ajax({
-                url: "http://localhost:18151/api/Broadcast/Receipt",
+                url: baseUrl + "/api/Broadcast/Receipt",
                 type: "GET",
                 data: {
                     id: id
@@ -104,7 +107,7 @@
 
         function AddBroadcast(id, deadline) {
             $.ajax({
-                url: "http://localhost:18151/api/Broadcast/Add",
+                url: baseUrl + "/api/Broadcast/Add",
                 type: "GET",
                 data: {
                     restaurantID: id,
@@ -124,7 +127,7 @@
                 id: id
             };
             $.ajax({
-                url: "http://localhost:18151/api/Broadcast/AddOrder",
+                url: baseUrl + "/api/Broadcast/AddOrder",
                 type: "GET",
                 data: data,
                 traditional: true
@@ -133,7 +136,7 @@
 
         function CloseBroadcast(id) {
             $.ajax({
-                url: "http://localhost:18151/api/Broadcast/Close",
+                url: baseUrl + "/api/Broadcast/Close",
                 type: "GET",
                 data: {
                     id: id
@@ -147,7 +150,7 @@
 
         function CurrentOrder(id) {
             $.ajax({
-                url: "http://localhost:18151/api/Broadcast/GetCurrentOrder",
+                url: baseUrl + "/api/Broadcast/GetCurrentOrder",
                 type: "GET",
                 data: {
                     id: id
@@ -160,7 +163,7 @@
 
         function DeleteOrder(id) {
             $.ajax({
-                url: "http://localhost:18151/api/Broadcast/DeleteOrder",
+                url: baseUrl + "/api/Broadcast/DeleteOrder",
                 type: "GET",
                 data: {
                     id: id
@@ -169,7 +172,7 @@
         }
         function ReceiptDetail(id, email) {
             $.ajax({
-                url: "http://localhost:18151/api/Broadcast/ReceiptDetail",
+                url: baseUrl + "/api/Broadcast/ReceiptDetail",
                 type: "GET",
                 data: {
                     id: id,
@@ -182,7 +185,7 @@
         }
         function GetBroadcastSummary(id) {
             $.ajax({
-                url: "http://localhost:18151/api/Broadcast/GetBroadcastSummary",
+                url: baseUrl + "/api/Broadcast/GetBroadcastSummary",
                 type: "GET",
                 data: {
                     broadcastId: id
@@ -195,7 +198,7 @@
 
         function AddItemPrice(id,name,price) {
             $.ajax({
-                url: "http://localhost:18151/api/Restaurant/PutPrice",
+                url: baseUrl + "/api/Restaurant/PutPrice",
                 type: "GET",
                 data: {
                     id: id,
