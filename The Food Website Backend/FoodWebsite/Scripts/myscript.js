@@ -113,7 +113,7 @@ function LoadRestaurantItems(restList) {
         $('#ItemSetupItems li:not(:first)').remove();
         $("#ItemSetupItems").append("<li class=\"restButton items_list list-group-item active\">" + restList[restList.length - 1] + "</li>");
         for (var i = restList.length - 2; i >= 0; i--) {
-            $("#ItemSetupItems").append("<li class=\"restButton items_list list-group-item\">" + restList[i] + "</li>");
+            $("#ItemSetupItems").append("<li class=\"restButton items_list list-group-item\">" + restList[i] + "<i class=\"glyphicon glyphicon-plus\"></i></li>");
         }
     }
     else
