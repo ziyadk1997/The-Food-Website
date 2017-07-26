@@ -5,6 +5,7 @@ var typingTimer;                //timer identifier
 var doneTypingInterval = 5000;  //time in ms, 5 second for example
 
 function LoadRestaurants(restList) {
+    
     if (restList != null && restList.length > 0)
     {
         $("#orderSetupFilterList").prop('disabled', false);
@@ -104,6 +105,8 @@ function LoadOrders(orders) {
 }
 
 function LoadRestaurantItems(restList) {
+    
+    
     if (restList != null && restList.length > 0) {
         $("#ItemSetupFilterList").prop('disabled', false);
         $("#ItemSetupFilterList").attr("placeholder", "seach for an item...");
@@ -163,10 +166,7 @@ function initializeItemList() {
         }
     }
 }
-
 $(document).ready(function () {
-
-
     $("#history").hide();
     $("#history_select").hide();
     $("#home_select").hide();
@@ -185,7 +185,6 @@ $(document).ready(function () {
     $("#to_settle").hide();
     $("#to_settle_orders").hide();
     $("#done_settling").hide();
-
 
     $("#add_item").click(function () {
         var new_item = prompt("Please enter the item name");
@@ -216,17 +215,12 @@ $(document).ready(function () {
             }
         }
     });
-
-
-
-
     $("#orderSetupItems").on("click", ".restButton", function () {
         $("#orderSetupItems").hide();
         $("#orderSetupFilterList").val(this.innerText);
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
     });
-
     $("#user_receipt_table_body").on("click", "button", function () {
         var price = prompt("Enter Price");
         var priced = parseFloat(price);
@@ -234,7 +228,6 @@ $(document).ready(function () {
         ReceiptDetail(broadcastid,email);
 
     });
-
     $("#ItemSetupItems").on("click", ".restButton", function () {
 
         $("#ItemSetupFilterList").val(this.innerText);
@@ -245,16 +238,12 @@ $(document).ready(function () {
 
         $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\"></td><td><input type = \"text\" class=\"comments_col_input\"></td><td><button class='delete_item'><p>X</p></button></td>");
     });
-
     $("#done_settling").click(function () {
         $("#done_settling").hide();
         $("#to_settle").hide();
         $("#history").show();
 
     });
-
-
-
     $("#history_btn").click(function () {
         $("#history").show();
         $("#history_select").hide();
@@ -271,11 +260,6 @@ $(document).ready(function () {
         LoadHistory();
 
     });
-
-
-
-
-
     $("#close_order").click(function () {
 
         $("#history_select").hide();
@@ -291,7 +275,6 @@ $(document).ready(function () {
         $("#history").show();
 
     });
-
     $("#details").click(function () {
         var details = prompt("please type any special comments you would like to include in the order");
     });
@@ -367,6 +350,7 @@ $(document).ready(function () {
         var deadline = $("#timepicker1").val();
         AddBroadcast(id, deadline);
         $("#orderSetupFilterList").val("");
+        $('#orderSetupItems li:not(:first)').remove();
 
     });
     $(".table_history_select").on("click", "button", function () {
@@ -395,7 +379,6 @@ $(document).ready(function () {
         CurrentOrder(broadcastid);
         GetRestaurantItems(restaurantid);
     });
-
     $("#add_restaurant").click(function () {
         var new_res = prompt("Please enter the restaurant name");
         new_res = new_res.toUpperCase();
@@ -429,11 +412,9 @@ $(document).ready(function () {
         }
         
     });
-
     $("#user_receipt_table_body").on("change", "input", function () {
         updateItemPriceEvent($(this));
     });
-
     $("#history").on("click", "button", function () {
         GetReciept($(this).attr('unique_id'));
         broadcastid = $(this).attr('unique_id');
@@ -446,8 +427,6 @@ $(document).ready(function () {
         $("#check_btn").hide();
         $("#recipt").hide();
     });
-
-
     $("#check_btn").click(function () {
         var names = $("#user_order_details tr td:nth-child(1)").map(function () {
             return $(this).text();
@@ -469,8 +448,8 @@ $(document).ready(function () {
         $("#trans").show();
 
         $("#ItemSetupFilterList").val("");
+        $('#ItemSetupItems li:not(:first)').remove();
     });
-
     LoadBroadcasts();
 });
 
