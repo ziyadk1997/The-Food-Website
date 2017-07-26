@@ -99,7 +99,7 @@ function LoadOrders(orders) {
                 comments = "";
             }
 
-            $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\" value=\"" + quantity + "\"></td><td><input type = \"text\" class=\"comments_col_input\" value=\"" + comments + "\"></td><td><input type=\"button\"></td>");
+            $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\" min=\"1\" value=\"" + quantity + "\"></td><td><input type = \"text\" class=\"comments_col_input\" value=\"" + comments + "\"></td><td><button class='delete_item'>X</button></td>");
         }
     }
 }
@@ -240,8 +240,7 @@ $(document).ready(function () {
         // Find a <table> element with id="myTable":
         var name = $("#ItemSetupFilterList").val();
         $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\"></td><td><input type = \"text\" class=\"comments_col_input\"></td><td><button class='delete_item'><p>X</p></button></td>");
-        $("#msg3").hide();
-        $("#msg4").show();
+        
         $("#check_btn").prop("disabled", false);
     });
     $("#done_settling").click(function () {
@@ -266,8 +265,7 @@ $(document).ready(function () {
         LoadHistory();
         $("#msg").hide();
         $("#msg2").hide();
-        $("#msg3").hide();
-        $("#msg4").hide();
+
 
     });
     $("#close_order").click(function () {
@@ -321,8 +319,7 @@ $(document).ready(function () {
         LoadBroadcasts();
         $("#msg").hide();
         $("#msg2").hide();
-        $("#msg3").hide();
-        $("#msg4").hide();
+        
     });
     $("#add_btn").on("click", function () {
         $("#history").hide();
@@ -342,9 +339,8 @@ $(document).ready(function () {
         $("#trans").hide();
         $("#home_select").show();
         $("#check_btn").show();
-        $("#msg3").show();
-        $("#msg4").hide();
-        $("#check_btn").prop("disabled", true);
+        
+       
 
 
     });
