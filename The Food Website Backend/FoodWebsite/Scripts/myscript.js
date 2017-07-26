@@ -55,7 +55,7 @@ function LoadTotalReceipt(receipt) {
     receiptItems = receipt.ReceiptItems;
     total = receipt.Total;
     for (i = 0; i < receiptItems.length; i++) {
-        $("#total_receipt").append("<tr class=\"details order_details\"><td><p>" + receiptItems[i].Email + "</p></td><td><p>" + receiptItems[i].Total + "</p></td></tr>");
+        $("#total_receipt").append("<tr class=\"details order_details\"><td><a>" + receiptItems[i].Email + "</a></td><td><p>" + receiptItems[i].Total + "</p></td></tr>");
     }
     if (total != null && total > 0) {
         $("#history_total_amount").text("Total: " + total);
@@ -167,6 +167,7 @@ function initializeItemList() {
     }
 }
 $(document).ready(function () {
+
     $("#history").hide();
     $("#history_select").hide();
     $("#home_select").hide();
@@ -220,6 +221,9 @@ $(document).ready(function () {
         $("#orderSetupFilterList").val(this.innerText);
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
+        $("#done").prop("disabled", false);
+        $("#msg").hide();
+        $("#msg2").show();
     });
     $("#user_receipt_table_body").on("click", "button", function () {
         var price = prompt("Enter Price");
@@ -235,8 +239,10 @@ $(document).ready(function () {
         $(this).addClass('active');
         // Find a <table> element with id="myTable":
         var name = $("#ItemSetupFilterList").val();
-
         $("#user_order_details").append("<tr><td>" + name + "</td><td><input type = \"number\" class=\"quantity_col_input\"></td><td><input type = \"text\" class=\"comments_col_input\"></td><td><button class='delete_item'><p>X</p></button></td>");
+        $("#msg3").hide();
+        $("#msg4").show();
+        $("#check_btn").prop("disabled", false);
     });
     $("#done_settling").click(function () {
         $("#done_settling").hide();
@@ -258,6 +264,10 @@ $(document).ready(function () {
         $("#close_order").hide();
         $("#review_order_table").hide();
         LoadHistory();
+        $("#msg").hide();
+        $("#msg2").hide();
+        $("#msg3").hide();
+        $("#msg4").hide();
 
     });
     $("#close_order").click(function () {
@@ -309,6 +319,10 @@ $(document).ready(function () {
         $("#to_settle_orders").hide();
         $("#done_settling").hide();
         LoadBroadcasts();
+        $("#msg").hide();
+        $("#msg2").hide();
+        $("#msg3").hide();
+        $("#msg4").hide();
     });
     $("#add_btn").on("click", function () {
         $("#history").hide();
@@ -320,11 +334,17 @@ $(document).ready(function () {
         $("#recipt").hide();
         $("#order_setup").show();
         GetRestaurants();
+        $("#done").prop("disabled", true);
+        $("#msg").show();
+        $("#msg2").hide();
     });
     $("#order_btn").click(function () {
         $("#trans").hide();
         $("#home_select").show();
         $("#check_btn").show();
+        $("#msg3").show();
+        $("#msg4").hide();
+        $("#check_btn").prop("disabled", true);
 
 
     });
@@ -336,7 +356,6 @@ $(document).ready(function () {
         $("#close_order").show();
 
     });
-
     $("#done").on("click", function () {
         $("#history").hide();
         $("#history_select").hide();
@@ -351,6 +370,7 @@ $(document).ready(function () {
         AddBroadcast(id, deadline);
         $("#orderSetupFilterList").val("");
         $('#orderSetupItems li:not(:first)').remove();
+        $("#msg2").hide();
 
     });
     $(".table_history_select").on("click", "button", function () {
@@ -441,14 +461,13 @@ $(document).ready(function () {
         $("#history").hide();
         $("#history_select").hide();
         $("#home_select").hide();
-
         $("#check_btn").hide();
         $("#recipt").hide();
         $("#order_setup").hide();
         $("#trans").show();
-
         $("#ItemSetupFilterList").val("");
         $('#ItemSetupItems li:not(:first)').remove();
+        $("#msg4").hide();
     });
     LoadBroadcasts();
 });

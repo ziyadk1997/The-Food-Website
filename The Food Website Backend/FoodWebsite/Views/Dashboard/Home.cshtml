@@ -228,7 +228,7 @@
                             <br>
                             <br>
                             <label class="btn btn-primary dropdown-content one" style="border-bottom-left-radius:25px;background-color:#25aacf!important;border-top-left-radius:25px;">
-                                <input type="radio" id="current_order_btn">Current orders
+                                <input type="radio" id="current_order_btn">Current broadcasts
                             </label>
                             <label class="btn btn-primary dropdown-content one" style="border-bottom-right-radius:25px;background-color:#25aacf!important;border-top-right-radius:25px;">
                                 <input type="radio" id="history_btn">History
@@ -280,8 +280,21 @@
 
             <div class="row">
 
-                <div class="col-md-11">
-                    <p></p>
+                <div class="col-md-4">
+                    <p> </p>
+                </div>
+                <div class="col-md-4" id="msg3" style="text-align:center;">
+                    <br >
+                    <br >
+                    <p>please choose/add at least one item </p>
+                </div>
+                <div class="col-md-4" id="msg4">
+                    <br>
+                    <br>
+                    <p>                      </p>
+                </div>
+                <div class="col-md-3">
+                    <p> </p>
                 </div>
                 <div class="col-md-1">
                     <div>
@@ -420,9 +433,23 @@
         <!///////////////////////////////////////////////////////////////////////////////////////////////>
         <div name="make a new broadcast" id="order_setup">
 
-            <div class="row">
-                <div class="col-md-11">
+            <div class="row" style="max-height:100% !important;">
+                <div class="col-md-4">
+                    <p> </p>
+                </div>
 
+                <div class="col-md-4" style="text-align:center;max-height:100% !important;" id="msg">
+                    <br>
+                    <br>
+                    <p>Please choose/add a restaurant</p>
+                </div>
+                <div class="col-md-4" style="text-align:center;max-height:100% !important;" id="msg2">
+                    <br>
+                    <br>
+                    <p>                                           </p>
+                </div>
+                <div class="col-md-3">
+                    <p></p>
                 </div>
                 <div class="col-md-1">
                     <button style="align:left;" type="button" class="btn btn-default btn-circle btn-x2 " id="done"><i class="glyphicon glyphicon-ok"></i></button>
@@ -478,10 +505,10 @@
                 </div>
                 
                 <div class="col-md-2">
-                    <button type="button" class="trans_btn" style="border-bottom-left-radius:50px;border-top-left-radius:50px;" id="order_btn">Edit Order</button>
+                    <button type="button" class="trans_btn" style="border-bottom-left-radius:50px;border-top-left-radius:50px;" id="order_btn">Add/Edit my order</button>
                 </div>
                 <div class="col-md-2">
-                    <button type="button" style="border-top-right-radius:50px;border-bottom-right-radius:50px;"  class="trans_btn" id="review_btn">Order summary</button>
+                    <button type="button" style="border-top-right-radius:50px;border-bottom-right-radius:50px;"  class="trans_btn" id="review_btn">Broadcast summary</button>
 
                 </div>
             </div>
