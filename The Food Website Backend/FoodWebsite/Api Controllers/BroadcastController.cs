@@ -45,11 +45,11 @@ namespace FoodWebsite.Controllers
         {
             List<ItemValue> x = new List<ItemValue>();
             Broadcast broadcast = Broadcast.Get(id);
+            List<Item> it = Restaurant.GetRestaurantItems(broadcast.Restaurant.RestaurantID);
             Guid userId = UserIdentityManager.GetUserId();
             Item n = null;
             for (int i = 0; i < items.Length; i++)
             {
-                List<Item> it = broadcast.Restaurant.Items;
                 for(int j = 0; j < it.Count; j++)
                 {
                     if(items[i].Equals(it[j].Name))
@@ -63,11 +63,13 @@ namespace FoodWebsite.Controllers
 
             if(broadcast.Orders.ContainsKey(userId))
             {
-                broadcast.Orders[userId] = new Order { Items = x, UserId = userId };
+                broadcast.Orders[userId] = new Order { UserId = userId };
+                broadcast.Orders[userId].SetItems(x);
             }
             else
             {
-                broadcast.Orders.Add(userId, new Order { Items = x, UserId = userId });
+                broadcast.Orders.Add(userId, new Order {UserId = userId });
+                broadcast.Orders[userId].SetItems(x);
             }
         }
         [HttpGet]
@@ -75,11 +77,12 @@ namespace FoodWebsite.Controllers
         {
             List<ReceiptItem> x = new List<ReceiptItem>();
             double t = 0.0;
-            List<Order> o = Broadcast.Get(id).Orders.Select(order => order.Value).ToList();
+            Broadcast broadcast = Broadcast.Get(id);
+            List<Order> o = broadcast.Orders.Select(order => order.Value).ToList();
             for (int i = 0; i < o.Count; i++)
             {
                 double sum = 0.0;
-                List<ItemValue> it = o[i].Items;
+                List<ItemValue> it = o[i].GetItems(broadcast.Restaurant.RestaurantID);
                 for(int j = 0; j < it.Count; j++)
                 {
                     if (it[j].Item.Price == 0.0)
@@ -104,12 +107,13 @@ namespace FoodWebsite.Controllers
         public List<ItemValue> ReceiptDetail(Guid id,String email)
         {
             Guid user = UserIdentityManager.GetUserID(email);
-            List<Order> x = Broadcast.Get(id).Orders.Select(order => order.Value).ToList();
+            Broadcast broadcast = Broadcast.Get(id);
+            List<Order> x = broadcast.Orders.Select(order => order.Value).ToList();
             for(int i = 0; i < x.Count; i++)
             {
                 if(x[i].UserId == user)
                 {
-                    return x[i].Items;
+                    return x[i].GetItems(broadcast.Restaurant.RestaurantID);
                 }
             }
             return null;
@@ -123,12 +127,13 @@ namespace FoodWebsite.Controllers
         public List<ItemValue> GetCurrentOrder(Guid id)
         {
             Guid UserID = UserIdentityManager.GetUserId();
-            List<Order> cur = Broadcast.Get(id).Orders.Select(order => order.Value).ToList();
+            Broadcast broadcast = Broadcast.Get(id);
+            List<Order> cur = broadcast.Orders.Select(order => order.Value).ToList();
             for (int i = 0;i< cur.Count(); i++)
             {
                 if(cur.ElementAt(i).UserId == UserID)
                 {
-                    return cur.ElementAt(i).Items;
+                    return cur.ElementAt(i).GetItems(broadcast.Restaurant.RestaurantID);
                 }
             }
             return null;
@@ -156,7 +161,8 @@ namespace FoodWebsite.Controllers
             Dictionary<string, List<string>> itemsComments = new Dictionary<string, List<string>>();
             foreach (var order in orders)
             {
-                foreach (var item in order.Items)
+                List<ItemValue> orderItems = order.GetItems(broadcast.Restaurant.RestaurantID);
+                foreach (var item in orderItems)
                 {
                     string comment = $"This is a comment for {item.Quantity} items: " + item.Comments;
                     if (itemsCnt.ContainsKey(item.Item.Name))

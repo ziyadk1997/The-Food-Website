@@ -72,7 +72,7 @@ function LoadUserReceipt(items) {
                 price = "";
             }
 
-            $("#user_receipt_table_body").append("<tr><td>" + name + "</td><td>" + quantity + "</td><td><input type = \"number\" class=\"quantity_col_input\" min=\"1\" value=\"1\"    " + price + "\"></td><td>" + total + "</td></tr>");
+            $("#user_receipt_table_body").append("<tr><td>" + name + "</td><td>" + quantity + "</td><td><input type = \"number\" class=\"quantity_col_input\" min=\"1\" value=\"" + price + "\"></td><td>" + total + "</td></tr>");
         }
         $('summary_per_user').empty();
     }

@@ -40,6 +40,10 @@ namespace FoodWebsite.Controllers
         public List<String> GetRestaurantItems(Guid id)
         {
             List<Item> x = Restaurant.Get(id).Items;
+            if(x == null)
+            {
+                return new List<string>();
+            }
             List<String> y = new List<String>();
             for(int i = 0; i < x.Count; i++)
             {
@@ -51,14 +55,7 @@ namespace FoodWebsite.Controllers
         [HttpGet]
         public void PutPrice(Guid id,String name,double price)
         {
-            List<Item> x = Restaurant.Get(id).Items;
-            for(int i = 0; i < x.Count; i++)
-            {
-                if (x[i].Name.Equals(name))
-                {
-                    x[i].Price= price;
-                }
-            }
+            Restaurant.UpdateItemPrice(id, name, price);
         }
     }
 }
