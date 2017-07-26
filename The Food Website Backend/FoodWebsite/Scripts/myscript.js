@@ -5,8 +5,10 @@ var typingTimer;                //timer identifier
 var doneTypingInterval = 5000;  //time in ms, 5 second for example
 
 function LoadRestaurants(restList) {
-    if (restList != null && restList.length > 0) {
+    if (restList != null && restList.length > 0)
+    {
         $("#orderSetupFilterList").prop('disabled', false);
+        $("#orderSetupFilterList").attr("placeholder", "seach for a retaurant...");
         $('#orderSetupItems li:not(:first)').remove();
         $("#orderSetupItems").append("<li class=\"restButton list-group-item active\" restId = " + restList[restList.length - 1].RestaurantID + ">" + restList[restList.length - 1].Name + "</li>");
         for (var i = restList.length - 2; i >= 0; i--) {
@@ -17,6 +19,7 @@ function LoadRestaurants(restList) {
     else
     {
         $("#orderSetupFilterList").prop('disabled', true);
+        $("#orderSetupFilterList").attr("placeholder", "Please add a restaurant...");
     }
 }
 
@@ -85,7 +88,8 @@ function LoadUserReceipt(items) {
 
 function LoadOrders(orders) {
     $('#user_order_details').empty();
-    if (orders != null) {
+    if (orders != null)
+    {
         for (var i = 0; i < orders.length; i++) {
             var name = orders[i].Item.Name;
             var quantity = orders[i].Quantity;
@@ -102,6 +106,7 @@ function LoadOrders(orders) {
 function LoadRestaurantItems(restList) {
     if (restList != null && restList.length > 0) {
         $("#ItemSetupFilterList").prop('disabled', false);
+        $("#ItemSetupFilterList").attr("placeholder", "seach for an item...");
         $('#ItemSetupItems li:not(:first)').remove();
         $("#ItemSetupItems").append("<li class=\"restButton items_list list-group-item active\">" + restList[restList.length - 1] + "</li>");
         for (var i = restList.length - 2; i >= 0; i--) {
@@ -111,6 +116,8 @@ function LoadRestaurantItems(restList) {
     else
     {
         $("#ItemSetupFilterList").prop('disabled', true);
+        $("#ItemSetupFilterList").attr("placeholder", "Please add an item");
+        
     }
 }
 
@@ -123,14 +130,19 @@ function initializeOrderList() {
     ul.style.display = "";
     li = ul.getElementsByTagName('li');
 
-    for (i = 0; i < li.length; i++) {
+    for (i = 0; i < li.length; i++)
+    {
         a = li[i];
-        if (a == null || a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        if (a == null || a.innerHTML.toUpperCase().indexOf(filter) > -1)
+        {
             li[i].style.display = "";
-        } else {
+        }
+        else
+        {
             li[i].style.display = "none";
         }
     }
+
 
 }
 
@@ -177,9 +189,31 @@ $(document).ready(function () {
 
     $("#add_item").click(function () {
         var new_item = prompt("Please enter the item name");
+        new_item = new_item.toUpperCase();
         if (new_item != null) {
-            $('#ItemSetupFilterList').val(new_item);
-            AddRestaurantItem(new_item, restaurantid);
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("ItemSetupFilterList");
+            filter = new_item.toUpperCase();
+            ul = document.getElementById("ItemSetupItems");
+            ul.style.display = "";
+            li = ul.getElementsByTagName('li');
+
+            var found = false;
+
+            for (i = 0; i < li.length; i++) {
+                a = li[i];
+                if ((a == null || a.innerHTML.toUpperCase().indexOf(filter) > -1)) {
+                    found = true;
+                }
+            }
+            if (!found)//the item is not in the list add it to the list
+            {
+                $('#ItemSetupFilterList').val(new_item);
+                AddRestaurantItem(new_item, restaurantid);
+            }
+            else {
+                alert("This item is already in the list");
+            }
         }
     });
 
@@ -332,6 +366,7 @@ $(document).ready(function () {
         var id = $($("#orderSetupItems").find("li.active")).attr("restid");
         var deadline = $("#timepicker1").val();
         AddBroadcast(id, deadline);
+        $("#orderSetupFilterList").val("");
 
     });
     $(".table_history_select").on("click", "button", function () {
@@ -363,9 +398,34 @@ $(document).ready(function () {
 
     $("#add_restaurant").click(function () {
         var new_res = prompt("Please enter the restaurant name");
-        if (new_res != null) {
-            $('#orderSetupFilterList').val(new_res);
-            AddRestaurant(new_res);
+        new_res = new_res.toUpperCase();
+        if (new_res != null)
+        {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("orderSetupFilterList");
+            filter = new_res.toUpperCase();
+            ul = document.getElementById("orderSetupItems");
+            ul.style.display = "";
+            li = ul.getElementsByTagName('li');
+
+            var found=false;
+            for (i = 0; i < li.length; i++)
+            {
+                a = li[i];
+                if ((a == null || a.innerHTML.toUpperCase().indexOf(filter) > -1))
+                {
+                    found = true;
+                }
+            }
+            if(!found)//the item is not in the list add it to the list
+            {
+                $('#orderSetupFilterList').val(new_res);
+                AddRestaurant(new_res);
+            }
+            else
+            {
+                alert("This restaurant is already in the list");
+            }
         }
         
     });
@@ -407,6 +467,8 @@ $(document).ready(function () {
         $("#recipt").hide();
         $("#order_setup").hide();
         $("#trans").show();
+
+        $("#ItemSetupFilterList").val("");
     });
 
     LoadBroadcasts();
