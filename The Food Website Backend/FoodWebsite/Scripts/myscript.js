@@ -113,7 +113,7 @@ function LoadRestaurantItems(restList) {
         $('#ItemSetupItems li:not(:first)').remove();
         $("#ItemSetupItems").append("<li class=\"restButton items_list list-group-item active\">" + restList[restList.length - 1] + "</li>");
         for (var i = restList.length - 2; i >= 0; i--) {
-            $("#ItemSetupItems").append("<li class=\"restButton items_list list-group-item\">" + restList[i] + "<i class=\"glyphicon glyphicon-plus\"></i></li>");
+            $("#ItemSetupItems").append("<li class=\"restButton items_list list-group-item\">" + restList[i] );
         }
     }
     else
@@ -203,7 +203,8 @@ $(document).ready(function () {
             for (i = 0; i < li.length; i++) {
                 a = li[i];
                 if ((a == null || a.innerHTML.toUpperCase().indexOf(filter) > -1)) {
-                    found = true;
+                    if (a.innerHTML.toUpperCase()==filter)
+                    { found = true;}
                 }
             }
             if (!found)//the item is not in the list add it to the list
@@ -406,14 +407,15 @@ $(document).ready(function () {
             ul = document.getElementById("orderSetupItems");
             ul.style.display = "";
             li = ul.getElementsByTagName('li');
+            var found = false;
 
-            var found=false;
             for (i = 0; i < li.length; i++)
             {
                 a = li[i];
-                if ((a == null || a.innerHTML.toUpperCase().indexOf(filter) > -1))
+                if (a == null || a.innerHTML.toUpperCase().indexOf(filter) > -1)
                 {
-                    found = true;
+                    if (a.innerHTML.toUpperCase() == filter)
+                    { found = true; }
                 }
             }
             if(!found)//the item is not in the list add it to the list
@@ -425,8 +427,7 @@ $(document).ready(function () {
             {
                 alert("This restaurant is already in the list");
             }
-        }
-        
+        } 
     });
     $("#user_receipt_table_body").on("change", "input", function () {
         updateItemPriceEvent($(this));
