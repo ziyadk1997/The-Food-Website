@@ -189,8 +189,9 @@ $(document).ready(function () {
 
     $("#add_item").click(function () {
         var new_item = prompt("Please enter the item name");
-        new_item = new_item.toUpperCase();
+        
         if (new_item != null) {
+            new_item = new_item.toUpperCase();
             var input, filter, ul, li, a, i;
             input = document.getElementById("ItemSetupFilterList");
             filter = new_item.toUpperCase();
@@ -398,9 +399,10 @@ $(document).ready(function () {
     });
     $("#add_restaurant").click(function () {
         var new_res = prompt("Please enter the restaurant name");
-        new_res = new_res.toUpperCase();
+        
         if (new_res != null)
         {
+            new_res = new_res.toUpperCase();
             var input, filter, ul, li, a, i;
             input = document.getElementById("orderSetupFilterList");
             filter = new_res.toUpperCase();
