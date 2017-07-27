@@ -38,7 +38,15 @@ namespace FoodWebsite.Controllers
         [HttpGet]
         public List<Broadcast> History()
         {
-            return Broadcast.GetAll().Where(e => e.Active == false).ToList();
+            List<Broadcast> history = Broadcast.GetAll().Where(e => e.Active == false).ToList();
+            if(history.Count > 20)
+            {
+                return history.GetRange(history.Count-20, 20);
+            }
+            else
+            {
+                return history;
+            }
         }
         [HttpGet]
         public void AddOrder([FromUri] String [] items, [FromUri] int [] values, [FromUri] String [] comments,Guid id)
